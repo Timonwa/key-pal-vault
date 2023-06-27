@@ -31,7 +31,7 @@ const DashboardSideBar = ({ activePage }) => {
               Dashboard
             </Link>
           </li>
-          {accountType === "Super Admin" || accountType === "Team Head" ? (
+          {accountType === "Super Admin" || accountType === "Team Lead" ? (
             <li>
               <Link
                 href="/dashboard/members"
@@ -72,7 +72,7 @@ const DashboardSideBar = ({ activePage }) => {
               <MdOutlineDashboardCustomize className={styles.linkIcon} />
             </Link>
           </li>
-          {accountType === "Super Admin" || accountType === "Team Head" ? (
+          {accountType === "Super Admin" || accountType === "Team Lead" ? (
             <li>
               <Link
                 href="/dashboard/members"

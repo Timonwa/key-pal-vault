@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "../../styles/nav/DashboardNav.module.scss";
-import useStore from "../../store";
 
-const DashboardNav = () => {
-  const accountType = useStore((state) => state.accountType);
+const DashboardNav = ({ accountType }) => {
   return (
     <div className={styles.dashboardNavWrapper}>
       <nav

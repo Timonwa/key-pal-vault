@@ -1,0 +1,35 @@
+.tabSwitcherWrapper {
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+.tabSwitcherLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  margin-bottom: 20px;
+  .tab {
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+  }
+  .active {
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+  }
+}

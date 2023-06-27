@@ -19,8 +19,8 @@
 
   // Light theme colors
   --blue-light-theme: #1d262a;
+  --green-light-theme: #397835;
   --pink-light-theme: #e2a8b5;
-  --green-light-theme: hsl(135, 46%, 72%);
   --white-light-theme: #fefefe;
   --black-light-theme: #333333;
   --background-light-theme: #f8f5f5;
@@ -31,22 +31,22 @@
   --box-shadow-light-theme: rgba(18, 32, 59, 0.09);
 
   // Dark theme colors
-  --blue-dark--theme: hsl(193, 20%, 43%);
-  --pink-dark--theme: #a46a77;
-  --green-dark--theme: hsl(115, 16%, 35%);
-  --white-dark--theme: #e8e8e8;
-  --black-dark--theme: #1a1a1a;
-  --background-dark--theme: #f2f2f2;
-  --success-dark--theme: #2dad63;
-  --info-dark--theme: #2493d1;
-  --warning-dark--theme: #ffa500;
-  --error-dark--theme: #ff6347;
-  --box-shadow-dark--theme: rgba(228, 232, 240, 0.09);
+  --blue-dark-theme: hsl(193, 20%, 43%);
+  --green-dark-theme: #4d684b;
+  --pink-dark-theme: #a46a77;
+  --white-dark-theme: #e8e8e8;
+  --black-dark-theme: #1a1a1a;
+  --background-dark-theme: #f2f2f2;
+  --success-dark-theme: #2dad63;
+  --info-dark-theme: #2493d1;
+  --warning-dark-theme: #ffa500;
+  --error-dark-theme: #ff6347;
+  --box-shadow-dark-theme: rgba(228, 232, 240, 0.09);
 
   // website color
   --primary-color: var(--blue-light-theme);
-  --secondary-color: var(--pink-light-theme);
-  --tertiary-color: var(--green-light-theme);
+  --secondary-color: var(--green-light-theme);
+  --tertiary-color: var(--pink-light-theme);
   --text: var(--white-light-theme);
   --black: var(--black-light-theme);
   --background: var(--background-light-theme);
@@ -61,8 +61,8 @@
 @media (prefers-color-scheme: light) {
   :root {
     --primary-color: var(--blue-light-theme);
-    --secondary-color: var(--pink-light-theme);
-    --tertiary-color: var(--green-light-theme);
+    --secondary-color: var(--green-light-theme);
+    --tertiary-color: var(--pink-light-theme);
     --text: var(--white-light-theme);
     --black: var(--black-light-theme);
     --background: var(--background-light-theme);
@@ -77,17 +77,17 @@
 // Dark theme colors
 @media (prefers-color-scheme: dark) {
   :root {
-    // --primary-color: var(--blue-dark--theme);
-    // --secondary-color: var(--pink-dark--theme);
-    // --tertiary-color: var(--green-dark--theme);
-    // --text: var(--white-dark--theme);
+    // --primary-color: var(--blue-dark-theme);
+    // --secondary-color: var(--green-dark-theme);
+    // --tertiary-color: var(--pink-dark-theme);
+    // --text: var(--white-dark-theme);
     // --black: var(--black-light-theme);
     // --background: var(--background-dark-theme);
-    // --success: var(--success-dark--theme);
-    // --info: var(--info-dark--theme);
-    // --warning: var(--warning-dark--theme);
-    // --error: var(--error-dark--theme);
-    // --box-shadow: var(--box-shadow-dark--theme);
+    // --success: var(--success-dark-theme);
+    // --info: var(--info-dark-theme);
+    // --warning: var(--warning-dark-theme);
+    // --error: var(--error-dark-theme);
+    // --box-shadow: var(--box-shadow-dark-theme);
   }
 }
 

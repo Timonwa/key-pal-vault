@@ -59,9 +59,9 @@ textarea:focus {
 }
 
 button {
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid transparent;
+  // padding: 12px 16px;
+  // border-radius: 8px;
+  // border: 1px solid transparent;
   font-size: var(--normal-text);
   font-family: var(--primary-font);
   white-space: nowrap;
@@ -82,3 +82,7 @@ button {
   padding: 24px 28px;
 }
 // ! Global stylings (End)
+
+.unauthorizedMessage {
+  color: var(--error);
+}
