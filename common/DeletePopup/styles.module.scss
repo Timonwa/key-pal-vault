@@ -1,0 +1,29 @@
+.deletePopup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .title {
+    margin-bottom: 10px;
+    font-size: var(--h3-text);
+  }
+  .item {
+    margin-bottom: 20px;
+    font-size: var(--h2-text);
+  }
+  .buttons {
+    display: flex;
+    gap: 40px;
+
+    button {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid var(--primary-color);
+    }
+    button.delete {
+      border: 1px solid var(--error);
+      background-color: var(--error);
+      color: var(--text);
+    }
+  }
+}

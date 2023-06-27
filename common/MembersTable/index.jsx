@@ -1,8 +1,36 @@
+import { Fragment, useState } from "react";
 import styles from "./styles.module.scss";
+import Modal from "../Modal";
+import { DeletePopup } from "../DeletePopup";
+import { EditMemberPopup } from "../EditMemberPopup";
 
 export function MembersTable({ data }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalType, setModalType] = useState("");
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+  const openModal = (type) => {
+    setIsOpen(true);
+    setModalType(type);
+  };
   return (
-    <>
+    <Fragment>
+      {modalType === "edit" && (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <EditMemberPopup onClose={onClose} />
+        </Modal>
+      )}
+      {modalType === "delete" && (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <DeletePopup
+            type="Member"
+            name="Timonwa Akintokun"
+            onClose={onClose}
+          />
+        </Modal>
+      )}
       {/* when user has not created an event yet */}
       {/* <div div table className={styles.membersTable}>
         <div className={`${styles.top} ${styles.message}`}>
@@ -26,7 +54,7 @@ export function MembersTable({ data }) {
                 <p>Email</p>
               </th>
               <th>
-                <p>Approve</p>
+                <p>Status</p>
               </th>
               <th>
                 <p>Team</p>
@@ -64,8 +92,18 @@ export function MembersTable({ data }) {
                 </td>
                 <td>
                   <p>
-                    <button className={styles.edit}>Edit</button>
-                    <button className={styles.delete}>Delete</button>
+                    <button
+                      className={styles.edit}
+                      type="button"
+                      onClick={() => openModal("edit")}>
+                      Edit
+                    </button>
+                    <button
+                      className={styles.delete}
+                      type="button"
+                      onClick={() => openModal("delete")}>
+                      Delete
+                    </button>
                   </p>
                 </td>
               </tr>
@@ -73,6 +111,6 @@ export function MembersTable({ data }) {
           </tbody>
         </table>
       </div>
-    </>
+    </Fragment>
   );
 }

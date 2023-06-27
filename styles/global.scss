@@ -44,8 +44,6 @@ label {
 input,
 textarea,
 select {
-  // background-color: var(--text);
-  // border: 1px solid var(--secondary-600);
   border-radius: 8px;
   padding: 8px;
   font-size: var(--normal-text);
@@ -55,13 +53,17 @@ select {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 1px solid var(--secondary-700);
+  outline: 1px solid var(--primary-color);
+}
+input:disabled,
+select:disabled,
+textarea:disabled {
+  color: #888888;
+  background-color: #f1f1f1;
+  border: 2px solid #dddddd;
 }
 
 button {
-  // padding: 12px 16px;
-  // border-radius: 8px;
-  // border: 1px solid transparent;
   font-size: var(--normal-text);
   font-family: var(--primary-font);
   white-space: nowrap;
