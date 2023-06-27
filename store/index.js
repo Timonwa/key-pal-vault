@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-  activePage: "",
+  activePage: "Overview",
   setActivePage: (page) => set({ activePage: page }),
-  accountType: "",
+  accountType: "Member",
   setAccountType: (type) => set({ accountType: type }),
 }));
 

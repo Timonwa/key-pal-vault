@@ -8,10 +8,10 @@ import useStore from "../store";
 
 export default function App({ Component, pageProps }) {
   const accountType = useStore((state) => state.accountType);
-  const setAccountType = useStore((state) => state.setAccountType);
-  useEffect(() => {
-    setAccountType("Super Admin");
-  }, [setAccountType]);
+  // const setAccountType = useStore((state) => state.setAccountType);
+  // useEffect(() => {
+  //   setAccountType("Super Admin");
+  // }, [setAccountType]);
 
   if (Component.getLayout) {
     return Component.getLayout(

@@ -1,6 +1,6 @@
 import { MembersTable } from "@/common/MembersTable";
 import TabSwitcherLine from "@/common/TabSwitcherLine";
-import React from "react";
+import React, { useState } from "react";
 
 export default function TeamMembersTable() {
   const tabs = ["Team Members"];

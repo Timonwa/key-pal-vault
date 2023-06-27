@@ -60,7 +60,7 @@ export function MembersTable({ data }) {
                   <p>Development</p>
                 </td>
                 <td>
-                  <p>Team lead</p>
+                  <p>Team Lead</p>
                 </td>
                 <td>
                   <p>
