@@ -1,0 +1,89 @@
+// ! Global stylings (Start)
+html,
+body {
+  font-family: var(--primary-font);
+  font-size: var(--default-text);
+  background: var(--white-light);
+  color: var(--black-light);
+  overflow-x: hidden;
+}
+
+// * headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 150%;
+}
+h1 {
+  font-size: var(--h1-text);
+}
+h2 {
+  font-size: var(--h2-text);
+}
+h3 {
+  font-size: var(--h3-text);
+}
+h4 {
+  font-size: var(--h4-text);
+}
+
+// * paragraph
+p {
+  line-height: 150%;
+}
+
+//* forms
+label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+input,
+textarea,
+select {
+  // background-color: var(--white);
+  // border: 1px solid var(--secondary-600);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: var(--normal-text);
+  font-family: var(--primary-font);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 1px solid var(--secondary-700);
+}
+
+button {
+  padding: 12px 16px;
+  // background-color: var(--primary-color);
+  border-radius: 8px;
+  // color: var(--white);
+  border: 1px solid transparent;
+  font-size: var(--normal-text);
+  font-family: var(--primary-font);
+  white-space: nowrap;
+}
+
+//* parent wrapper for any page
+.wrapper {
+  min-height: 100vh;
+}
+// max width for each section
+.maxWidthWrapper {
+  max-width: 1440px;
+  margin: auto;
+}
+
+//* padding for each sections and navbar
+.dashboardSectionPaddings {
+  padding: 24px 28px;
+}
+.generalSectionPaddings {
+  padding: 14px 28px;
+}
+// ! Global stylings (End)

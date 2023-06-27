@@ -1,0 +1,61 @@
+// ! Resets (Start)
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// * scrollbar
+// width
+::-webkit-scrollbar {
+  width: 10px;
+  height: 3px;
+}
+
+// Track
+::-webkit-scrollbar-track {
+  // background: var(--secondary-100);
+}
+
+// Handle
+::-webkit-scrollbar-thumb {
+  // background-color: var(--primary-color);
+  border-radius: 4px;
+}
+
+// Handle on hover
+::-webkit-scrollbar-thumb:hover {
+  // background-color: var(--primary-700);
+}
+
+// * remove bullets from list items and position them well
+ul {
+  list-style: none;
+  list-style-position: unset;
+}
+
+// * anchor tags
+a:link,
+a:hover,
+a:active,
+a:visited {
+  cursor: pointer;
+  text-decoration: none;
+  color: currentColor;
+  display: block;
+}
+
+// * buttons
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+// * to ensure that when you click on an id link, the header will not cover the beginning of the content the id is pointing to
+[id] {
+  scroll-margin-top: 7rem;
+}
+// ! Resets (End)

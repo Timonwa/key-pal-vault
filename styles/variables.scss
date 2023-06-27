@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+
+:root {
+  // font family
+  --primary-font: "Nunito", sans-serif;
+
+  // font size
+  --default-text: 16px;
+  --h1-text: 1.625rem; // 26px
+  --h2-text: 1.438rem; // 23px
+  --h3-text: 1.25rem; // 20px
+  --h4-text: 1.125rem; // 18px
+  --normal-text: 1rem; // 16px
+  --small-text: 0.875rem; // 14px
+  --tiny-text: 0.813rem; // 13px
+
+  // default theme colors
+  --blue-light: #80b6c1;
+  --pink-light: #e2a8b5;
+  --green-light: #a6cbaf;
+  --black-light: #333333;
+  --white-light: #fdfdfd;
+
+  // default state colors
+  --success-light: #32a071;
+  --info-light: #0374ba;
+  --warning-light: #ffa500;
+  --error-light: #ff6347;
+}
+
+/* light theme colors */
+html[data-theme="light"] {
+  --blue-light: #80b6c1;
+  --pink-light: #e2a8b5;
+  --green-light: #a6cbaf;
+  --black-light: #333333;
+  --white-light: #fdfdfd;
+
+  // state colors
+  --success-light: #32a071;
+  --info-light: #0374ba;
+  --warning-light: #ffa500;
+  --error-light: #ff6347;
+}
+
+/* dark theme colors */
+html[data-theme="dark"] {
+  --blue-dark: #587b85;
+  --pink-dark: #a46a77;
+  --green-dark: #7d9e7a;
+  --black-dark: #1a1a1a;
+  --white-dark: #e8e8e8;
+
+  // state colors
+  --success-color: #2dad63;
+  --info-color: #2493d1;
+  --warning-color: #ffa500;
+  --error-color: #ff6347;
+}
