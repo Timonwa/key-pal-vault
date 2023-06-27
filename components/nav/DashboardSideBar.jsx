@@ -5,8 +5,10 @@ import { MdOutlineDashboardCustomize, MdOutlineLogout } from "react-icons/md";
 import { BiCog } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import Image from "next/image";
+import useStore from "../../store";
 
 const DashboardSideBar = ({ activePage }) => {
+  const accountType = useStore((state) => state.accountType);
   return (
     <nav className={styles.dashboardSidebar}>
       <div className={styles.top}>
@@ -16,7 +18,6 @@ const DashboardSideBar = ({ activePage }) => {
           </Link>
         </div>
       </div>
-
       {/* links on desktop screen */}
       <div className={`${styles.bottom} ${styles.large}`}>
         <ul className={styles.navLinks}>
@@ -30,15 +31,18 @@ const DashboardSideBar = ({ activePage }) => {
               Dashboard
             </Link>
           </li>
-          <li>
-            <Link
-              href="/dashboard/members"
-              className={`${styles.link} ${
-                activePage === "Members" ? styles.active : ""
-              }`}>
-              <FiUsers className={styles.linkIcon} /> Members
-            </Link>
-          </li>
+          {accountType === "Super Admin" || accountType === "Team Head" ? (
+            <li>
+              <Link
+                href="/dashboard/members"
+                className={`${styles.link} ${
+                  activePage === "Members" ? styles.active : ""
+                }`}>
+                <FiUsers className={styles.linkIcon} /> Members
+              </Link>
+            </li>
+          ) : null}
+
           <li>
             <Link
               href="/dashboard/settings"
@@ -68,15 +72,18 @@ const DashboardSideBar = ({ activePage }) => {
               <MdOutlineDashboardCustomize className={styles.linkIcon} />
             </Link>
           </li>
-          <li>
-            <Link
-              href="/dashboard/members"
-              className={`${styles.link} ${
-                activePage === "Members" ? styles.active : ""
-              }`}>
-              <FiUsers className={styles.linkIcon} />
-            </Link>
-          </li>
+          {accountType === "Super Admin" || accountType === "Team Head" ? (
+            <li>
+              <Link
+                href="/dashboard/members"
+                className={`${styles.link} ${
+                  activePage === "Members" ? styles.active : ""
+                }`}>
+                <FiUsers className={styles.linkIcon} />
+              </Link>
+            </li>
+          ) : null}
+
           <li>
             <Link
               href="/dashboard/settings"
