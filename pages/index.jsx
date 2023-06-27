@@ -1,12 +1,10 @@
 import { Fragment } from "react";
-import Script from "next/script";
+import SignIn from "@/components/SignIn";
 
 function Home() {
   return (
     <div>
-      <Script src="https://psg.so/web.js"></Script>
-      <h1>Login page</h1>
-      <passage-auth app-id="inDIuG1aCOAriBoEzE7gFT6Q"></passage-auth>
+      <SignIn />
     </div>
   );
 }
