@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../../styles/nav/DashboardSidebar.module.scss";
 import Link from "next/link";
-import { MdDashboardCustomize, MdOutlineLogout } from "react-icons/md";
+import { MdOutlineDashboardCustomize, MdOutlineLogout } from "react-icons/md";
 import { BiCog } from "react-icons/bi";
+import { FiUsers } from "react-icons/fi";
 import Image from "next/image";
 
 const DashboardSideBar = ({ activePage }) => {
@@ -25,7 +26,17 @@ const DashboardSideBar = ({ activePage }) => {
               className={`${styles.link} ${
                 activePage === "Dashboard" ? styles.active : ""
               }`}>
-              <MdDashboardCustomize className={styles.linkIcon} /> Dashboard
+              <MdOutlineDashboardCustomize className={styles.linkIcon} />{" "}
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard/members"
+              className={`${styles.link} ${
+                activePage === "Members" ? styles.active : ""
+              }`}>
+              <FiUsers className={styles.linkIcon} /> Members
             </Link>
           </li>
           <li>
@@ -54,7 +65,16 @@ const DashboardSideBar = ({ activePage }) => {
               className={`${styles.link} ${
                 activePage === "Dashboard" ? styles.active : ""
               }`}>
-              <MdDashboardCustomize className={styles.linkIcon} />
+              <MdOutlineDashboardCustomize className={styles.linkIcon} />
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard/members"
+              className={`${styles.link} ${
+                activePage === "Members" ? styles.active : ""
+              }`}>
+              <FiUsers className={styles.linkIcon} />
             </Link>
           </li>
           <li>

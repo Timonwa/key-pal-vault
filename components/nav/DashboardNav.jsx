@@ -1,14 +1,14 @@
-import Image from "next/image";
 import React from "react";
 import styles from "../../styles/nav/DashboardNav.module.scss";
-import Link from "next/link";
+import useStore from "../../store";
 
-const DashboardNav = ({ title }) => {
+const DashboardNav = ({}) => {
+  const accountType = useStore((state) => state.accountType);
   return (
     <div className={styles.dashboardNavWrapper}>
       <nav
         className={`dashboardSectionPaddings maxWidthWrapper ${styles.dashboardNav}`}>
-        <h1 className={styles.pageTitle}>{title}</h1>/
+        <h1 className={styles.pageTitle}>{accountType}</h1>/
         <p className={styles.userName}>Timonwa Akintokun</p>
       </nav>
     </div>

@@ -26,11 +26,5 @@ const Dashboard = () => {
 export default Dashboard;
 
 Dashboard.getLayout = function PageLayout(page) {
-  const accountType = useStore((state) => state.accountType);
-  const activePage = useStore((state) => state.activePage);
-  return (
-    <DashboardLayout title={accountType} activePage={activePage}>
-      {page}
-    </DashboardLayout>
-  );
+  return <DashboardLayout>{page}</DashboardLayout>;
 };
