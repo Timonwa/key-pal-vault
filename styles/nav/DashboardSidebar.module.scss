@@ -1,0 +1,59 @@
+.dashboardSidebar {
+  height: calc(100vh - var(--nav-bar-height));
+  overflow-y: auto;
+  position: fixed;
+  padding: 20px 12px;
+  width: var(--side-bar-width);
+
+  .bottom {
+    display: block;
+    .navLinks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        padding: 6px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: var(--normal-text);
+        transition: background-color 300ms ease-in-out;
+        &:hover {
+          background-color: var(--green-light);
+        }
+        .linkIcon {
+          font-size: 1.5rem;
+        }
+      }
+      .active {
+        background-color: var(--pink-light);
+        // color: var(--white-light);
+      }
+    }
+  }
+  .bottom.small {
+    display: none;
+    .navLinks {
+      align-items: center;
+    }
+    .navLinks {
+      gap: 12px;
+      .linkIcon {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    padding: 12px 8px;
+    .bottom.large {
+      display: none;
+    }
+    .bottom.small {
+      display: block;
+    }
+  }
+}
