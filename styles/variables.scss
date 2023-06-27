@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
 
 :root {
-  --nav-bar-height: 50px;
+  --nav-bar-height: 70px;
   --side-bar-width: 150px;
 
-  // font family
+  // Font family
   --primary-font: "Nunito", sans-serif;
 
-  // font size
+  // Font size
   --default-text: 16px;
   --h1-text: 1.625rem; // 26px
   --h2-text: 1.438rem; // 23px
@@ -17,51 +17,82 @@
   --small-text: 0.875rem; // 14px
   --tiny-text: 0.813rem; // 13px
 
-  // default theme colors
-  --blue-light: #80b6c1;
-  --pink-light: #ebbac5;
-  --green-light: #a6cbaf;
-  --black-light: #333333;
-  --white-light: #fdfdfd;
+  // Light theme colors
+  --blue-light-theme: #1d262a;
+  --pink-light-theme: #e2a8b5;
+  --green-light-theme: hsl(135, 46%, 72%);
+  --white-light-theme: #fefefe;
+  --black-light-theme: #333333;
+  --background-light-theme: #f8f5f5;
+  --success-light-theme: #32a071;
+  --info-light-theme: #0374ba;
+  --warning-light-theme: #ffa500;
+  --error-light-theme: #ff6347;
+  --box-shadow-light-theme: rgba(18, 32, 59, 0.09);
 
-  // default state colors
-  --success-light: #32a071;
-  --info-light: #0374ba;
-  --warning-light: #ffa500;
-  --error-light: #ff6347;
+  // Dark theme colors
+  --blue-dark--theme: hsl(193, 20%, 43%);
+  --pink-dark--theme: #a46a77;
+  --green-dark--theme: hsl(115, 16%, 35%);
+  --white-dark--theme: #e8e8e8;
+  --black-dark--theme: #1a1a1a;
+  --background-dark--theme: #f2f2f2;
+  --success-dark--theme: #2dad63;
+  --info-dark--theme: #2493d1;
+  --warning-dark--theme: #ffa500;
+  --error-dark--theme: #ff6347;
+  --box-shadow-dark--theme: rgba(228, 232, 240, 0.09);
+
+  // website color
+  --primary-color: var(--blue-light-theme);
+  --secondary-color: var(--pink-light-theme);
+  --tertiary-color: var(--green-light-theme);
+  --text: var(--white-light-theme);
+  --black: var(--black-light-theme);
+  --background: var(--background-light-theme);
+  --success: var(--success-light-theme);
+  --info: var(--info-light-theme);
+  --warning: var(--warning-light-theme);
+  --error: var(--error-light-theme);
+  --box-shadow: var(--box-shadow-light-theme);
 }
 
-/* light theme colors */
-html[data-theme="light"] {
-  --blue-light: #80b6c1;
-  --pink-light: #e2a8b5;
-  --green-light: #a6cbaf;
-  --black-light: #333333;
-  --white-light: #fdfdfd;
-
-  // state colors
-  --success-light: #32a071;
-  --info-light: #0374ba;
-  --warning-light: #ffa500;
-  --error-light: #ff6347;
+// Light theme colors
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: var(--blue-light-theme);
+    --secondary-color: var(--pink-light-theme);
+    --tertiary-color: var(--green-light-theme);
+    --text: var(--white-light-theme);
+    --black: var(--black-light-theme);
+    --background: var(--background-light-theme);
+    --success: var(--success-light-theme);
+    --info: var(--info-light-theme);
+    --warning: var(--warning-light-theme);
+    --error: var(--error-light-theme);
+    --box-shadow: var(--box-shadow-light-theme);
+  }
 }
 
-/* dark theme colors */
-html[data-theme="dark"] {
-  --blue-dark: #587b85;
-  --pink-dark: #a46a77;
-  --green-dark: #7d9e7a;
-  --black-dark: #1a1a1a;
-  --white-dark: #e8e8e8;
-
-  // state colors
-  --success-color: #2dad63;
-  --info-color: #2493d1;
-  --warning-color: #ffa500;
-  --error-color: #ff6347;
+// Dark theme colors
+@media (prefers-color-scheme: dark) {
+  :root {
+    // --primary-color: var(--blue-dark--theme);
+    // --secondary-color: var(--pink-dark--theme);
+    // --tertiary-color: var(--green-dark--theme);
+    // --text: var(--white-dark--theme);
+    // --black: var(--black-light-theme);
+    // --background: var(--background-dark-theme);
+    // --success: var(--success-dark--theme);
+    // --info: var(--info-dark--theme);
+    // --warning: var(--warning-dark--theme);
+    // --error: var(--error-dark--theme);
+    // --box-shadow: var(--box-shadow-dark--theme);
+  }
 }
+
 @media screen and (max-width: 960px) {
   :root {
-    --side-bar-width: 50px;
+    --side-bar-width: 72px;
   }
 }

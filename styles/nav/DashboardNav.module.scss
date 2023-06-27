@@ -1,25 +1,26 @@
 .dashboardNavWrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
   height: var(--nav-bar-height);
-  box-shadow: 0px 1px 0px rgba(18, 32, 59, 0.09);
+  box-shadow: 0px 1px 0px var(--box-shadow);
+  background-color: var(--text);
   .dashboardNav {
     height: inherit;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 24px;
+    gap: 8px;
     .logoWrapper {
       width: calc(var(--side-bar-width) - 24px);
-      border: 1px solid var(--black-light);
     }
     .pageTitle {
       font-size: var(--h4-text);
+      white-space: nowrap;
+    }
+    .userName {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     @media screen and (max-width: 960px) {
-      gap: 20px;
+      gap: 8px;
       .logoWrapper {
         width: 50px;
       }

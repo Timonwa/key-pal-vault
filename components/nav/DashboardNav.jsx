@@ -8,12 +8,8 @@ const DashboardNav = ({ title }) => {
     <div className={styles.dashboardNavWrapper}>
       <nav
         className={`dashboardSectionPaddings maxWidthWrapper ${styles.dashboardNav}`}>
-        <div className={styles.logoWrapper}>
-          <Link href="/dashboard">
-            <Image src="/images/logo.svg" alt="Logo" width="133" height="38" />
-          </Link>
-        </div>
-        <h1 className={styles.pageTitle}>{title}</h1>
+        <h1 className={styles.pageTitle}>{title}</h1>/
+        <p className={styles.userName}>Timonwa Akintokun</p>
       </nav>
     </div>
   );

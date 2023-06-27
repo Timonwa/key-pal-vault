@@ -3,10 +3,19 @@ import styles from "../../styles/nav/DashboardSidebar.module.scss";
 import Link from "next/link";
 import { MdDashboardCustomize, MdOutlineLogout } from "react-icons/md";
 import { BiCog } from "react-icons/bi";
+import Image from "next/image";
 
 const DashboardSideBar = ({ activePage }) => {
   return (
     <nav className={styles.dashboardSidebar}>
+      <div className={styles.top}>
+        <div className={styles.logoWrapper}>
+          <Link href="/dashboard">
+            <Image src="/images/logo.svg" alt="Logo" width="50" height="50" />
+          </Link>
+        </div>
+      </div>
+
       {/* links on desktop screen */}
       <div className={`${styles.bottom} ${styles.large}`}>
         <ul className={styles.navLinks}>

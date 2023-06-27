@@ -1,16 +1,24 @@
 .dashboardSidebar {
-  height: calc(100vh - var(--nav-bar-height));
+  height: 100vh;
   overflow-y: auto;
   position: fixed;
-  padding: 20px 12px;
   width: var(--side-bar-width);
-
+  background-color: var(--primary-color);
+  color: var(--white-light-theme);
+  .top {
+    height: var(--nav-bar-height);
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
   .bottom {
     display: block;
+    padding: 20px 12px;
     .navLinks {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      row-gap: 12px;
       .link {
         display: flex;
         align-items: center;
@@ -22,15 +30,14 @@
         font-size: var(--normal-text);
         transition: background-color 300ms ease-in-out;
         &:hover {
-          background-color: var(--green-light);
+          background-color: #ffffff22;
         }
         .linkIcon {
           font-size: 1.5rem;
         }
       }
       .active {
-        background-color: var(--pink-light);
-        // color: var(--white-light);
+        background-color: #ffffff22;
       }
     }
   }
@@ -43,12 +50,15 @@
       gap: 12px;
       .linkIcon {
         text-align: center;
-        font-size: 1.2rem;
       }
     }
   }
   @media screen and (max-width: 960px) {
-    padding: 12px 8px;
+    .top {
+      margin-left: 0px;
+      margin-right: 0px;
+      justify-content: center;
+    }
     .bottom.large {
       display: none;
     }
