@@ -1,0 +1,44 @@
+.filterWrapper {
+  margin-bottom: 16px;
+  position: relative;
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    span:first-child {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .selectedItem {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--box-shadow);
+    border-radius: 6px;
+    padding: 2px 4px;
+    background: var(--text);
+    width: 90px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .itemArray {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 50px;
+    border: 1px solid var(--box-shadow);
+    border-radius: 6px;
+    padding: 2px 4px;
+    background: var(--text);
+    width: max-content;
+    .item {
+      cursor: pointer;
+      display: block;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--box-shadow);
+    }
+    .item:last-child {
+      border-bottom: none;
+    }
+  }
+}
