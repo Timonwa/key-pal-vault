@@ -28,7 +28,7 @@ const DashboardSideBar = ({ activePage }) => {
       {/* links on desktop screen */}
       <div className={`${styles.bottom} ${styles.large}`}>
         <ul className={styles.navLinks}>
-          <li>
+          <li onClick={() => setOpenMenu(false)}>
             <Link
               href="/dashboard"
               className={`${styles.link} ${
@@ -39,7 +39,7 @@ const DashboardSideBar = ({ activePage }) => {
             </Link>
           </li>
           {accountType === "Super Admin" || accountType === "Team Lead" ? (
-            <li>
+            <li onClick={() => setOpenMenu(false)}>
               <Link
                 href="/dashboard/members"
                 className={`${styles.link} ${
@@ -50,7 +50,7 @@ const DashboardSideBar = ({ activePage }) => {
             </li>
           ) : null}
 
-          <li>
+          <li onClick={() => setOpenMenu(false)}>
             <Link
               href="/dashboard/profile"
               className={`${styles.link} ${
@@ -70,7 +70,7 @@ const DashboardSideBar = ({ activePage }) => {
       {/* links on tablet and mobile screen */}
       <div className={`${styles.bottom} ${styles.small}`}>
         <ul className={styles.navLinks}>
-          <li>
+          <li onClick={() => setOpenMenu(false)}>
             <Link
               href="/dashboard"
               className={`${styles.link} ${
@@ -80,7 +80,7 @@ const DashboardSideBar = ({ activePage }) => {
             </Link>
           </li>
           {accountType === "Super Admin" || accountType === "Team Lead" ? (
-            <li>
+            <li onClick={() => setOpenMenu(false)}>
               <Link
                 href="/dashboard/members"
                 className={`${styles.link} ${
@@ -91,7 +91,7 @@ const DashboardSideBar = ({ activePage }) => {
             </li>
           ) : null}
 
-          <li>
+          <li onClick={() => setOpenMenu(false)}>
             <Link
               href="/dashboard/profile"
               className={`${styles.link} ${
