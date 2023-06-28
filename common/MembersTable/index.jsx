@@ -15,11 +15,22 @@ export function MembersTable({ data }) {
     setIsOpen(true);
     setModalType(type);
   };
+
+  const handleEdit = (e, data) => {
+    e.preventDefault();
+    console.log(data);
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    alert("deleted");
+  };
+
   return (
     <Fragment>
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <EditMemberPopup onClose={onClose} />
+          <EditMemberPopup onClose={onClose} handleEdit={handleEdit} />
         </Modal>
       )}
       {modalType === "delete" && (
@@ -28,6 +39,7 @@ export function MembersTable({ data }) {
             type="Member"
             name="Timonwa Akintokun"
             onClose={onClose}
+            handleDelete={handleDelete}
           />
         </Modal>
       )}

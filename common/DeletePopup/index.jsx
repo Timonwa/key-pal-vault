@@ -1,6 +1,6 @@
 import styles from "./styles.module.scss";
 
-export function DeletePopup({ type, name, onClose }) {
+export function DeletePopup({ type, name, onClose, handleDelete }) {
   return (
     <div className={styles.deletePopup}>
       <h1 className={styles.title}>You are about to delete</h1>
@@ -11,7 +11,9 @@ export function DeletePopup({ type, name, onClose }) {
         <button className={styles.cancel} onClick={onClose}>
           Cancel
         </button>
-        <button className={styles.delete}>Delete</button>
+        <button className={styles.delete} onClick={(e) => handleDelete(e)}>
+          Delete
+        </button>
       </div>
     </div>
   );
