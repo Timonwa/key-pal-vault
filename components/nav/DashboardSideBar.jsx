@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/nav/DashboardSidebar.module.scss";
 import Link from "next/link";
 import { MdOutlineDashboardCustomize, MdOutlineLogout } from "react-icons/md";
-import { BiCog } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 import { FiUsers } from "react-icons/fi";
 import Image from "next/image";
 import useStore from "../../store";
@@ -13,9 +13,8 @@ const DashboardSideBar = ({ activePage }) => {
     <nav className={styles.dashboardSidebar}>
       <div className={styles.top}>
         <div className={styles.logoWrapper}>
-          <Link href="/dashboard">
-            <Image src="/images/logo.svg" alt="Logo" width="50" height="50" />
-          </Link>
+          <p className={styles.large}>KEYPALVAULT</p>
+          <p className={styles.small}>KPV</p>
         </div>
       </div>
       {/* links on desktop screen */}
@@ -45,12 +44,12 @@ const DashboardSideBar = ({ activePage }) => {
 
           <li>
             <Link
-              href="/dashboard/settings"
+              href="/dashboard/profile"
               className={`${styles.link} ${
-                activePage === "Settings" ? styles.active : ""
+                activePage === "Profile" ? styles.active : ""
               }`}>
-              <BiCog className={styles.linkIcon} />
-              Settings
+              <CgProfile className={styles.linkIcon} />
+              Profile
             </Link>
           </li>
           <li className={styles.link} onClick={() => signOut()}>
@@ -86,11 +85,11 @@ const DashboardSideBar = ({ activePage }) => {
 
           <li>
             <Link
-              href="/dashboard/settings"
+              href="/dashboard/profile"
               className={`${styles.link} ${
-                activePage === "Settings" ? styles.active : ""
+                activePage === "Profile" ? styles.active : ""
               }`}>
-              <BiCog className={styles.linkIcon} />
+              <CgProfile className={styles.linkIcon} />
             </Link>
           </li>
           <li className={styles.link} onClick={() => signOut()}>

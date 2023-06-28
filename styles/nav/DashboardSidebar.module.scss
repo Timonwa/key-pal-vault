@@ -12,6 +12,13 @@
     margin-left: 12px;
     margin-right: 12px;
   }
+  .logoWrapper {
+    margin: 0 auto;
+    font-weight: 700;
+    .small {
+      display: none;
+    }
+  }
   .bottom {
     display: block;
     padding: 20px 12px;
@@ -54,10 +61,23 @@
     }
   }
   @media screen and (max-width: 960px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 70px;
     .top {
       margin-left: 0px;
       margin-right: 0px;
       justify-content: center;
+    }
+    .logoWrapper {
+      .large {
+        display: none;
+      }
+      .small {
+        display: block;
+      }
     }
     .bottom.large {
       display: none;
