@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@passageidentity/passage-elements": "^1.9.3",
+    "@passageidentity/passage-auth": "latest",
     "@passageidentity/passage-node": "^2.3.2",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
