@@ -48,6 +48,7 @@ select {
   padding: 8px;
   font-size: var(--normal-text);
   font-family: var(--primary-font);
+  border: 1px solid #56717d;
 }
 
 input:focus,
@@ -67,6 +68,12 @@ button {
   font-size: var(--normal-text);
   font-family: var(--primary-font);
   white-space: nowrap;
+}
+
+button:disabled {
+  color: #888888;
+  background-color: #f1f1f1;
+  border: 2px solid #dddddd;
 }
 
 //* parent wrapper for any page

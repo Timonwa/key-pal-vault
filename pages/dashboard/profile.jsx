@@ -1,5 +1,10 @@
+import { ProfileForm } from "@/components/profile/ProfileForm";
 import React from "react";
 
 export default function Profile() {
-  return <div>Profile</div>;
+  return (
+    <main>
+      <ProfileForm />
+    </main>
+  );
 }

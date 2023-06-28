@@ -8,7 +8,7 @@ export function EditMemberPopup({ onClose }) {
     <div className={styles.editMemberPopup}>
       <h1 className={styles.title}>Edit Member Details</h1>
 
-      <form onSubmit="">
+      <form onSubmit={(e) => e.preventDefault()}>
         <fieldset>
           <label htmlFor="name">
             Name

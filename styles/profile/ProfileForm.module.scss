@@ -1,0 +1,69 @@
+.profileForm {
+  .title {
+    margin-bottom: 10px;
+    font-size: var(--h3-text);
+  }
+  .status {
+    margin-bottom: 12px;
+    .statusTitle {
+      font-size: var(--h4-text);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+    .unapproved {
+      color: var(--error);
+    }
+    .approved {
+      color: var(--success);
+    }
+  }
+  .teams {
+    margin-bottom: 12px;
+    .teamTitle {
+      font-size: var(--h4-text);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+    .teamsArray {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      .team {
+        padding: 2px 4px;
+        border-radius: 4px;
+        background-color: #ddd;
+      }
+    }
+  }
+  form {
+    width: 100%;
+    fieldset {
+      border: none;
+      gap: 12px 20px;
+      max-width: 250px;
+      label {
+        display: grid;
+        align-items: flex-end;
+        input,
+        select {
+          margin-top: 5px;
+        }
+      }
+    }
+    .buttons {
+      margin-top: 20px;
+      button.save {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid var(--primary-color);
+        background-color: var(--primary-color);
+        color: var(--text);
+      }
+      button:disabled {
+        color: #888888;
+        background-color: #f1f1f1;
+        border: 2px solid #dddddd;
+      }
+    }
+  }
+}
