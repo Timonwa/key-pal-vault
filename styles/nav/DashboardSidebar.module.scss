@@ -12,9 +12,25 @@
     margin-left: 12px;
     margin-right: 12px;
   }
+  .toggle {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    z-index: 100;
+    background-color: var(--primary-color);
+    padding: 8px 4px;
+    border-radius: 0 8px 8px 0;
+    @media screen and (max-width: 960px) {
+      display: block;
+    }
+  }
   .logoWrapper {
     margin: 0 auto;
     font-weight: 700;
+    padding: 2px 5px;
+    background: #353535;
+    border: 3px double var(--white-light-theme);
     .small {
       display: none;
     }
@@ -63,9 +79,14 @@
   @media screen and (max-width: 960px) {
     position: absolute;
     top: 0;
-    left: 0;
-    z-index: 100;
+    left: -70px;
+    z-index: 10;
     width: 70px;
+    transition: left 300ms ease-in-out;
+    overflow: visible;
+    &.active {
+      left: 0;
+    }
     .top {
       margin-left: 0px;
       margin-right: 0px;

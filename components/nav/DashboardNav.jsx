@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/nav/DashboardNav.module.scss";
 import useStore from "../../store";
+import { FiMenu } from "react-icons/fi";
 
 const DashboardNav = ({ accountType }) => {
   const setAccountType = useStore((state) => state.setAccountType);
@@ -14,6 +15,8 @@ const DashboardNav = ({ accountType }) => {
     <div className={styles.dashboardNavWrapper}>
       <nav
         className={`dashboardSectionPaddings maxWidthWrapper ${styles.dashboardNav}`}>
+        {/* button to slide side menu in and out */}
+        <p className={styles.logo}>KPV</p>
         <h1 className={styles.pageTitle}>{accountType}</h1>/
         <p className={styles.userName}>Timonwa Akintokun</p>
         <select value={accountType} onChange={handleAccountToggle}>

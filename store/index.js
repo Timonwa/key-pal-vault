@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
+  openMenu: false,
+  setOpenMenu: (state) => set({ openMenu: state }),
   activePage: "Overview",
   setActivePage: (page) => set({ activePage: page }),
   accountType: "Member",

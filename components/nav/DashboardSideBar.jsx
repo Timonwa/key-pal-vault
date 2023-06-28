@@ -3,14 +3,22 @@ import styles from "../../styles/nav/DashboardSidebar.module.scss";
 import Link from "next/link";
 import { MdOutlineDashboardCustomize, MdOutlineLogout } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
+import { FaChevronRight } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
-import Image from "next/image";
 import useStore from "../../store";
 
 const DashboardSideBar = ({ activePage }) => {
   const accountType = useStore((state) => state.accountType);
+  const openMenu = useStore((state) => state.openMenu);
+  const setOpenMenu = useStore((state) => state.setOpenMenu);
+  console.log(openMenu);
+
   return (
-    <nav className={styles.dashboardSidebar}>
+    <nav
+      className={`${styles.dashboardSidebar} ${openMenu ? styles.active : ""}`}>
+      <div className={styles.toggle} onClick={() => setOpenMenu(!openMenu)}>
+        <FaChevronRight className={styles.icon} />
+      </div>
       <div className={styles.top}>
         <div className={styles.logoWrapper}>
           <p className={styles.large}>KEYPALVAULT</p>

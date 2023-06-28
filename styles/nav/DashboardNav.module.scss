@@ -7,8 +7,17 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    .logoWrapper {
-      width: calc(var(--side-bar-width) - 24px);
+    .logo {
+      margin-right: 20px;
+      font-weight: 700;
+      display: none;
+      padding: 2px 5px;
+      color: var(--black);
+      background: var(--text);
+      border: 3px double var(--black);
+      @media screen and (max-width: 960px) {
+        display: block;
+      }
     }
     .pageTitle {
       font-size: var(--h4-text);
