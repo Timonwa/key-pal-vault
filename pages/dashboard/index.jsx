@@ -2,15 +2,16 @@ import React, { useEffect, Fragment } from "react";
 import useStore from "../../store";
 import Passage from "@passageidentity/passage-node";
 
-const Dashboard = ({ isAuthorized, userData }) => {
-  console.log(isAuthorized, userData);
-
+const Dashboard = ({ isAuthorized, userInfo }) => {
+  const setUserData = useStore((state) => state.setUserData);
   const setActivePage = useStore((state) => state.setActivePage);
   const accountType = useStore((state) => state.accountType);
+  const userData = useStore((state) => state.userData);
 
   useEffect(() => {
     setActivePage("Dashboard");
-  }, [setActivePage]);
+    setUserData(userInfo);
+  }, [setUserData, userInfo, setActivePage]);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -44,11 +45,11 @@ export async function getServerSideProps(context) {
     const userID = await passage.authenticateRequest(req);
     if (userID) {
       // user is authenticated
-      const userData = await passage.user.get(userID);
+      const userInfo = await passage.user.get(userID);
       return {
         props: {
           isAuthorized: true,
-          userData: userData,
+          userInfo,
           // appID: passage.appID,
         },
       };
@@ -61,7 +62,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       isAuthorized: false,
-      userData: null,
+      userInfo: null,
       // appID: passage.appID,
     },
   };

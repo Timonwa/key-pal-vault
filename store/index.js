@@ -5,6 +5,8 @@ const useStore = create((set) => ({
   setActivePage: (page) => set({ activePage: page }),
   accountType: "Member",
   setAccountType: (type) => set({ accountType: type }),
+  userData: {},
+  setUserData: (data) => set({ userData: data }),
 }));
 
 export default useStore;
