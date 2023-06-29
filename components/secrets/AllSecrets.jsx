@@ -26,6 +26,12 @@ export function SecretCard({ item }) {
 
   const handleView = (e, data) => {
     e.preventDefault();
+    alert("view");
+    console.log(data);
+  };
+  const handleEdit = (e, data) => {
+    e.preventDefault();
+    alert("edit");
     console.log(data);
   };
 
@@ -41,6 +47,11 @@ export function SecretCard({ item }) {
           <ViewSecretPopup onClose={onClose} handleView={handleView} />
         </Modal>
       )}
+      {modalType === "edit" && (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ViewSecretPopup onClose={onClose} handleEdit={handleEdit} />
+        </Modal>
+      )}
       {modalType === "delete" && (
         <Modal isOpen={isOpen} onClose={onClose}>
           <DeletePopup
@@ -54,7 +65,7 @@ export function SecretCard({ item }) {
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
           <h3 className={styles.secretTitle}>Secret Card title</h3>
-          {item?.type === "password" && (
+          {item?.type !== "password" && (
             <p className={styles.type}>
               <MdPassword />
             </p>
@@ -72,17 +83,34 @@ export function SecretCard({ item }) {
         </div>
 
         {accountType !== "Member" && (
-          <div className={styles.secretButtons}>
-            <button
-              className={styles.viewBtn}
-              onClick={() => openModal("view")}>
-              View
-            </button>
-            <button
-              className={styles.deleteBtn}
-              onClick={() => openModal("delete")}>
-              Delete
-            </button>
+          <div className={styles.bottom}>
+            <div className={styles.metrics}>
+              <p>
+                <span>Team:</span>
+                <span>Marketing</span>
+              </p>
+              <p>
+                <span>Created:</span>
+                <span>12/12/2021</span>
+              </p>
+            </div>
+            <div className={styles.secretButtons}>
+              <button
+                className={styles.viewBtn}
+                onClick={() => openModal("view")}>
+                View
+              </button>
+              <button
+                className={styles.editBtn}
+                onClick={() => openModal("edit")}>
+                Edit
+              </button>
+              <button
+                className={styles.deleteBtn}
+                onClick={() => openModal("delete")}>
+                Delete
+              </button>
+            </div>
           </div>
         )}
       </article>
