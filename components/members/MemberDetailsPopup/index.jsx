@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import useStore from "../../../store";
 import { useEffect, useState } from "react";
 
-export function EditMemberPopup({ onClose, handleEdit }) {
+export function MemberDetailsPopup({ onClose, handleEdit, title }) {
   const userData = useStore((state) => state.userData);
   const accountType = useStore((state) => state.accountType);
 
@@ -11,13 +11,16 @@ export function EditMemberPopup({ onClose, handleEdit }) {
   const [status, setStatus] = useState("unapproved");
   const [team, setTeam] = useState("None");
   const [role, setRole] = useState("Member");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
     if (userData?.name) {
       setName(userData?.name);
+      setIsDisabled(true);
     }
     if (userData?.email) {
       setEmail(userData?.email);
+      setIsDisabled(true);
     }
     if (userData?.status) {
       setStatus(userData?.status);
@@ -40,7 +43,7 @@ export function EditMemberPopup({ onClose, handleEdit }) {
 
   return (
     <section className={styles.editMemberPopup}>
-      <h1 className={styles.title}>Edit Member Details</h1>
+      <h1 className={styles.title}>{title}</h1>
 
       <form onSubmit={(e) => handleEdit(e, data)}>
         <fieldset>
@@ -52,7 +55,8 @@ export function EditMemberPopup({ onClose, handleEdit }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              disabled
+              disabled={isDisabled}
+              required
             />
           </label>
 
@@ -64,7 +68,8 @@ export function EditMemberPopup({ onClose, handleEdit }) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              disabled
+              disabled={isDisabled}
+              required
             />
           </label>
 
@@ -75,7 +80,8 @@ export function EditMemberPopup({ onClose, handleEdit }) {
               name="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              disabled={accountType === "Super Admin" ? false : true}>
+              disabled={accountType === "Super Admin" ? false : true}
+              required>
               <option value="approved">approved</option>
               <option value="unapproved">unapproved</option>
             </select>
@@ -87,7 +93,8 @@ export function EditMemberPopup({ onClose, handleEdit }) {
               id="team"
               name="team"
               value={team}
-              onChange={(e) => setTeam(e.target.value)}>
+              onChange={(e) => setTeam(e.target.value)}
+              required>
               <option value="Marketing">Marketing</option>
               <option value="Development">Development</option>
               <option value="None">None</option>
@@ -100,7 +107,8 @@ export function EditMemberPopup({ onClose, handleEdit }) {
               id="role"
               name="role"
               value={role}
-              onChange={(e) => setRole(e.target.value)}>
+              onChange={(e) => setRole(e.target.value)}
+              required>
               <option value="Team Lead">Team Lead</option>
               <option value="Member">Member</option>
             </select>

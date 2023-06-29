@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import styles from "./styles.module.scss";
 import Modal from "../../../common/Modal";
 import { DeletePopup } from "../../../common/DeletePopup";
-import { EditMemberPopup } from "../EditMemberPopup";
+import { MemberDetailsPopup } from "../MemberDetailsPopup";
 
 export function MembersTable({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,11 @@ export function MembersTable({ data }) {
     <Fragment>
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <EditMemberPopup onClose={onClose} handleEdit={handleEdit} />
+          <MemberDetailsPopup
+            onClose={onClose}
+            handleEdit={handleEdit}
+            title="Update Member Details"
+          />
         </Modal>
       )}
       {modalType === "delete" && (

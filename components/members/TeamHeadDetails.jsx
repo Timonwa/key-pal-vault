@@ -1,7 +1,7 @@
-import styles from "../../styles/members/NewTeamHeadPopup.module.scss";
+import styles from "../../styles/members/TeamHeadDetails.module.scss";
 import { useState } from "react";
 
-export function NewTeamHeadPopup({ onClose }) {
+export function TeamHeadDetails({ onClose }) {
   const [team, setTeam] = useState("");
   const [teamHead, setTeamHead] = useState("");
 
@@ -16,7 +16,7 @@ export function NewTeamHeadPopup({ onClose }) {
   };
 
   return (
-    <section className={styles.newTeamHeadPopup}>
+    <section className={styles.teamHeadDetails}>
       <h1 className={styles.title}>Create Team Head</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>

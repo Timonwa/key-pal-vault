@@ -1,12 +1,8 @@
 import React, { Fragment, useState } from "react";
 import styles from "@/styles/createButtons/CreateTeamHead.module.scss";
 import Modal from "@/common/Modal";
-import { PasswordPopup } from "../secrets/popups/PasswordPopup";
-import { NotePopup } from "../secrets/popups/NotePopup";
-import { FilePopup } from "../secrets/popups/FilePopup";
 import { FaPlus } from "react-icons/fa";
-import { SectionTitle } from "@/common/SectionTitle";
-import { NewTeamHeadPopup } from "../members/NewTeamHeadPopup";
+import { TeamHeadDetails } from "../members/TeamHeadDetails";
 
 export default function CreateTeamHead() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +17,7 @@ export default function CreateTeamHead() {
   return (
     <Fragment>
       <Modal isOpen={isOpen} onClose={onClose}>
-        <NewTeamHeadPopup />
+        <TeamHeadDetails onClose={onClose} />
       </Modal>
 
       <button className={styles.createBtn} onClick={() => openModal()}>
