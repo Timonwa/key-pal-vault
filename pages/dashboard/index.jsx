@@ -1,6 +1,7 @@
 import React, { useEffect, Fragment } from "react";
 import useStore from "../../store";
 import Passage from "@passageidentity/passage-node";
+import SuperAdminSecrets from "@/components/secrets/SuperAdminSecrets";
 
 const Dashboard = ({ userInfo }) => {
   const setUserData = useStore((state) => state.setUserData);
@@ -18,10 +19,8 @@ const Dashboard = ({ userInfo }) => {
 
   return (
     <Fragment>
-      <h1>Dashboard {accountType}</h1>
-
-      {/* {accountType === "Super Admin" && <SuperAdminDashboard />}
-      {accountType === "Team Lead" && <TeamHeadDashboard />}
+      {accountType === "Super Admin" && <SuperAdminSecrets />}
+      {/*{accountType === "Team Lead" && <TeamHeadDashboard />}
       {accountType === "User" && <MemberDashboard />} */}
     </Fragment>
   );
