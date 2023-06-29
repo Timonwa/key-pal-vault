@@ -8,8 +8,11 @@ import {
   MdOutlineFilePresent,
   MdPassword,
 } from "react-icons/md";
+import useStore from "../../store";
 
 export function SecretCard({ item }) {
+  const accountType = useStore((state) => state.accountType);
+
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState("");
 
@@ -68,20 +71,25 @@ export function SecretCard({ item }) {
           )}
         </div>
 
-        <div className={styles.secretButtons}>
-          <button className={styles.viewBtn} onClick={() => openModal("view")}>
-            View
-          </button>
-          <button
-            className={styles.deleteBtn}
-            onClick={() => openModal("delete")}>
-            Delete
-          </button>
-        </div>
+        {accountType !== "Member" && (
+          <div className={styles.secretButtons}>
+            <button
+              className={styles.viewBtn}
+              onClick={() => openModal("view")}>
+              View
+            </button>
+            <button
+              className={styles.deleteBtn}
+              onClick={() => openModal("delete")}>
+              Delete
+            </button>
+          </div>
+        )}
       </article>
     </Fragment>
   );
 }
+
 export default function AllSecrets({ data }) {
   return (
     <div className={styles.secretsGrid}>
