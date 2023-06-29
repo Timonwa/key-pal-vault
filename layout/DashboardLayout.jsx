@@ -3,6 +3,7 @@ import DashboardNav from "../components/nav/DashboardNav";
 import DashboardSideBar from "../components/nav/DashboardSideBar";
 import useStore from "../store";
 import styles from "../styles/layout/DashboardLayout.module.scss";
+import { withAuth } from "../utils/auth/withAuth";
 
 const DashboardLayout = ({ children }) => {
   const accountType = useStore((state) => state.accountType);
@@ -24,4 +25,4 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-export default DashboardLayout;
+export default withAuth(DashboardLayout);

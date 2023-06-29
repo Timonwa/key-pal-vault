@@ -5,9 +5,9 @@ const useStore = create((set) => ({
   setOpenMenu: (state) => set({ openMenu: state }),
   activePage: "Overview",
   setActivePage: (page) => set({ activePage: page }),
-  accountType: "Member",
+  accountType: "Member", //TODO set to ""
   setAccountType: (type) => set({ accountType: type }),
-  userData: {},
+  userData: null,
   setUserData: (data) => set({ userData: data }),
 }));
 
