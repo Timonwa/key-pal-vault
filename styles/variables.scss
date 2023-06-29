@@ -20,7 +20,6 @@
   // Light theme colors
   --blue-light-theme: #1d262a;
   --green-light-theme: #397835;
-  --pink-light-theme: #e2a8b5;
   --white-light-theme: #fefefe;
   --black-light-theme: #333333;
   --background-light-theme: #f8f5f5;
@@ -31,22 +30,20 @@
   --box-shadow-light-theme: rgba(18, 32, 59, 0.09);
 
   // Dark theme colors
-  --blue-dark-theme: hsl(193, 20%, 43%);
-  --green-dark-theme: #4d684b;
-  --pink-dark-theme: #a46a77;
+  --blue-dark-theme: #1d262a;
+  --green-dark-theme: #85f37d;
   --white-dark-theme: #e8e8e8;
   --black-dark-theme: #1a1a1a;
-  --background-dark-theme: #f2f2f2;
+  --background-dark-theme: #1a1a1a;
   --success-dark-theme: #2dad63;
   --info-dark-theme: #2493d1;
-  --warning-dark-theme: #ffa500;
-  --error-dark-theme: #ff6347;
-  --box-shadow-dark-theme: rgba(228, 232, 240, 0.09);
+  --warning-dark-theme: #efad33;
+  --error-dark-theme: #ee553a;
+  --box-shadow-dark-theme: rgba(228, 232, 240, 0.2);
 
   // website color
   --primary-color: var(--blue-light-theme);
   --secondary-color: var(--green-light-theme);
-  --tertiary-color: var(--pink-light-theme);
   --text: var(--white-light-theme);
   --black: var(--black-light-theme);
   --background: var(--background-light-theme);
@@ -55,39 +52,50 @@
   --warning: var(--warning-light-theme);
   --error: var(--error-light-theme);
   --box-shadow: var(--box-shadow-light-theme);
-}
 
-// Light theme colors
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: var(--blue-light-theme);
-    --secondary-color: var(--green-light-theme);
-    --tertiary-color: var(--pink-light-theme);
-    --text: var(--white-light-theme);
-    --black: var(--black-light-theme);
-    --background: var(--background-light-theme);
-    --success: var(--success-light-theme);
-    --info: var(--info-light-theme);
-    --warning: var(--warning-light-theme);
-    --error: var(--error-light-theme);
-    --box-shadow: var(--box-shadow-light-theme);
-  }
-}
+  /* Default values shown */
 
-// Dark theme colors
-@media (prefers-color-scheme: dark) {
-  :root {
-    // --primary-color: var(--blue-dark-theme);
-    // --secondary-color: var(--green-dark-theme);
-    // --tertiary-color: var(--pink-dark-theme);
-    // --text: var(--white-dark-theme);
-    // --black: var(--black-light-theme);
-    // --background: var(--background-dark-theme);
-    // --success: var(--success-dark-theme);
-    // --info: var(--info-dark-theme);
-    // --warning: var(--warning-dark-theme);
-    // --error: var(--error-dark-theme);
-    // --box-shadow: var(--box-shadow-dark-theme);
+  passage-auth {
+    /* Passage Container Styles */
+    --passage-container-background: var(--background);
+    --passage-container-background-color: #ffffff;
+
+    --passage-container-max-width: 220px;
+    --passage-container-margin: auto;
+    --passage-container-padding: 30px 30px 20px;
+    --passage-error-color: var(--error);
+
+    /* Body Font Styles */
+    --passage-body-font-family: var(--primary-font);
+    --passage-body-font-size: var(--default-text);
+    --passage-body-font-weight: 400;
+    --passage-body-text-color: var(--black);
+
+    /* Header Font Styles */
+    --passage-header-font-family: var(--primary-font);
+    --passage-header-font-weight: 600;
+    --passage-header-text-color: var(--black);
+    --passage-header-font-size: var(--h1-text);
+
+    /* Button Styles */
+    --passage-button-font-size: var(--default-text);
+    --passage-button-font-weight: 400;
+    --passage-button-width: 45%;
+    --passage-button-border-radius: 8px;
+
+    /* Color Palette */
+    --passage-onprimary-color: var(
+      --text
+    ); /* text color on primary control background */
+    --passage-primary-color: var(
+      --primary-color
+    ); /* main color used for controls */
+
+    --passage-onhover-color: #fff;
+    --passage-hover-color: var(--black);
+
+    --passage-onactive-color: #fff;
+    --passage-active-color: var(--black);
   }
 }
 
