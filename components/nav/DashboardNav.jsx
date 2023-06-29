@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styles from "../../styles/nav/DashboardNav.module.scss";
 import useStore from "../../store";
-import { FiMenu } from "react-icons/fi";
 
 const DashboardNav = ({ accountType }) => {
   const setAccountType = useStore((state) => state.setAccountType);
+  const userData = useStore((state) => state.userData);
 
   const handleAccountToggle = (event) => {
     const selectedAccountType = event.target.value;
@@ -17,13 +17,17 @@ const DashboardNav = ({ accountType }) => {
         className={`dashboardSectionPaddings maxWidthWrapper ${styles.dashboardNav}`}>
         {/* button to slide side menu in and out */}
         <p className={styles.logo}>KPV</p>
-        <h1 className={styles.pageTitle}>{accountType}</h1>/
-        <p className={styles.userName}>Timonwa Akintokun</p>
-        <select value={accountType} onChange={handleAccountToggle}>
-          <option value="Super Admin">Super Admin</option>
-          <option value="Team Lead">Team Lead</option>
-          <option value="Member">Member</option>
-        </select>
+        {userData && (
+          <Fragment>
+            <h1 className={styles.pageTitle}>{accountType}</h1>/
+            <p className={styles.userName}>Timonwa Akintokun</p>
+            <select value={accountType} onChange={handleAccountToggle}>
+              <option value="Super Admin">Super Admin</option>
+              <option value="Team Lead">Team Lead</option>
+              <option value="Member">Member</option>
+            </select>
+          </Fragment>
+        )}
       </nav>
     </div>
   );
