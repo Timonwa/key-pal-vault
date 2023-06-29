@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
-import useStore from "../../store";
+import useStore from "../../../store";
 import { useEffect, useState } from "react";
 
-export function ViewSecretPopup({ onClose, handleView }) {
+export function EditMemberPopup({ onClose, handleEdit }) {
   const userData = useStore((state) => state.userData);
   const accountType = useStore((state) => state.accountType);
 
@@ -42,7 +42,7 @@ export function ViewSecretPopup({ onClose, handleView }) {
     <div className={styles.editMemberPopup}>
       <h1 className={styles.title}>Edit Member Details</h1>
 
-      <form onSubmit={(e) => handleView(e, data)}>
+      <form onSubmit={(e) => handleEdit(e, data)}>
         <fieldset>
           <label htmlFor="name">
             Name

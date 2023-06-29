@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import styles from "./styles.module.scss";
-import Modal from "../Modal";
-import { DeletePopup } from "../DeletePopup";
+import Modal from "../../../common/Modal";
+import { DeletePopup } from "../../../common/DeletePopup";
 import { EditMemberPopup } from "../EditMemberPopup";
 
 export function MembersTable({ data }) {

@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import SignIn from "@/components/SignIn";
+import SignInForm from "@/components/SignInForm";
 
 function Home() {
   return (
     <div>
-      <SignIn />
+      <SignInForm />
     </div>
   );
 }

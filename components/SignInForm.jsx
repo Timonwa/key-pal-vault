@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 
-function SignIn() {
+function SignInForm() {
   const appID = process.env.PASSAGE_APP_ID;
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function SignIn() {
     </div>
   );
 }
-export default SignIn;
-SignIn.getLayout = function PageLayout(page) {
+export default SignInForm;
+SignInForm.getLayout = function PageLayout(page) {
   return <Fragment>{page}</Fragment>;
 };

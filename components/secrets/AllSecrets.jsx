@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import styles from "@/styles/secrets/AllSecrets.module.scss";
 import Modal from "@/common/Modal";
 import { DeletePopup } from "@/common/DeletePopup";
-import { ViewSecretPopup } from "@/common/ViewSecretPopup";
+import { ViewSecretPopup } from "./ViewSecretPopup";
 import {
   MdOutlineEditNote,
   MdOutlineFilePresent,

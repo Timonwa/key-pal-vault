@@ -1,4 +1,4 @@
-import { MembersTable } from "@/common/MembersTable";
+import { MembersTable } from "@/components/members/MembersTable";
 import TabSwitcherLine from "@/common/TabSwitcherLine";
 import React, { useState } from "react";
 
