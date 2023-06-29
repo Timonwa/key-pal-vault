@@ -4,7 +4,7 @@ import AllSecrets from "./AllSecrets";
 import { Filter } from "@/common/Filter";
 
 export default function TeamHeadSecrets() {
-  const data = [1, 1, 1, 1, 1];
+  const data = ["password", "note", "file", "password", "note", "file"];
   const teamsArray = ["Marketing", "Development", "Design", "Management"];
 
   return (

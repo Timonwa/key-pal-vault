@@ -3,7 +3,7 @@ import React from "react";
 import AllSecrets from "./AllSecrets";
 
 export default function MemberSecrets() {
-  const data = [1, 1, 1, 1, 1];
+  const data = ["password", "note", "file", "password", "note", "file"];
 
   return (
     <main>

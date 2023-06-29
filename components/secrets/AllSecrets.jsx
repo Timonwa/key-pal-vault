@@ -10,9 +10,12 @@ import {
 } from "react-icons/md";
 import useStore from "../../store";
 import { PasswordPopup } from "./popups/PasswordPopup";
+import { NotePopup } from "./popups/NotePopup";
+import { FilePopup } from "./popups/FilePopup";
 
 export function SecretCard({ item }) {
   const accountType = useStore((state) => state.accountType);
+  const [selectedSecretType, setSelectedSecretType] = useState("");
 
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -20,9 +23,10 @@ export function SecretCard({ item }) {
   const onClose = () => {
     setIsOpen(false);
   };
-  const openModal = (type) => {
+  const openModal = (modalType, secretType) => {
     setIsOpen(true);
-    setModalType(type);
+    setModalType(modalType);
+    setSelectedSecretType(secretType);
   };
 
   const handleView = (e, data) => {
@@ -50,11 +54,27 @@ export function SecretCard({ item }) {
       )}
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <PasswordPopup
-            title="Edit Password"
-            onClose={onClose}
-            handleEdit={handleEdit}
-          />
+          {selectedSecretType === "password" && (
+            <PasswordPopup
+              title="Update Secret (Password)"
+              onClose={onClose}
+              handleEdit={handleEdit}
+            />
+          )}
+          {selectedSecretType === "note" && (
+            <NotePopup
+              title="Update Secret (Note)"
+              onClose={onClose}
+              handleEdit={handleEdit}
+            />
+          )}
+          {selectedSecretType === "file" && (
+            <FilePopup
+              title="Update Secret (File)"
+              onClose={onClose}
+              handleEdit={handleEdit}
+            />
+          )}
         </Modal>
       )}
       {modalType === "delete" && (
@@ -70,17 +90,17 @@ export function SecretCard({ item }) {
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
           <h3 className={styles.secretTitle}>Secret Card title</h3>
-          {item?.type !== "password" && (
+          {item === "password" && (
             <p className={styles.type}>
               <MdPassword />
             </p>
           )}
-          {item?.type === "note" && (
+          {item === "note" && (
             <p className={styles.type}>
               <MdOutlineEditNote />
             </p>
           )}
-          {item?.type === "file" && (
+          {item === "file" && (
             <p className={styles.type}>
               <MdOutlineFilePresent />
             </p>
@@ -102,17 +122,17 @@ export function SecretCard({ item }) {
             <div className={styles.secretButtons}>
               <button
                 className={styles.viewBtn}
-                onClick={() => openModal("view")}>
+                onClick={() => openModal("view", item)}>
                 View
               </button>
               <button
                 className={styles.editBtn}
-                onClick={() => openModal("edit")}>
+                onClick={() => openModal("edit", item)}>
                 Edit
               </button>
               <button
                 className={styles.deleteBtn}
-                onClick={() => openModal("delete")}>
+                onClick={() => openModal("delete", item)}>
                 Delete
               </button>
             </div>

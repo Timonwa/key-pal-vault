@@ -2,29 +2,25 @@ import { ErrorMessage } from "@/common/ResponseMessage";
 import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
 
-export function PasswordPopup({ onClose, handleEdit, title }) {
-  const secretPasswordData = null;
+export function FilePopup({ onClose, handleEdit, title }) {
+  const secretNoteData = null;
   const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
-  const [website, setWebsite] = useState("");
-  const [username, setSUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [file, setFile] = useState("");
   const [note, setNote] = useState("");
   const [visibility, setVisibility] = useState("private");
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    if (secretPasswordData) {
-      setName(secretPasswordData.name);
-      setWebsite(secretPasswordData.website);
-      setSUsername(secretPasswordData.username);
-      setPassword(secretPasswordData.password);
-      setNote(secretPasswordData.note);
-      setVisibility(secretPasswordData.visibility);
-      setTeams(secretPasswordData.teams);
+    if (secretNoteData) {
+      setName(secretNoteData.name);
+      setFile(secretNoteData.file);
+      setNote(secretNoteData.note);
+      setVisibility(secretNoteData.visibility);
+      setTeams(secretNoteData.teams);
     }
-  }, [secretPasswordData]);
+  }, [secretNoteData]);
 
   // when user sets visibility to private, clear teams and uncheck all checkboxes
   useEffect(() => {
@@ -57,9 +53,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
 
   const data = {
     name,
-    website,
-    username,
-    password,
+    file,
     note,
     visibility,
     teams,
@@ -90,47 +84,19 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Facebook login details"
+              placeholder="File name"
               required
             />
           </label>
 
-          <label htmlFor="website">
-            Website
+          <label htmlFor="file">
+            Upload file
             <input
-              id="website"
-              name="website"
-              type="url"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-              placeholder="https://facebook.com"
-              required
-            />
-          </label>
-
-          <label htmlFor="username">
-            Username or email
-            <input
-              id="username"
-              name="username"
-              type="text"
-              value={username}
-              onChange={(e) => setSUsername(e.target.value)}
-              placeholder="companyname@example.com"
-              required
-            />
-          </label>
-
-          <label htmlFor="password">
-            Password
-            <input
-              id="password"
-              name="password"
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
-              required
+              id="file"
+              name="file"
+              type="file"
+              value={file}
+              onChange={(e) => setFile(e.target.value)}
             />
           </label>
 

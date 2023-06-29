@@ -4,6 +4,7 @@ import Passage from "@passageidentity/passage-node";
 import SuperAdminSecrets from "@/components/secrets/SuperAdminSecrets";
 import TeamHeadSecrets from "@/components/secrets/TeamHeadSecrets";
 import MemberSecrets from "@/components/secrets/MemberSecrets";
+import DashboardButtons from "@/components/DashboardButtons";
 
 const Dashboard = ({ userInfo }) => {
   const setUserData = useStore((state) => state.setUserData);
@@ -21,8 +22,18 @@ const Dashboard = ({ userInfo }) => {
 
   return (
     <Fragment>
-      {accountType === "Super Admin" && <SuperAdminSecrets />}
-      {accountType === "Team Lead" && <TeamHeadSecrets />}
+      {accountType === "Super Admin" && (
+        <Fragment>
+          <DashboardButtons />
+          <SuperAdminSecrets />
+        </Fragment>
+      )}
+      {accountType === "Team Lead" && (
+        <Fragment>
+          <DashboardButtons />
+          <TeamHeadSecrets />
+        </Fragment>
+      )}
       {accountType === "Member" && <MemberSecrets />}
     </Fragment>
   );
