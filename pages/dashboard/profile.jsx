@@ -3,15 +3,17 @@ import Passage from "@passageidentity/passage-node";
 import useStore from "../../store";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 
-export default function Profile({ userInfo }) {
+export default function Profile({ userInfo, authToken }) {
   const setUserData = useStore((state) => state.setUserData);
   const userData = useStore((state) => state.userData);
   const setActivePage = useStore((state) => state.setActivePage);
+  const setUserToken = useStore((state) => state.setUserToken);
 
   useEffect(() => {
     setActivePage("Profile");
     setUserData(userInfo);
-  }, [setUserData, userInfo, setActivePage]);
+    setUserToken(authToken);
+  }, [setUserData, userInfo, setActivePage, setUserToken, authToken]);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -49,6 +51,7 @@ export async function getServerSideProps(context) {
         props: {
           isAuthorized: true,
           userInfo,
+          authToken,
         },
       };
     } else {

@@ -6,16 +6,18 @@ import TeamHeadSecrets from "@/components/secrets/TeamHeadSecrets";
 import MemberSecrets from "@/components/secrets/MemberSecrets";
 import DashboardButtons from "@/components/DashboardButtons";
 
-const Dashboard = ({ userInfo }) => {
+const Dashboard = ({ userInfo, authToken }) => {
   const setUserData = useStore((state) => state.setUserData);
   const userData = useStore((state) => state.userData);
   const setActivePage = useStore((state) => state.setActivePage);
   const accountType = useStore((state) => state.accountType);
+  const setUserToken = useStore((state) => state.setUserToken);
 
   useEffect(() => {
     setActivePage("Dashboard");
     setUserData(userInfo);
-  }, [setUserData, userInfo, setActivePage]);
+    setUserToken(authToken);
+  }, [setUserData, userInfo, setActivePage, setUserToken, authToken]);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -65,6 +67,7 @@ export async function getServerSideProps(context) {
         props: {
           isAuthorized: true,
           userInfo,
+          authToken,
         },
       };
     } else {

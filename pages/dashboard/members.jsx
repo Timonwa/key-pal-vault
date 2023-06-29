@@ -5,16 +5,18 @@ import AdminMembersTable from "@/components/members/AdminMembersTable";
 import TeamMembersTable from "@/components/members/TeamMembersTable";
 import UnauthorizedMessage from "@/components/UnauthorizedMessage";
 
-export default function Members({ userInfo }) {
+export default function Members({ userInfo, authToken }) {
   const setUserData = useStore((state) => state.setUserData);
   const userData = useStore((state) => state.userData);
   const accountType = useStore((state) => state.accountType);
   const setActivePage = useStore((state) => state.setActivePage);
+  const setUserToken = useStore((state) => state.setUserToken);
 
   useEffect(() => {
     setActivePage("Members");
     setUserData(userInfo);
-  }, [setUserData, userInfo, setActivePage]);
+    setUserToken(authToken);
+  }, [setUserData, userInfo, setActivePage, setUserToken, authToken]);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -54,6 +56,7 @@ export async function getServerSideProps(context) {
         props: {
           isAuthorized: true,
           userInfo,
+          authToken,
         },
       };
     } else {
