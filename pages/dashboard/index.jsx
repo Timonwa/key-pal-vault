@@ -8,6 +8,7 @@ import DashboardButtons from "@/components/DashboardButtons";
 
 const Dashboard = ({ userInfo }) => {
   const setUserData = useStore((state) => state.setUserData);
+  const userData = useStore((state) => state.userData);
   const setActivePage = useStore((state) => state.setActivePage);
   const accountType = useStore((state) => state.accountType);
 
@@ -19,6 +20,10 @@ const Dashboard = ({ userInfo }) => {
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
   }, []);
+
+  if (!userData) {
+    return null; // Or render a loading state if necessary
+  }
 
   return (
     <Fragment>
@@ -62,17 +67,23 @@ export async function getServerSideProps(context) {
           userInfo,
         },
       };
+    } else {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
     }
   } catch (error) {
     console.error(error);
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
   }
-
-  return {
-    props: {
-      isAuthorized: false,
-      userInfo: null,
-    },
-  };
 }
 
 export default Dashboard;
