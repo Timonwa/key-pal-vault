@@ -14,7 +14,7 @@ export default function AdminMembersTable() {
   ];
 
   return (
-    <div>
+    <main>
       <Top
         active={activeTab}
         setActive={setActiveTab}
@@ -23,6 +23,6 @@ export default function AdminMembersTable() {
       />
       {activeTab === "Team Leads" && <MembersTable data={[1, 1]} />}
       {activeTab === "All Members" && <MembersTable data={[1, 1, 1, 1]} />}
-    </div>
+    </main>
   );
 }

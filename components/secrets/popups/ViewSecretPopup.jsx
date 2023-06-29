@@ -39,7 +39,7 @@ export function ViewSecretPopup({ onClose, handleView }) {
   };
 
   return (
-    <div className={styles.viewSecretPopup}>
+    <section className={styles.viewSecretPopup}>
       <h1 className={styles.title}>Edit Member Details</h1>
 
       <form onSubmit={(e) => handleView(e, data)}>
@@ -116,6 +116,6 @@ export function ViewSecretPopup({ onClose, handleView }) {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

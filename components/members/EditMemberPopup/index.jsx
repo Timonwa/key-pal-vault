@@ -39,7 +39,7 @@ export function EditMemberPopup({ onClose, handleEdit }) {
   };
 
   return (
-    <div className={styles.editMemberPopup}>
+    <section className={styles.editMemberPopup}>
       <h1 className={styles.title}>Edit Member Details</h1>
 
       <form onSubmit={(e) => handleEdit(e, data)}>
@@ -116,6 +116,6 @@ export function EditMemberPopup({ onClose, handleEdit }) {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

@@ -7,8 +7,10 @@ export default function MemberSecrets() {
 
   return (
     <main>
-      <SectionTitle title="All Secrets" />
-      <AllSecrets data={data} />
+      <section>
+        <SectionTitle title="All Secrets" />
+        <AllSecrets data={data} />
+      </section>
     </main>
   );
 }

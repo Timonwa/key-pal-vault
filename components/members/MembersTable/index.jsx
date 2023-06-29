@@ -55,7 +55,7 @@ export function MembersTable({ data }) {
       </div> */}
 
       {/* when user has created an event */}
-      <div div table className={styles.membersTable}>
+      <section div table className={styles.membersTable}>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -122,7 +122,7 @@ export function MembersTable({ data }) {
             ))}
           </tbody>
         </table>
-      </div>
+      </section>
     </Fragment>
   );
 }

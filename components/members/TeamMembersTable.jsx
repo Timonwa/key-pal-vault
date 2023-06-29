@@ -14,7 +14,7 @@ export default function TeamMembersTable() {
   ];
 
   return (
-    <div>
+    <main>
       <Top
         active={activeTab}
         setActive={setActiveTab}
@@ -22,6 +22,6 @@ export default function TeamMembersTable() {
         data={teamsArray}
       />
       {activeTab === "Team Members" && <MembersTable data={[1, 1, 1]} />}
-    </div>
+    </main>
   );
 }

@@ -50,7 +50,11 @@ export function SecretCard({ item }) {
       )}
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <PasswordPopup title="Edit Password" onClose={onClose} handleEdit={handleEdit} />
+          <PasswordPopup
+            title="Edit Password"
+            onClose={onClose}
+            handleEdit={handleEdit}
+          />
         </Modal>
       )}
       {modalType === "delete" && (

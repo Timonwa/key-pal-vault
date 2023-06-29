@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@/common/ResponseMessage";
 import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
 
@@ -76,7 +77,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
   };
 
   return (
-    <div className={styles.passwordPopup}>
+    <section className={styles.passwordPopup}>
       <h1 className={styles.title}>{title}</h1>
 
       <form onSubmit={(e) => handleSubmit(e, data)}>
@@ -191,9 +192,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
             Design
           </label>
         </fieldset>
-        {error && (
-          <p className={styles.errorMessage}>Please select at least one team</p>
-        )}
+        {error && <ErrorMessage message="Please select at least one team" />}
 
         <div className={styles.buttons}>
           <button className={styles.cancel} onClick={onClose}>
@@ -204,6 +203,6 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

@@ -8,9 +8,11 @@ export default function SuperAdminSecrets() {
   const teamsArray = ["Marketing", "Development", "Design", "Management"];
   return (
     <main>
-      <SectionTitle title="All Secrets" />
-      <Filter data={teamsArray} />
-      <AllSecrets data={data} />
+      <section>
+        <SectionTitle title="All Secrets" />
+        <Filter data={teamsArray} />
+        <AllSecrets data={data} />
+      </section>
     </main>
   );
 }

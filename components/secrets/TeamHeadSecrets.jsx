@@ -1,14 +1,18 @@
 import { SectionTitle } from "@/common/SectionTitle";
 import React from "react";
 import AllSecrets from "./AllSecrets";
+import { Filter } from "@/common/Filter";
 
 export default function TeamHeadSecrets() {
   const data = [1, 1, 1, 1, 1];
+  const teamsArray = ["Marketing", "Development", "Design", "Management"];
 
   return (
     <main>
-      <SectionTitle title="All Secrets" />
-      <AllSecrets data={data} />
+      <section>
+        <SectionTitle title="All Secrets" />
+        <Filter data={teamsArray} /> <AllSecrets data={data} />
+      </section>
     </main>
   );
 }
