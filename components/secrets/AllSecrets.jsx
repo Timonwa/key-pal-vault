@@ -2,13 +2,14 @@ import React, { Fragment, useState } from "react";
 import styles from "@/styles/secrets/AllSecrets.module.scss";
 import Modal from "@/common/Modal";
 import { DeletePopup } from "@/common/DeletePopup";
-import { ViewSecretPopup } from "./ViewSecretPopup";
+import { ViewSecretPopup } from "./popups/ViewSecretPopup";
 import {
   MdOutlineEditNote,
   MdOutlineFilePresent,
   MdPassword,
 } from "react-icons/md";
 import useStore from "../../store";
+import { PasswordPopup } from "./popups/PasswordPopup";
 
 export function SecretCard({ item }) {
   const accountType = useStore((state) => state.accountType);
@@ -49,7 +50,7 @@ export function SecretCard({ item }) {
       )}
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <ViewSecretPopup onClose={onClose} handleEdit={handleEdit} />
+          <PasswordPopup title="Edit Password" onClose={onClose} handleEdit={handleEdit} />
         </Modal>
       )}
       {modalType === "delete" && (

@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "../../../styles/secrets/ViewSecretPopup.module.scss";
 import useStore from "../../../store";
 import { useEffect, useState } from "react";
 
@@ -39,7 +39,7 @@ export function ViewSecretPopup({ onClose, handleView }) {
   };
 
   return (
-    <div className={styles.editMemberPopup}>
+    <div className={styles.viewSecretPopup}>
       <h1 className={styles.title}>Edit Member Details</h1>
 
       <form onSubmit={(e) => handleView(e, data)}>

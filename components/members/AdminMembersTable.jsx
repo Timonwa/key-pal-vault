@@ -5,7 +5,13 @@ import Top from "./Top";
 export default function AdminMembersTable() {
   const tabs = ["Team Leads", "All Members"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
-  const teamsArray = ["Marketing", "Development", "Design", "Management"];
+  const teamsArray = [
+    "All",
+    "Marketing",
+    "Development",
+    "Design",
+    "Management",
+  ];
 
   return (
     <div>

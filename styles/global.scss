@@ -49,12 +49,16 @@ select {
   font-size: var(--normal-text);
   font-family: var(--primary-font);
   border: 1px solid #56717d;
+  cursor: pointer;
 }
-
 input:focus,
 select:focus,
 textarea:focus {
   outline: 1px solid var(--primary-color);
+}
+input[type="checkbox"],
+input[type="radio"] {
+  outline: none;
 }
 input:disabled,
 select:disabled,
@@ -62,14 +66,13 @@ textarea:disabled {
   color: #888888;
   background-color: #f1f1f1;
   border: 2px solid #dddddd;
+  cursor: not-allowed;
 }
-
 button {
   font-size: var(--normal-text);
   font-family: var(--primary-font);
   white-space: nowrap;
 }
-
 button:disabled {
   color: #888888;
   background-color: #f1f1f1;

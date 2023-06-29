@@ -48,7 +48,7 @@ export function EditMemberPopup({ onClose, handleEdit }) {
             Name
             <input
               id="name"
-              name="email"
+              name="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
