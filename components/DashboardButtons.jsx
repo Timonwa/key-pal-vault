@@ -12,11 +12,12 @@ export default function DashboardButtons() {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        gap: "12px",
+        gap: "16px",
+        marginBottom: "16px",
       }}>
       <CreateSecret />
-      <CreateMember />
       {accountType === "Super Admin" && <CreateTeamHead />}
+      <CreateMember />
     </section>
   );
 }

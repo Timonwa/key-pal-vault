@@ -1,0 +1,43 @@
+.newTeamHeadPopup {
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  h1 {
+    text-align: center;
+  }
+  form {
+    margin-top: 20px;
+    width: 100%;
+    fieldset {
+      border: none;
+      label {
+        margin-bottom: 20px;
+        display: grid;
+        align-items: flex-start;
+        input,
+        select,
+        textarea {
+          margin-top: 5px;
+        }
+      }
+    }
+    .buttons {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      button {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid var(--primary-color);
+      }
+      button.save {
+        border: 1px solid var(--primary-color);
+        background-color: var(--primary-color);
+        color: var(--text);
+      }
+    }
+  }
+}
