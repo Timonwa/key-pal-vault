@@ -97,6 +97,7 @@ export function FilePopup({ onClose, handleEdit, title }) {
               type="file"
               value={file}
               onChange={(e) => setFile(e.target.value)}
+              required
             />
           </label>
 
