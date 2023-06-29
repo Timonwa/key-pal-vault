@@ -6,12 +6,22 @@ import { CgProfile } from "react-icons/cg";
 import { FaChevronRight } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import useStore from "../../store";
+import { PassageUser } from "@passageidentity/passage-elements/passage-user";
 
 const DashboardSideBar = ({ activePage }) => {
   const accountType = useStore((state) => state.accountType);
   const openMenu = useStore((state) => state.openMenu);
   const setOpenMenu = useStore((state) => state.setOpenMenu);
   console.log(openMenu);
+
+  const handleSignOut = async () => {
+    const user = new PassageUser();
+    const signedOut = await user.signOut();
+    if (signedOut) {
+      // Redirect the user to the home page after successful sign out
+      window.location.href = "/";
+    }
+  };
 
   return (
     <nav
@@ -60,7 +70,7 @@ const DashboardSideBar = ({ activePage }) => {
               Profile
             </Link>
           </li>
-          <li className={styles.link} onClick={() => signOut()}>
+          <li className={styles.link} onClick={handleSignOut}>
             <MdOutlineLogout className={styles.linkIcon} />
             Logout
           </li>
@@ -100,7 +110,7 @@ const DashboardSideBar = ({ activePage }) => {
               <CgProfile className={styles.linkIcon} />
             </Link>
           </li>
-          <li className={styles.link} onClick={() => signOut()}>
+          <li className={styles.link} onClick={handleSignOut}>
             <MdOutlineLogout className={styles.linkIcon} />
           </li>
         </ul>
