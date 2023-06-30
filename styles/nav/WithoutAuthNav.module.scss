@@ -1,0 +1,35 @@
+.dashboardNavWrapper {
+  height: var(--nav-bar-height);
+  box-shadow: 0px 1px 0px var(--box-shadow);
+  background-color: var(--text);
+  .dashboardNav {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    .logo {
+      margin-right: 20px;
+      font-weight: 700;
+      padding: 2px 5px;
+      color: var(--black);
+      background: var(--text);
+      border: 3px double var(--black);
+    }
+    .adminBtn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background-color: var(--primary-color);
+      color: var(--text);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .adminBtn:hover {
+      opacity: 0.9;
+    }
+  }
+}

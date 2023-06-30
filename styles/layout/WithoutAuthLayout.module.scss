@@ -1,0 +1,12 @@
+.dashboardLayout {
+  display: flex;
+  .content {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1440px;
+  }
+  .page {
+    padding: 24px;
+  }
+}

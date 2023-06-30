@@ -12,7 +12,6 @@ const DashboardSideBar = ({ activePage }) => {
   const accountType = useStore((state) => state.accountType);
   const openMenu = useStore((state) => state.openMenu);
   const setOpenMenu = useStore((state) => state.setOpenMenu);
-  console.log(openMenu);
 
   const handleSignOut = async () => {
     const user = new PassageUser();
@@ -31,7 +30,9 @@ const DashboardSideBar = ({ activePage }) => {
       </div>
       <div className={styles.top}>
         <div className={styles.logoWrapper}>
-          <p className={styles.large}>KEYPALVAULT</p>
+          <Link href="/" className={styles.large}>
+            KEYPALVAULT
+          </Link>
           <p className={styles.small}>KPV</p>
         </div>
       </div>

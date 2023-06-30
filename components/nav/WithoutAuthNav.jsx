@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
-import styles from "../../styles/nav/DashboardNav.module.scss";
+import styles from "../../styles/nav/WithoutAuthNav.module.scss";
 import useStore from "../../store";
+import { MdOutlineLogin } from "react-icons/md";
 import Link from "next/link";
 
-const DashboardNav = ({ accountType }) => {
+const WithoutAuthNav = ({ accountType }) => {
   const setAccountType = useStore((state) => state.setAccountType);
   const userData = useStore((state) => state.userData);
 
@@ -18,22 +19,17 @@ const DashboardNav = ({ accountType }) => {
         className={`dashboardSectionPaddings maxWidthWrapper ${styles.dashboardNav}`}>
         {/* button to slide side menu in and out */}
         <Link href="/" className={styles.logo}>
-          KPV
+          KeyPalVault
         </Link>
-        {userData && (
-          <Fragment>
-            <h1 className={styles.pageTitle}>{accountType}</h1>/
-            <p className={styles.userName}>Timonwa Akintokun</p>
-            <select value={accountType} onChange={handleAccountToggle}>
-              <option value="Super Admin">Super Admin</option>
-              <option value="Team Lead">Team Lead</option>
-              <option value="Member">Member</option>
-            </select>
-          </Fragment>
-        )}
+
+        {/* super admin login */}
+        <Link href="/admin-login" className={styles.adminBtn}>
+          Admin Login
+          <MdOutlineLogin />
+        </Link>
       </nav>
     </div>
   );
 };
 
-export default DashboardNav;
+export default WithoutAuthNav;
