@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }) => {
   const userData = useStore((state) => state.userData);
   const userToken = useStore((state) => state.userToken);
 
-  console.log(userData, userToken);
+  console.log(accountType, userData, userToken);
 
   return (
     <div className="wrapper maxWidthWrapper">

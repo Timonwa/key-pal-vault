@@ -6,8 +6,7 @@ import TeamHeadSecrets from "@/components/secrets/TeamHeadSecrets";
 import MemberSecrets from "@/components/secrets/MemberSecrets";
 import DashboardButtons from "@/components/DashboardButtons";
 
-const Dashboard = ({ userInfo, authToken }) => {
-  const setUserData = useStore((state) => state.setUserData);
+const Dashboard = ({ isAuthorized, psg_userData, psg_authToken }) => {
   const userData = useStore((state) => state.userData);
   const accountType = useStore((state) => state.accountType);
   const setActivePage = useStore((state) => state.setActivePage);
@@ -18,7 +17,7 @@ const Dashboard = ({ userInfo, authToken }) => {
   }, []);
 
   const getToken = () => {
-    const psg_auth_token = authToken;
+    const psg_auth_token = psg_authToken;
     const kpv_auth_token = localStorage.getItem("kpv_auth_token");
     let token;
     if (psg_auth_token) {
@@ -32,10 +31,22 @@ const Dashboard = ({ userInfo, authToken }) => {
     getToken();
   });
 
+  const updateUserData = () => {
+    // if registered with passage,
+    // check if user exists in db by login them in
+    // if not, create user in db, then login them in
+    const psg_user = psg_userData;
+    if (psg_user) {
+      console.log(psg_user); //TODO: fix this
+    }
+  };
+  useEffect(() => {
+    updateUserData();
+  });
+
   useEffect(() => {
     setActivePage("Dashboard");
-    setUserData(userInfo);
-  }, [setUserData, userInfo, setActivePage]);
+  }, [setActivePage]);
 
   if (!userData) {
     return null; // Or render a loading state if necessary
@@ -68,36 +79,41 @@ export async function getServerSideProps(context) {
   });
 
   try {
-    const authToken = context.req.cookies["psg_auth_token"];
+    // get psg auth token from cookies
+    const psg_authToken = context.req.cookies["psg_auth_token"];
     const req = {
       headers: {
-        authorization: `Bearer ${authToken}`,
+        authorization: `Bearer ${psg_authToken}`,
       },
     };
+    // authenticate request with passage and get userID
     const userID = await passage.authenticateRequest(req);
+    // if userID exists, get user data from passage
     if (userID) {
-      const userInfo = await passage.user.get(userID);
+      const psg_userData = await passage.user.get(userID);
       return {
         props: {
           isAuthorized: true,
-          userInfo,
-          authToken,
+          psg_userData,
+          psg_authToken,
         },
       };
     } else {
       return {
-        redirect: {
-          destination: "/",
-          permanent: false,
+        props: {
+          isAuthorized: false,
+          psg_userData: null,
+          psg_authToken: null,
         },
       };
     }
   } catch (error) {
     console.error(error);
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
+      props: {
+        isAuthorized: false,
+        psg_userData: null,
+        psg_authToken: null,
       },
     };
   }
