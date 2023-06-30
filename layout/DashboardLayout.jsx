@@ -7,6 +7,10 @@ import styles from "../styles/layout/DashboardLayout.module.scss";
 const DashboardLayout = ({ children }) => {
   const accountType = useStore((state) => state.accountType);
   const activePage = useStore((state) => state.activePage);
+  const userData = useStore((state) => state.userData);
+  const userToken = useStore((state) => state.userToken);
+
+  console.log(userData, userToken);
 
   return (
     <div className="wrapper maxWidthWrapper">

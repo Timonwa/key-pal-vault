@@ -1,26 +1,12 @@
-import { Fragment, useEffect } from "react";
 import SignInForm from "@/components/SignInForm";
-import { useRouter } from "next/router";
-import useStore from "../store";
+import WithoutAuthLayout from "@/layout/WithoutAuthLayout";
 
 function Home() {
-  const user = useStore((state) => state.userData);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.push("/dashboard");
-    }
-  });
-  return (
-    <div>
-      <SignInForm />
-    </div>
-  );
+  return <SignInForm />;
 }
 
 export default Home;
 
 Home.getLayout = function PageLayout(page) {
-  return <Fragment>{page}</Fragment>;
+  return <WithoutAuthLayout>{page}</WithoutAuthLayout>;
 };
