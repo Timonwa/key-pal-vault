@@ -11,6 +11,7 @@ const Dashboard = ({ isAuthorized, psg_userData, psg_authToken }) => {
   const accountType = useStore((state) => state.accountType);
   const setActivePage = useStore((state) => state.setActivePage);
   const setUserToken = useStore((state) => state.setUserToken);
+  const setIsSocialLogin = useStore((state) => state.setIsSocialLogin);
 
   useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
@@ -29,6 +30,7 @@ const Dashboard = ({ isAuthorized, psg_userData, psg_authToken }) => {
   };
   useEffect(() => {
     getToken();
+    setIsSocialLogin(isAuthorized);
   });
 
   const updateUserData = () => {

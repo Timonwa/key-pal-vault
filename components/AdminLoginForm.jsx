@@ -3,9 +3,15 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { baseURL, defaultHeaders } from "../store/axiosDefaults";
 import useStore from "../store";
+import { ButtonLoader } from "@/common/ButtonLoader";
+import { ErrorMessage } from "@/common/ResponseMessage";
 
 export default function AdminLoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const router = useRouter();
+
   const userData = useStore((state) => state.userData);
   const accountType = useStore((state) => state.accountType);
   const userToken = useStore((state) => state.userToken);
@@ -33,6 +39,7 @@ export default function AdminLoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     // uses axios to login, if login is successful, redirect to "/dashboard"
     try {
       const response = await fetch(`${baseURL}/login`, {
@@ -47,13 +54,14 @@ export default function AdminLoginForm() {
         handleAccountType(result.user.user_role_id);
         await setUserData(result.user);
         router.push("/dashboard");
-        console.log(result);
-      }
-      else {
-        console.log(result);
+        setIsLoading(false);
+        setErrorMessage(null);
+      } else {
+        setErrorMessage(result.error);
+        setIsLoading(false);
       }
     } catch (err) {
-      console.log(err);
+      setIsLoading(false);
     }
   };
 
@@ -86,12 +94,13 @@ export default function AdminLoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <ErrorMessage message={errorMessage} />
           </label>
         </fieldset>
 
         <div className={styles.buttons}>
           <button className={styles.save} type="submit">
-            Login
+            {!isLoading ? "Login" : <ButtonLoader />}
           </button>
         </div>
       </form>

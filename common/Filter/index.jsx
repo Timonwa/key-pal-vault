@@ -1,11 +1,17 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import useStore from "../../store";
 
-export function Filter({ data }) {
+export function Filter() {
   const userTeams = useStore((state) => state.userTeams);
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(userTeams[0]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    if (userTeams && userTeams.length > 0) {
+      setSelectedItem(userTeams[0]);
+    }
+  }, [userTeams]);
 
   const handleDropdown = () => {
     setOpenDropdown(!openDropdown);

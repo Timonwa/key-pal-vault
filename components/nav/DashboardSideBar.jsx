@@ -29,11 +29,13 @@ const DashboardSideBar = ({ activePage }) => {
         typeof localStorage !== "undefined" &&
           localStorage.removeItem("kpv_auth_token");
         useStore.setState({
-          userData: null,
           accountType: null,
           activePage: null,
-          openMenu: false,
           isSocialLogin: false,
+          openMenu: false,
+          userData: null,
+          userTeams: null,
+          userToken: null,
         });
         window.location.href = "/";
       } else {
@@ -48,6 +50,15 @@ const DashboardSideBar = ({ activePage }) => {
     const user = new PassageUser();
     const signedOut = await user.signOut();
     if (signedOut) {
+      useStore.setState({
+        accountType: null,
+        activePage: null,
+        isSocialLogin: false,
+        openMenu: false,
+        userData: null,
+        userTeams: null,
+        userToken: null,
+      });
       // Redirect the user to the home page after successful sign out
       window.location.href = "/";
     }
