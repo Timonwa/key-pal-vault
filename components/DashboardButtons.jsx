@@ -15,8 +15,8 @@ export default function DashboardButtons() {
         gap: "16px",
         marginBottom: "16px",
       }}>
-      {accountType === "Super Admin" && <CreateTeam />}
       <CreateSecret />
+      {accountType === "Super Admin" && <CreateTeam />}
       {/* <CreateMember /> */}
     </section>
   );

@@ -50,16 +50,33 @@ export function ProfileForm() {
         <p className={styles.teams}>
           <span className={styles.teamTitle}>Teams:</span>
           <div className={styles.teamsArray}>
-            {userTeams && userTeams.length > 0 ? (
+            {!userTeams ? (
+              <span className={styles.team}>Failed to fetch</span>
+            ) : userTeams.length !== 0 ? (
               userTeams.map((team) => (
-                <span key={team} className={styles.team}>
-                  {team}
+                <span
+                  key={team.id}
+                  className={styles.team}
+                  onClick={() => handleSelect(team)}>
+                  {team.name}
                 </span>
               ))
             ) : (
               <span className={styles.team}>none</span>
             )}
-            {!userTeams && <span className={styles.team}>Failed to fetch</span>}
+            {/* {userTeams && userTeams.length !== 0 ? (
+              userTeams.map((team) => (
+                <span
+                  key={team.id}
+                  className={styles.team}
+                  onClick={() => handleSelect(team)}>
+                  {team.name}
+                </span>
+              ))
+            ) : (
+              <span className={styles.team}>none</span>
+            )}
+            {!userTeams && <span className={styles.team}>Failed to fetch</span>} */}
           </div>
         </p>
       </div>

@@ -24,8 +24,6 @@ export default function CreateSecret() {
     console.log(e.target.id);
   };
 
-  console.log(selectedSecretType);
-
   const handleCreate = (e, data) => {
     e.preventDefault();
     alert("created");

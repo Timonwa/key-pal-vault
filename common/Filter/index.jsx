@@ -9,7 +9,7 @@ export function Filter() {
 
   useEffect(() => {
     if (userTeams && userTeams.length > 0) {
-      setSelectedItem(userTeams[0]);
+      setSelectedItem(userTeams[0].name);
     }
   }, [userTeams]);
 
@@ -17,14 +17,14 @@ export function Filter() {
     setOpenDropdown(!openDropdown);
   };
 
-  const handleSelect = (item) => {
-    setSelectedItem(item);
+  const handleSelect = (team) => {
+    setSelectedItem(team.name);
     setOpenDropdown(false);
   };
 
   return (
     <div className={styles.filterWrapper}>
-      {userTeams && userTeams.length < 0 && (
+      {userTeams && userTeams.length !== 0 && (
         <Fragment>
           <p className={styles.filter}>
             <span>Filter:</span>
@@ -35,12 +35,12 @@ export function Filter() {
 
           {openDropdown && (
             <div className={styles.itemArray}>
-              {userTeams.map((item, index) => (
+              {userTeams.map((team) => (
                 <span
-                  key={index}
+                  key={team.id}
                   className={styles.item}
-                  onClick={() => handleSelect(item)}>
-                  {item}
+                  onClick={() => handleSelect(team)}>
+                  {team.name}
                 </span>
               ))}
             </div>

@@ -8,7 +8,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
 
   const [name, setName] = useState("");
   const [website, setWebsite] = useState("");
-  const [username, setSUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [note, setNote] = useState("");
   const [visibility, setVisibility] = useState("private");
@@ -18,7 +18,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
     if (secretPasswordData) {
       setName(secretPasswordData.name);
       setWebsite(secretPasswordData.website);
-      setSUsername(secretPasswordData.username);
+      setUsername(secretPasswordData.username);
       setPassword(secretPasswordData.password);
       setNote(secretPasswordData.note);
       setVisibility(secretPasswordData.visibility);
@@ -55,14 +55,22 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
     });
   }, [teams]);
 
-  const data = {
+  const secretData = {
     name,
-    website,
-    username,
-    password,
+    type: "password",
+    content: {
+      website,
+      username,
+      email: "",
+      password,
+    },
     note,
-    visibility,
-    teams,
+    visibility: true,
+  };
+
+  const addTeamData = {
+    team_id,
+    vault_id,
   };
 
   const handleSubmit = (e) => {
@@ -73,14 +81,14 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
       return;
     }
     setError(false);
-    handleEdit(e, data);
+    handleEdit(e, secretData);
   };
 
   return (
     <section className={styles.passwordPopup}>
       <h1 className={styles.title}>{title}</h1>
 
-      <form onSubmit={(e) => handleSubmit(e, data)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <label htmlFor="name">
             Name of secret
@@ -115,7 +123,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
               name="username"
               type="text"
               value={username}
-              onChange={(e) => setSUsername(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="companyname@example.com"
               required
             />
