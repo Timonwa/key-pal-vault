@@ -1,12 +1,18 @@
 import { Filter } from "@/common/Filter";
-import TabSwitcherLine from "@/common/TabSwitcherLine";
-import React from "react";
+import { SectionTitle } from "@/common/SectionTitle";
+import React, { useState } from "react";
 
-export default function Top({ active, setActive, tabs, data }) {
+export default function Top({ teams, onClick }) {
+  const [selectedItem, setSelectedItem] = useState(null);
   return (
     <nav>
-      <TabSwitcherLine active={active} setActive={setActive} tabs={tabs} />
-      <Filter data={data} />
+      <SectionTitle title={`${selectedItem} team members`} />
+      <Filter
+        teams={teams}
+        onClick={onClick}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
     </nav>
   );
 }

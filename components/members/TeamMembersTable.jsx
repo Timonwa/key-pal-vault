@@ -1,27 +1,19 @@
 import { MembersTable } from "@/components/members/MembersTable";
 import React, { useState } from "react";
 import Top from "./Top";
+import useStore from "../../store";
 
 export default function TeamMembersTable() {
-  const tabs = ["Team Members"];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const teamsArray = [
-    "All",
-    "Marketing",
-    "Development",
-    "Design",
-    "Management",
-  ];
+  const userTeams = useStore((state) => state.userTeams);
+
+  const handleFilter = (team) => {
+    alert(team);
+  };
 
   return (
     <main>
-      <Top
-        active={activeTab}
-        setActive={setActiveTab}
-        tabs={tabs}
-        data={teamsArray}
-      />
-      {activeTab === "Team Members" && <MembersTable data={[1, 1, 1]} />}
+      <Top teams={userTeams} onClick={handleFilter} />
+      <MembersTable data={[1, 1, 1, 1]} />
     </main>
   );
 }

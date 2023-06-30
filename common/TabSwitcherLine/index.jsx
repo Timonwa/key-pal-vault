@@ -9,14 +9,18 @@ export default function TabSwitcherLine({ tabs, active, setActive }) {
   return (
     <div className={styles.tabSwitcherWrapper}>
       <ul className={styles.tabSwitcherLine}>
-        {tabs.map((tab) => (
-          <li
-            key={tab}
-            className={`${styles.tab} ${active === tab ? styles.active : ""}`}
-            onClick={() => switchTabView(tab)}>
-            {tab}
-          </li>
-        ))}
+        {tabs &&
+          tabs.length !== 0 &&
+          tabs.map((tab) => (
+            <li
+              key={tab.id}
+              className={`${styles.tab} ${
+                active === tab.id ? styles.active : ""
+              }`}
+              onClick={() => switchTabView(tab.id)}>
+              {tab.name}
+            </li>
+          ))}
       </ul>
     </div>
   );

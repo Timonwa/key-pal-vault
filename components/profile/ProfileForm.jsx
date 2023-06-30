@@ -56,8 +56,7 @@ export function ProfileForm() {
               userTeams.map((team) => (
                 <span
                   key={team.id}
-                  className={styles.team}
-                  onClick={() => handleSelect(team)}>
+                  className={styles.team}>
                   {team.name}
                 </span>
               ))

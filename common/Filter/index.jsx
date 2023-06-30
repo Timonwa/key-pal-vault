@@ -1,30 +1,28 @@
 import { Fragment, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import useStore from "../../store";
 
-export function Filter() {
-  const userTeams = useStore((state) => state.userTeams);
+export function Filter({ teams, onClick, selectedItem, setSelectedItem }) {
   const [openDropdown, setOpenDropdown] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    if (userTeams && userTeams.length > 0) {
-      setSelectedItem(userTeams[0].name);
+    if (teams && teams.length > 0) {
+      setSelectedItem(teams[0].name);
     }
-  }, [userTeams]);
+  }, [setSelectedItem, teams]);
 
   const handleDropdown = () => {
     setOpenDropdown(!openDropdown);
   };
 
-  const handleSelect = (team) => {
-    setSelectedItem(team.name);
+  const handleSelect = async (team) => {
+    await setSelectedItem(team.name);
     setOpenDropdown(false);
+    onClick ? onClick(team.name) : null;
   };
 
   return (
     <div className={styles.filterWrapper}>
-      {userTeams && userTeams.length !== 0 && (
+      {teams && teams.length !== 0 && (
         <Fragment>
           <p className={styles.filter}>
             <span>Filter:</span>
@@ -35,7 +33,7 @@ export function Filter() {
 
           {openDropdown && (
             <div className={styles.itemArray}>
-              {userTeams.map((team) => (
+              {teams.map((team) => (
                 <span
                   key={team.id}
                   className={styles.item}

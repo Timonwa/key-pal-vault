@@ -69,9 +69,9 @@ export function MembersTable({ data }) {
               <th>
                 <p>Email</p>
               </th>
-              <th>
+              {/* <th>
                 <p>Status</p>
-              </th>
+              </th> */}
               <th>
                 <p>Team</p>
               </th>
@@ -93,13 +93,13 @@ export function MembersTable({ data }) {
                 <td>
                   <p>timonwaakintokun@gmail.com</p>
                 </td>
-                <td>
+                {/* <td>
                   {user.approved ? (
                     <p className={styles.approved}>approved</p>
                   ) : (
                     <p className={styles.unapproved}>unapproved</p>
                   )}
-                </td>
+                </td> */}
                 <td>
                   <p>Development</p>
                 </td>
