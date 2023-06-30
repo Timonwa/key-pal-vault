@@ -44,7 +44,7 @@ export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
   });
 
   useEffect(() => {
-    setActivePage("Profile");
+    setActivePage("Members");
   }, [setActivePage]);
 
   if (!userData) {
