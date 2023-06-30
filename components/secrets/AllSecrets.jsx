@@ -9,10 +9,10 @@ import {
   MdPassword,
 } from "react-icons/md";
 import useStore from "../../store";
-import { PasswordPopup } from "./popups/PasswordPopup";
 import { NotePopup } from "./popups/NotePopup";
-import { FilePopup } from "./popups/FilePopup";
 import { ErrorMessage } from "@/common/ResponseMessage";
+import { EditPasswordPopup } from "./popups/EditPasswordPopup";
+import { EditFilePopup } from "./popups/EditFilePopup";
 
 export function SecretCard({ item }) {
   const accountType = useStore((state) => state.accountType);
@@ -42,45 +42,54 @@ export function SecretCard({ item }) {
 
   const handleView = (e) => {
     e.preventDefault();
-    console.log(item);
-  };
-  const handleEdit = (e, item) => {
-    e.preventDefault();
-    console.log(item);
+    console.log("item");
   };
 
-  const handleDelete = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
-    alert(item.id);
+    console.log("item");
   };
+
+  // const handleDelete = (e) => {
+  //   e.preventDefault();
+  //   alert(item.id);
+  // };
 
   return (
     <Fragment>
       {modalType === "view" && (
         <Modal isOpen={isOpen} onClose={onClose}>
-          <ViewSecretPopup onClose={onClose} handleView={handleView} />
+          <ViewSecretPopup
+            onClose={onClose}
+            handleView={handleView}
+            item={item}
+            selectedSecretType={selectedSecretType}
+          />
         </Modal>
       )}
       {modalType === "edit" && (
         <Modal isOpen={isOpen} onClose={onClose}>
           {selectedSecretType === "password" && (
-            <PasswordPopup
+            <EditPasswordPopup
+              secretPasswordData={item}
               title="Update Secret (Password)"
               onClose={onClose}
               handleEdit={handleEdit}
               selectedSecretType={selectedSecretType}
             />
           )}
-          {selectedSecretType === "note" && (
+          {/* {selectedSecretType === "note" && (
             <NotePopup
+              secretPasswordData={item}
               title="Update Secret (Note)"
               onClose={onClose}
               handleEdit={handleEdit}
               selectedSecretType={selectedSecretType}
             />
-          )}
+          )} */}
           {selectedSecretType === "file" && (
-            <FilePopup
+            <EditFilePopup
+              secretPasswordData={item}
               title="Update Secret (File)"
               onClose={onClose}
               handleEdit={handleEdit}
@@ -89,7 +98,7 @@ export function SecretCard({ item }) {
           )}
         </Modal>
       )}
-      {modalType === "delete" && (
+      {/* {modalType === "delete" && (
         <Modal isOpen={isOpen} onClose={onClose}>
           <DeletePopup
             type="Secret"
@@ -98,7 +107,7 @@ export function SecretCard({ item }) {
             handleDelete={handleDelete}
           />
         </Modal>
-      )}
+      )} */}
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
           <h3 className={styles.secretTitle}>{item.name}</h3>
@@ -134,17 +143,17 @@ export function SecretCard({ item }) {
             <div className={styles.secretButtons}>
               <button
                 className={styles.viewBtn}
-                onClick={() => openModal("view", item)}>
+                onClick={() => openModal("view")}>
                 View
               </button>
               <button
                 className={styles.editBtn}
-                onClick={() => openModal("edit", item)}>
+                onClick={() => openModal("edit")}>
                 Edit
               </button>
               {/* <button
                 className={styles.deleteBtn}
-                onClick={() => openModal("delete", item)}>
+                onClick={() => openModal("delete")}>
                 Delete
               </button> */}
             </div>

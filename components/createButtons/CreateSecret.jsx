@@ -111,7 +111,7 @@ export default function CreateSecret() {
               />
               Note
             </label> */}
-            <label htmlFor="file">
+            {/* <label htmlFor="file">
               <input
                 type="radio"
                 id="file"
@@ -120,7 +120,7 @@ export default function CreateSecret() {
                 onChange={handleSecretTypeChange}
               />
               File
-            </label>
+            </label> */}
           </fieldset>
         </div>
 

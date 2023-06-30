@@ -1,121 +1,55 @@
+import { Fragment } from "react";
 import styles from "../../../styles/secrets/ViewSecretPopup.module.scss";
 import useStore from "../../../store";
-import { useEffect, useState } from "react";
 
-export function ViewSecretPopup({ onClose, handleView }) {
-  const userData = useStore((state) => state.userData);
-  const accountType = useStore((state) => state.accountType);
+export function ViewSecretPopup({ onClose, item }) {
+  const userTeams = useStore((state) => state.userTeams);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("unapproved");
-  const [team, setTeam] = useState("None");
-  const [role, setRole] = useState("Member");
+  // for each userTeams filter the team_id and return the team name that matches item.name
+  const teamName = userTeams
+    .filter((team) => team.id === item.pivot.team_id)
+    .map((team) => team.name);
 
-  useEffect(() => {
-    if (userData?.name) {
-      setName(userData?.name);
-    }
-    if (userData?.email) {
-      setEmail(userData?.email);
-    }
-    if (userData?.status) {
-      setStatus(userData?.status);
-    }
-    if (userData?.team) {
-      setTeam(userData?.team);
-    }
-    if (userData?.role) {
-      setRole(userData?.role);
-    }
-  }, [userData]);
-
-  const data = {
-    name,
-    email,
-    status,
-    team,
-    role,
-  };
+  // formate date from 2023-06-30T18:22:02.000000Z to 30/06/2023
+  const date = new Date(item.updated_at);
+  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
   return (
     <section className={styles.viewSecretPopup}>
-      <h1 className={styles.title}>Edit Member Details</h1>
-
-      <form onSubmit={(e) => handleView(e, data)}>
-        <fieldset>
-          <label htmlFor="name">
-            Name
-            <input
-              id="name"
-              name="email"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled
-            />
-          </label>
-
-          <label htmlFor="email">
-            Email
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled
-            />
-          </label>
-
-          <label htmlFor="status">
-            Status
-            <select
-              id="status"
-              name="status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              disabled={accountType === "Super Admin" ? false : true}>
-              <option value="approved">approved</option>
-              <option value="unapproved">unapproved</option>
-            </select>
-          </label>
-
-          <label htmlFor="team">
-            Team
-            <select
-              id="team"
-              name="team"
-              value={team}
-              onChange={(e) => setTeam(e.target.value)}>
-              <option value="Marketing">Marketing</option>
-              <option value="Development">Development</option>
-              <option value="None">None</option>
-            </select>
-          </label>
-
-          <label htmlFor="role">
-            Role
-            <select
-              id="role"
-              name="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}>
-              <option value="Team Lead">Team Lead</option>
-              <option value="Member">Member</option>
-            </select>
-          </label>
-        </fieldset>
-
-        <div className={styles.buttons}>
-          <button className={styles.cancel} onClick={onClose}>
-            Cancel
-          </button>
-          <button className={styles.save} type="submit">
-            Save
-          </button>
+      <h1 className={styles.title}>{item.name}</h1>
+      {item.type === "password" && (
+        <div className={styles.wrapper}>
+          <div>
+            <h4>Website name:</h4>
+            <p>{item.content.website}</p>
+          </div>
+          <div>
+            <h4>Username or email:</h4>
+            <p>{item.content.username}</p>
+          </div>
+          <div>
+            <h4>Password:</h4>
+            <p>{item.content.password}</p>
+          </div>
+          <div>
+            <h4>Additional notes:</h4>
+            <p>{item.notes}</p>
+          </div>
+          <div>
+            <h4>Team:</h4>
+            <p>{teamName}</p>
+          </div>
+          <div>
+            <h4>Date:</h4>
+            <p>{formattedDate}</p>
+          </div>
         </div>
-      </form>
+      )}
+      <div className={styles.buttons}>
+        <button className={styles.cancel} onClick={onClose}>
+          Cancel
+        </button>
+      </div>
     </section>
   );
 }
