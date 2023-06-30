@@ -23,6 +23,10 @@ const useStore = create(
       // to save user token
       userToken: null,
       setUserToken: (token) => set({ userToken: token }),
+
+      // to save user's teams
+      userTeams: null,
+      setUserTeams: (teams) => set({ userTeams: teams }),
     }),
     {
       name: "app-store", // required name of the item in the storage
