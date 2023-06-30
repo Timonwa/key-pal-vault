@@ -142,11 +142,11 @@ export function SecretCard({ item }) {
                 onClick={() => openModal("edit", item)}>
                 Edit
               </button>
-              <button
+              {/* <button
                 className={styles.deleteBtn}
                 onClick={() => openModal("delete", item)}>
                 Delete
-              </button>
+              </button> */}
             </div>
           </div>
         )}
