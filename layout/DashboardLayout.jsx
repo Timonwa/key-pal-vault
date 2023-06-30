@@ -28,10 +28,10 @@ const DashboardLayout = ({ children }) => {
       if (response.status === 200) {
         setUserTeams(result.teams);
       } else {
-        console.log(result);
+        return null;
       }
     } catch (err) {
-      console.log(err);
+      throw new Error(err);
     }
   };
 

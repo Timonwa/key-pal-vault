@@ -29,8 +29,8 @@ const DashboardSideBar = ({ activePage }) => {
         typeof localStorage !== "undefined" &&
           localStorage.removeItem("kpv_auth_token");
         useStore.setState({
-          accountType: null,
-          activePage: null,
+          accountType: "",
+          activePage: "Overview",
           isSocialLogin: false,
           openMenu: false,
           userData: null,
@@ -51,8 +51,8 @@ const DashboardSideBar = ({ activePage }) => {
     const signedOut = await user.signOut();
     if (signedOut) {
       useStore.setState({
-        accountType: null,
-        activePage: null,
+        accountType: "",
+        activePage: "Overview",
         isSocialLogin: false,
         openMenu: false,
         userData: null,

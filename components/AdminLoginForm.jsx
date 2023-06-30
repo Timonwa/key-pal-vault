@@ -99,7 +99,7 @@ export default function AdminLoginForm() {
         </fieldset>
 
         <div className={styles.buttons}>
-          <button className={styles.save} type="submit">
+          <button className={styles.save} type="submit" disabled={isLoading}>
             {!isLoading ? "Login" : <ButtonLoader />}
           </button>
         </div>

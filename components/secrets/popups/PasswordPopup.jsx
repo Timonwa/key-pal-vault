@@ -1,9 +1,21 @@
-import { ErrorMessage } from "@/common/ResponseMessage";
+import { ErrorMessage, SuccessMessage } from "@/common/ResponseMessage";
 import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
+import useStore from "../../../store";
+import { ButtonLoader } from "@/common/ButtonLoader";
 
-export function PasswordPopup({ onClose, handleEdit, title }) {
-  const secretPasswordData = null;
+export function PasswordPopup({
+  onClose,
+  handleEdit,
+  title,
+  selectedSecretType,
+  errorMessage,
+  isLoading,
+  successMessage,
+  clearForm,
+  secretPasswordData,
+}) {
+  const userTeams = useStore((state) => state.userTeams);
   const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
@@ -14,15 +26,29 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
   const [visibility, setVisibility] = useState("private");
   const [teams, setTeams] = useState([]);
 
+  // if clear form is true, clear form
+  useEffect(() => {
+    if (clearForm) {
+      setName("");
+      setWebsite("");
+      setUsername("");
+      setPassword("");
+      setNote("");
+      setVisibility("private");
+      setTeams([]);
+    }
+  }, [clearForm]);
+
+  // if you want to edit secret, set state to secret data
   useEffect(() => {
     if (secretPasswordData) {
-      setName(secretPasswordData.name);
-      setWebsite(secretPasswordData.website);
-      setUsername(secretPasswordData.username);
-      setPassword(secretPasswordData.password);
-      setNote(secretPasswordData.note);
-      setVisibility(secretPasswordData.visibility);
-      setTeams(secretPasswordData.teams);
+      setName(secretPasswordData?.name);
+      setWebsite(secretPasswordData?.website);
+      setUsername(secretPasswordData?.username);
+      setPassword(secretPasswordData?.password);
+      setNote(secretPasswordData?.note);
+      setVisibility(secretPasswordData?.visibility);
+      setTeams(secretPasswordData?.teams);
     }
   }, [secretPasswordData]);
 
@@ -55,9 +81,10 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
     });
   }, [teams]);
 
+  // data for request
   const secretData = {
     name,
-    type: "password",
+    type: selectedSecretType,
     content: {
       website,
       username,
@@ -65,12 +92,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
       password,
     },
     note,
-    visibility: true,
-  };
-
-  const addTeamData = {
-    team_id,
-    vault_id,
+    visibility: visibility === "private" ? false : true,
   };
 
   const handleSubmit = (e) => {
@@ -81,7 +103,7 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
       return;
     }
     setError(false);
-    handleEdit(e, secretData);
+    handleEdit(e, secretData, teams);
   };
 
   return (
@@ -172,42 +194,30 @@ export function PasswordPopup({ onClose, handleEdit, title }) {
 
         <fieldset className={styles.teams}>
           <legend>Select teams:</legend>
-          <label htmlFor="marketing">
-            <input
-              type="checkbox"
-              name="team"
-              id="marketing"
-              disabled={visibility === "private" ? true : false}
-            />
-            Marketing
-          </label>
-          <label htmlFor="development">
-            <input
-              type="checkbox"
-              name="team"
-              id="development"
-              disabled={visibility === "private" ? true : false}
-            />
-            Development
-          </label>
-          <label htmlFor="design">
-            <input
-              type="checkbox"
-              name="team"
-              id="design"
-              disabled={visibility === "private" ? true : false}
-            />
-            Design
-          </label>
+          {userTeams &&
+            userTeams.length !== 0 &&
+            userTeams.map((team) => (
+              <label key={team.id} htmlFor={team.id}>
+                <input
+                  type="checkbox"
+                  name="team"
+                  id={team.id}
+                  disabled={visibility === "private" ? true : false}
+                />
+                {team.name}
+              </label>
+            ))}
         </fieldset>
         {error && <ErrorMessage message="Please select at least one team" />}
+        {errorMessage && <ErrorMessage message={errorMessage} />}
+        {successMessage && <SuccessMessage message={successMessage} />}
 
         <div className={styles.buttons}>
           <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.save} type="submit">
-            Save
+          <button className={styles.save} type="submit" disabled={isLoading}>
+            {isLoading ? <ButtonLoader /> : "Save"}
           </button>
         </div>
       </form>

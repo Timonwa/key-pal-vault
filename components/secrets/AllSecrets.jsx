@@ -34,10 +34,10 @@ export function SecretCard({ item }) {
     alert("view");
     console.log(data);
   };
-  const handleEdit = (e, data) => {
+  const handleEdit = (e, data, teams) => {
     e.preventDefault();
     alert("edit");
-    console.log(data);
+    console.log(data, teams);
   };
 
   const handleDelete = (e) => {
@@ -59,6 +59,7 @@ export function SecretCard({ item }) {
               title="Update Secret (Password)"
               onClose={onClose}
               handleEdit={handleEdit}
+              selectedSecretType={selectedSecretType}
             />
           )}
           {selectedSecretType === "note" && (
@@ -66,6 +67,7 @@ export function SecretCard({ item }) {
               title="Update Secret (Note)"
               onClose={onClose}
               handleEdit={handleEdit}
+              selectedSecretType={selectedSecretType}
             />
           )}
           {selectedSecretType === "file" && (
@@ -73,6 +75,7 @@ export function SecretCard({ item }) {
               title="Update Secret (File)"
               onClose={onClose}
               handleEdit={handleEdit}
+              selectedSecretType={selectedSecretType}
             />
           )}
         </Modal>

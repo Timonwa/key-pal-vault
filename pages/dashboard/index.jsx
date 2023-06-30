@@ -23,14 +23,15 @@ const Dashboard = ({ isAuthorized, psg_userData, psg_authToken }) => {
     let token;
     if (psg_auth_token) {
       token = psg_auth_token;
+      setIsSocialLogin(true);
     } else if (kpv_auth_token) {
       token = kpv_auth_token;
+      setIsSocialLogin(false);
     }
     return setUserToken(token);
   };
   useEffect(() => {
     getToken();
-    setIsSocialLogin(isAuthorized);
   });
 
   const updateUserData = () => {
