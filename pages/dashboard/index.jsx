@@ -20,12 +20,13 @@ const Dashboard = ({ userInfo, authToken }) => {
   const getToken = () => {
     const psg_auth_token = authToken;
     const kpv_auth_token = localStorage.getItem("kpv_auth_token");
+    let token;
     if (psg_auth_token) {
-      setUserToken(psg_auth_token);
+      token = psg_auth_token;
     } else if (kpv_auth_token) {
-      setUserToken(kpv_auth_token);
+      token = kpv_auth_token;
     }
-    return token;
+    return setUserToken(token);
   };
   useEffect(() => {
     getToken();
