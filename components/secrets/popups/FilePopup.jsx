@@ -125,6 +125,8 @@ export function FilePopup({
                 const file = e.target.files[0];
                 setFile(file);
               }}
+              required
+              disabled
             />
           </label>
 
