@@ -41,11 +41,10 @@ export default function CreateSecret() {
             body: JSON.stringify(data),
           });
           const result = await response.json();
-          if (result) {
-            console.log(result.data);
+          if (response.status === 201) {
             setSuccessMessage(result.message);
           } else {
-            setSuccessMessage(result.message);
+            setErrorMessage(result.message);
           }
         } catch (err) {
           setErrorMessage(err.message);
@@ -56,6 +55,8 @@ export default function CreateSecret() {
   // create new secret
   const createNewSecret = async (data, teams) => {
     setIsLoading(true);
+    setSuccessMessage(false);
+    setErrorMessage(false);
     try {
       const response = await fetch(`${baseURL}/createVault`, {
         method: "POST",
@@ -67,9 +68,8 @@ export default function CreateSecret() {
         addNewSecretToTeam(result.data.id, teams);
         setSuccessMessage(result.message);
         setIsLoading(false);
-        setClearForm(true);
       } else {
-        setSuccessMessage(result.message);
+        setErrorMessage(result.message);
         setIsLoading(false);
       }
     } catch (err) {

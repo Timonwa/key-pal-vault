@@ -1,21 +1,83 @@
 import { ErrorMessage, SuccessMessage } from "@/common/ResponseMessage";
 import styles from "../../styles/members/TeamHeadDetails.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonLoader } from "@/common/ButtonLoader";
+import { baseURL, authHeaders } from "../../store/axiosDefaults";
 
 export function TeamHeadDetails({ onClose }) {
-  const [team, setTeam] = useState("");
-  const [teamHead, setTeamHead] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const members = [
+    { id: 3, name: "Timonwa Akintokun" },
+    { id: 2, name: "Sanni Lanre" },
+  ];
 
-  const data = {
-    team,
-    teamHead,
+  const [teamName, setTeamName] = useState("");
+  const [teamHead, setTeamHead] = useState(members[0].id);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [clearForm, setClearForm] = useState(false);
+
+  // if clear form is true, clear form
+  useEffect(() => {
+    if (clearForm) {
+      setTeamHead("");
+      setTeamName("");
+    }
+  }, [clearForm]);
+
+  // after creating a team, add the team head to the team
+  const addTeamLead = async (teamId) => {
+    const data = {
+      team_id: teamId,
+      user_id: teamHead,
+    };
+    try {
+      const response = await fetch(`${baseURL}/makeTeamLeader`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.status === 201) {
+        setSuccessMessage(result.message);
+      } else {
+        setErrorMessage(result.message);
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
   };
 
+  // create a new team
+  const createTeam = async () => {
+    setIsLoading(true);
+    setSuccessMessage(false);
+    setErrorMessage(false);
+    try {
+      const response = await fetch(`${baseURL}/createTeam`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify({ name: teamName }),
+      });
+      const result = await response.json();
+      if (response.status === 201) {
+        setSuccessMessage(result.message);
+        addTeamLead(result.data.id);
+        setIsLoading(false);
+      } else {
+        setErrorMessage(result.message);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  // handle creating a team and adding a team head
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+    createTeam();
   };
 
   return (
@@ -24,33 +86,33 @@ export function TeamHeadDetails({ onClose }) {
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
-          <label htmlFor="team">
+          <label htmlFor="teamName">
             Select Team
             <input
-              id="team"
-              name="team"
+              id="teamName"
+              name="teamName"
               type="text"
               placeholder="Marketing division"
-              value={team}
-              onChange={(e) => setTeam(e.target.value)}
+              value={teamName}
+              onChange={(e) => setTeamName(e.target.value)}
               required
             />
-            <SuccessMessage message="Team created successfully" />
-            <ErrorMessage message="Failed to create Team " />
           </label>
-          <label htmlFor="team">
-            Select Team Member
+          <label htmlFor="teamName">
+            Select Team Member:{teamHead}
             <select
-              id="team-head"
-              name="team-head"
+              id="teamName-head"
+              name="teamName-head"
               value={teamHead}
-              onChange={(e) => setTeamHead(e.target.value)}
-              required>
-              <option value="Timonwa Akintokun">Timonwa Akintokun</option>
-              <option value="Sanni Lanre">Sanni Lanre</option>
+              onChange={(e) => setTeamHead(e.target.value)}>
+              {members.map((member) => (
+                <option key={member.id} value={member.id}>
+                  {member.name}
+                </option>
+              ))}
             </select>
-            <SuccessMessage message="Team lead added successfully" />
-            <ErrorMessage message="Failed to add Team lead" />
+            <SuccessMessage message={successMessage} />
+            <ErrorMessage message={errorMessage} />
           </label>
         </fieldset>
 
@@ -58,8 +120,8 @@ export function TeamHeadDetails({ onClose }) {
           <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.save} type="submit">
-            {!isLoading ? " Create Team" : <ButtonLoader />}
+          <button className={styles.save} type="submit" disabled={isLoading}>
+            {!isLoading ? "Create Team" : <ButtonLoader />}
           </button>
         </div>
       </form>
