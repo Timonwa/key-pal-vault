@@ -6,7 +6,7 @@ export function Filter({ teams, onClick, selectedItem, setSelectedItem }) {
 
   useEffect(() => {
     if (teams && teams.length > 0) {
-      setSelectedItem(teams[0].name);
+      setSelectedItem(teams[0]);
     }
   }, [setSelectedItem, teams]);
 
@@ -15,9 +15,9 @@ export function Filter({ teams, onClick, selectedItem, setSelectedItem }) {
   };
 
   const handleSelect = async (team) => {
-    await setSelectedItem(team.name);
+    await setSelectedItem(team);
     setOpenDropdown(false);
-    onClick ? onClick(team.name) : null;
+    await onClick(team);
   };
 
   return (
@@ -27,7 +27,7 @@ export function Filter({ teams, onClick, selectedItem, setSelectedItem }) {
           <p className={styles.filter}>
             <span>Filter:</span>
             <span onClick={handleDropdown} className={styles.selectedItem}>
-              {selectedItem}
+              {selectedItem?.name}
             </span>
           </p>
 
@@ -35,10 +35,10 @@ export function Filter({ teams, onClick, selectedItem, setSelectedItem }) {
             <div className={styles.itemArray}>
               {teams.map((team) => (
                 <span
-                  key={team.id}
+                  key={team?.id}
                   className={styles.item}
                   onClick={() => handleSelect(team)}>
-                  {team.name}
+                  {team?.name}
                 </span>
               ))}
             </div>

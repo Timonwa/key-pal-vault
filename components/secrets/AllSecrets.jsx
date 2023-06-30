@@ -12,10 +12,21 @@ import useStore from "../../store";
 import { PasswordPopup } from "./popups/PasswordPopup";
 import { NotePopup } from "./popups/NotePopup";
 import { FilePopup } from "./popups/FilePopup";
+import { ErrorMessage } from "@/common/ResponseMessage";
 
 export function SecretCard({ item }) {
   const accountType = useStore((state) => state.accountType);
+  const userTeams = useStore((state) => state.userTeams);
   const [selectedSecretType, setSelectedSecretType] = useState("");
+
+  // for each userTeams filter the team_id and return the team name that matches item.name
+  const teamName = userTeams
+    .filter((team) => team.id === item.pivot.team_id)
+    .map((team) => team.name);
+
+  // formate date from 2023-06-30T18:22:02.000000Z to 30/06/2023
+  const date = new Date(item.updated_at);
+  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -29,20 +40,18 @@ export function SecretCard({ item }) {
     setSelectedSecretType(secretType);
   };
 
-  const handleView = (e, data) => {
+  const handleView = (e) => {
     e.preventDefault();
-    alert("view");
-    console.log(data);
+    console.log(item);
   };
-  const handleEdit = (e, data, teams) => {
+  const handleEdit = (e, item) => {
     e.preventDefault();
-    alert("edit");
-    console.log(data, teams);
+    console.log(item);
   };
 
   const handleDelete = (e) => {
     e.preventDefault();
-    alert("deleted");
+    alert(item.id);
   };
 
   return (
@@ -92,8 +101,8 @@ export function SecretCard({ item }) {
       )}
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
-          <h3 className={styles.secretTitle}>Secret Card title</h3>
-          {item === "password" && (
+          <h3 className={styles.secretTitle}>{item.name}</h3>
+          {item.type === "password" && (
             <p className={styles.type}>
               <MdPassword />
             </p>
@@ -115,11 +124,11 @@ export function SecretCard({ item }) {
             <div className={styles.metrics}>
               <p>
                 <span>Team:</span>
-                <span>Marketing</span>
+                <span>{teamName}</span>
               </p>
               <p>
                 <span>Created:</span>
-                <span>12/12/2021</span>
+                <span>{formattedDate}</span>
               </p>
             </div>
             <div className={styles.secretButtons}>
@@ -146,12 +155,23 @@ export function SecretCard({ item }) {
   );
 }
 
-export default function AllSecrets({ data }) {
-  return (
+export default function AllSecrets({
+  data,
+  errorMessage,
+  isLoading,
+  teamSecrets,
+}) {
+  return isLoading ? (
+    <p>fetching secrets...</p>
+  ) : errorMessage ? (
+    <ErrorMessage message={errorMessage} />
+  ) : teamSecrets && teamSecrets.length > 0 ? (
     <div className={styles.secretsGrid}>
-      {data.map((item) => (
+      {teamSecrets.map((item) => (
         <SecretCard key={item.id} item={item} />
       ))}
     </div>
+  ) : (
+    <p>No secrets created yet.</p>
   );
 }
