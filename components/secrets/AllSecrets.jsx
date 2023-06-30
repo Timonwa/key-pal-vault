@@ -13,11 +13,15 @@ import { NotePopup } from "./popups/NotePopup";
 import { ErrorMessage } from "@/common/ResponseMessage";
 import { EditPasswordPopup } from "./popups/EditPasswordPopup";
 import { EditFilePopup } from "./popups/EditFilePopup";
+import { baseURL, authHeaders } from "../../store/axiosDefaults";
 
 export function SecretCard({ item }) {
   const accountType = useStore((state) => state.accountType);
   const userTeams = useStore((state) => state.userTeams);
   const [selectedSecretType, setSelectedSecretType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
 
   // for each userTeams filter the team_id and return the team name that matches item.name
   const teamName = userTeams
@@ -45,9 +49,29 @@ export function SecretCard({ item }) {
     console.log("item");
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = async (e, data) => {
     e.preventDefault();
-    console.log("item");
+    setIsLoading(true);
+    setSuccessMessage(false);
+    setErrorMessage(false);
+    try {
+      const response = await fetch(`${baseURL}/updateVault`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.status === 200) {
+        setSuccessMessage(result.message);
+        setIsLoading(false);
+      } else {
+        setErrorMessage(result.message);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
   };
 
   // const handleDelete = (e) => {
@@ -76,6 +100,9 @@ export function SecretCard({ item }) {
               onClose={onClose}
               handleEdit={handleEdit}
               selectedSecretType={selectedSecretType}
+              isLoading={isLoading}
+              successMessage={successMessage}
+              errorMessage={errorMessage}
             />
           )}
           {/* {selectedSecretType === "note" && (
@@ -85,6 +112,9 @@ export function SecretCard({ item }) {
               onClose={onClose}
               handleEdit={handleEdit}
               selectedSecretType={selectedSecretType}
+              isLoading={isLoading}
+              successMessage={successMessage}
+              errorMessage={errorMessage}
             />
           )} */}
           {selectedSecretType === "file" && (
@@ -94,6 +124,9 @@ export function SecretCard({ item }) {
               onClose={onClose}
               handleEdit={handleEdit}
               selectedSecretType={selectedSecretType}
+              isLoading={isLoading}
+              successMessage={successMessage}
+              errorMessage={errorMessage}
             />
           )}
         </Modal>
@@ -116,12 +149,12 @@ export function SecretCard({ item }) {
               <MdPassword />
             </p>
           )}
-          {item === "note" && (
+          {item.type === "note" && (
             <p className={styles.type}>
               <MdOutlineEditNote />
             </p>
           )}
-          {item === "file" && (
+          {item.type === "file" && (
             <p className={styles.type}>
               <MdOutlineFilePresent />
             </p>
@@ -148,7 +181,7 @@ export function SecretCard({ item }) {
               </button>
               <button
                 className={styles.editBtn}
-                onClick={() => openModal("edit")}>
+                onClick={(e) => openModal("edit", item.type)}>
                 Edit
               </button>
               {/* <button
