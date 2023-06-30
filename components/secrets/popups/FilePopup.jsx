@@ -1,9 +1,21 @@
-import { ErrorMessage } from "@/common/ResponseMessage";
+import { ErrorMessage, SuccessMessage } from "@/common/ResponseMessage";
 import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
+import useStore from "../../../store";
+import { ButtonLoader } from "@/common/ButtonLoader";
 
-export function FilePopup({ onClose, handleEdit, title }) {
-  const secretNoteData = null;
+export function FilePopup({
+  onClose,
+  handleEdit,
+  title,
+  selectedSecretType,
+  errorMessage,
+  isLoading,
+  successMessage,
+  clearForm,
+  secretNoteData,
+}) {
+  const userTeams = useStore((state) => state.userTeams);
   const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
@@ -12,13 +24,25 @@ export function FilePopup({ onClose, handleEdit, title }) {
   const [visibility, setVisibility] = useState("private");
   const [teams, setTeams] = useState([]);
 
+  // if clear form is true, clear form
+  useEffect(() => {
+    if (clearForm) {
+      setName("");
+      setFile("");
+      setNote("");
+      setVisibility("private");
+      setTeams([]);
+    }
+  }, [clearForm]);
+
+  // if you want to edit secret, set state to secret data
   useEffect(() => {
     if (secretNoteData) {
-      setName(secretNoteData.name);
-      setFile(secretNoteData.file);
-      setNote(secretNoteData.note);
-      setVisibility(secretNoteData.visibility);
-      setTeams(secretNoteData.teams);
+      setName(secretNoteData?.name);
+      setFile(secretNoteData?.file);
+      setNote(secretNoteData?.note);
+      setVisibility(secretNoteData?.visibility);
+      setTeams(secretNoteData?.teams);
     }
   }, [secretNoteData]);
 
@@ -51,12 +75,13 @@ export function FilePopup({ onClose, handleEdit, title }) {
     });
   }, [teams]);
 
-  const data = {
+  // data for request
+  const secretData = {
     name,
-    file,
+    type: selectedSecretType,
+    content: file,
     note,
-    visibility,
-    teams,
+    visibility: visibility === "private" ? false : true,
   };
 
   const handleSubmit = (e) => {
@@ -67,14 +92,14 @@ export function FilePopup({ onClose, handleEdit, title }) {
       return;
     }
     setError(false);
-    handleEdit(e, data);
+    handleEdit(e, secretData, teams);
   };
 
   return (
     <section className={styles.passwordPopup}>
       <h1 className={styles.title}>{title}</h1>
 
-      <form onSubmit={(e) => handleSubmit(e, data)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <label htmlFor="name">
             Name of secret
@@ -96,8 +121,10 @@ export function FilePopup({ onClose, handleEdit, title }) {
               name="file"
               type="file"
               value={file}
-              onChange={(e) => setFile(e.target.value)}
-              required
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setFile(file);
+              }}
             />
           </label>
 
@@ -131,42 +158,30 @@ export function FilePopup({ onClose, handleEdit, title }) {
 
         <fieldset className={styles.teams}>
           <legend>Select teams:</legend>
-          <label htmlFor="marketing">
-            <input
-              type="checkbox"
-              name="team"
-              id="marketing"
-              disabled={visibility === "private" ? true : false}
-            />
-            Marketing
-          </label>
-          <label htmlFor="development">
-            <input
-              type="checkbox"
-              name="team"
-              id="development"
-              disabled={visibility === "private" ? true : false}
-            />
-            Development
-          </label>
-          <label htmlFor="design">
-            <input
-              type="checkbox"
-              name="team"
-              id="design"
-              disabled={visibility === "private" ? true : false}
-            />
-            Design
-          </label>
+          {userTeams &&
+            userTeams.length !== 0 &&
+            userTeams.map((team) => (
+              <label key={team.id} htmlFor={team.id}>
+                <input
+                  type="checkbox"
+                  name="team"
+                  id={team.id}
+                  disabled={visibility === "private" ? true : false}
+                />
+                {team.name}
+              </label>
+            ))}
         </fieldset>
         {error && <ErrorMessage message="Please select at least one team" />}
+        {errorMessage && <ErrorMessage message={errorMessage} />}
+        {successMessage && <SuccessMessage message={successMessage} />}
 
         <div className={styles.buttons}>
           <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.save} type="submit">
-            Save
+          <button className={styles.save} type="submit" disabled={isLoading}>
+            {isLoading ? <ButtonLoader /> : "Save"}
           </button>
         </div>
       </form>

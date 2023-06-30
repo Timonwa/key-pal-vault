@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import styles from "@/styles/createButtons/CreateSecret.module.scss";
 import Modal from "@/common/Modal";
 import { PasswordPopup } from "../secrets/popups/PasswordPopup";
-// import { NotePopup } from "../secrets/popups/NotePopup";
+import { NotePopup } from "../secrets/popups/NotePopup";
 import { FilePopup } from "../secrets/popups/FilePopup";
 import { FaPlus } from "react-icons/fa";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
@@ -12,7 +12,6 @@ export default function CreateSecret() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
   const [clearForm, setClearForm] = useState(false);
 
@@ -29,6 +28,7 @@ export default function CreateSecret() {
     console.log(e.target.id);
   };
 
+  // after creating secret, map through teams and add secret to each team
   const addNewSecretToTeam = (id, teams) => {
     teams &&
       teams.length !== 0 &&
@@ -44,6 +44,8 @@ export default function CreateSecret() {
           if (result) {
             console.log(result.data);
             setSuccessMessage(result.message);
+          } else {
+            setSuccessMessage(result.message);
           }
         } catch (err) {
           setErrorMessage(err.message);
@@ -51,6 +53,7 @@ export default function CreateSecret() {
       });
   };
 
+  // create new secret
   const createNewSecret = async (data, teams) => {
     setIsLoading(true);
     try {
@@ -65,6 +68,9 @@ export default function CreateSecret() {
         setSuccessMessage(result.message);
         setIsLoading(false);
         setClearForm(true);
+      } else {
+        setSuccessMessage(result.message);
+        setIsLoading(false);
       }
     } catch (err) {
       setErrorMessage(err.message);
@@ -72,6 +78,7 @@ export default function CreateSecret() {
     }
   };
 
+  // handle create secret
   const handleCreate = (e, data, teams) => {
     e.preventDefault();
     createNewSecret(data, teams);
