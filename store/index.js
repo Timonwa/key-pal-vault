@@ -4,6 +4,10 @@ import { persist } from "zustand/middleware";
 const useStore = create(
   persist(
     (set) => ({
+      // to is social login or not
+      isSocialLogin: false,
+      setIsSocialLogin: (state) => set({ isSocialLogin: state }),
+
       // to toggle side bar visibility
       openMenu: false,
       setOpenMenu: (state) => set({ openMenu: state }),

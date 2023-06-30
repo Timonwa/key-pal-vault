@@ -12,12 +12,27 @@ const DashboardSideBar = ({ activePage }) => {
   const accountType = useStore((state) => state.accountType);
   const openMenu = useStore((state) => state.openMenu);
   const setOpenMenu = useStore((state) => state.setOpenMenu);
+  const isSocialLogin = useStore((state) => state.isSocialLogin);
 
   const handleSignOut = async () => {
-    const user = new PassageUser();
-    const signedOut = await user.signOut();
-    if (signedOut) {
-      // Redirect the user to the home page after successful sign out
+    if (isSocialLogin) {
+      const user = new PassageUser();
+      const signedOut = await user.signOut();
+      if (signedOut) {
+        // Redirect the user to the home page after successful sign out
+        window.location.href = "/";
+      }
+    } else {
+      // remove kpv_auth_token and from local storage, clear persisted data in Zustand store and redirect to home page
+      typeof localStorage !== "undefined" &&
+        localStorage.removeItem("kpv_auth_token");
+      useStore.setState({
+        userData: null,
+        accountType: null,
+        activePage: null,
+        openMenu: false,
+        isSocialLogin: false,
+      });
       window.location.href = "/";
     }
   };
