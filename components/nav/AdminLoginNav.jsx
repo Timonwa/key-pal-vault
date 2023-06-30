@@ -3,7 +3,7 @@ import styles from "../../styles/nav/WithoutAuthNav.module.scss";
 import { MdOutlineLogin } from "react-icons/md";
 import Link from "next/link";
 
-const WithoutAuthNav = () => {
+const AdminLoginNav = () => {
   return (
     <div className={styles.dashboardNavWrapper}>
       <nav
@@ -14,8 +14,8 @@ const WithoutAuthNav = () => {
         </Link>
 
         {/* super admin login */}
-        <Link href="/admin-login" className={styles.adminBtn}>
-          Admin Login
+        <Link href="/" className={styles.adminBtn}>
+          Login
           <MdOutlineLogin />
         </Link>
       </nav>
@@ -23,4 +23,4 @@ const WithoutAuthNav = () => {
   );
 };
 
-export default WithoutAuthNav;
+export default AdminLoginNav;

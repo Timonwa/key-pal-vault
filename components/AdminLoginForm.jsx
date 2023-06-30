@@ -17,7 +17,7 @@ export default function AdminLoginForm() {
 
   return (
     <section className={styles.adminLoginForm}>
-      <h1 className={styles.title}>Super Admin Login</h1>
+      <h1 className={styles.title}>Super Admin Portal</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>

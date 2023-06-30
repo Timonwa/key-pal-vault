@@ -1,10 +1,22 @@
+import AdminLoginNav from "@/components/nav/AdminLoginNav";
+import styles from "../styles/layout/WithoutAuthLayout.module.scss";
 import AdminLoginForm from "@/components/AdminLoginForm";
-import WithoutAuthLayout from "@/layout/WithoutAuthLayout";
-import React from "react";
 
-export default function AdminLogin() {
+function AdminLogin() {
   return <AdminLoginForm />;
 }
+
+export default AdminLogin;
+
 AdminLogin.getLayout = function PageLayout(page) {
-  return <WithoutAuthLayout>{page}</WithoutAuthLayout>;
+  return (
+    <div className="wrapper maxWidthWrapper">
+      <div className={styles.dashboardLayout}>
+        <div className={styles.content}>
+          <AdminLoginNav />
+          <div className={styles.page}>{page}</div>
+        </div>
+      </div>
+    </div>
+  );
 };
