@@ -7,6 +7,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import useStore from "../../store";
 import { PassageUser } from "@passageidentity/passage-elements/passage-user";
+import { baseURL, authHeaders } from "../../store/axiosDefaults";
 
 const DashboardSideBar = ({ activePage }) => {
   const accountType = useStore((state) => state.accountType);
@@ -14,26 +15,49 @@ const DashboardSideBar = ({ activePage }) => {
   const setOpenMenu = useStore((state) => state.setOpenMenu);
   const isSocialLogin = useStore((state) => state.isSocialLogin);
 
+  const isAdminLogout = async () => {
+    console.log("hi");
+    try {
+      const response = await fetch(`${baseURL}/logout`, {
+        method: "POST",
+        headers: authHeaders,
+      });
+      const result = await response.json();
+      if (response.status === 200) {
+        // remove kpv_auth_token and from local storage,
+        // clear persisted data in Zustand store and redirect to home page
+        typeof localStorage !== "undefined" &&
+          localStorage.removeItem("kpv_auth_token");
+        useStore.setState({
+          userData: null,
+          accountType: null,
+          activePage: null,
+          openMenu: false,
+          isSocialLogin: false,
+        });
+        window.location.href = "/";
+      } else {
+        console.log(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const isSocialLogOut = async () => {
+    const user = new PassageUser();
+    const signedOut = await user.signOut();
+    if (signedOut) {
+      // Redirect the user to the home page after successful sign out
+      window.location.href = "/";
+    }
+  };
+
   const handleSignOut = async () => {
     if (isSocialLogin) {
-      const user = new PassageUser();
-      const signedOut = await user.signOut();
-      if (signedOut) {
-        // Redirect the user to the home page after successful sign out
-        window.location.href = "/";
-      }
+      isSocialLogOut();
     } else {
-      // remove kpv_auth_token and from local storage, clear persisted data in Zustand store and redirect to home page
-      typeof localStorage !== "undefined" &&
-        localStorage.removeItem("kpv_auth_token");
-      useStore.setState({
-        userData: null,
-        accountType: null,
-        activePage: null,
-        openMenu: false,
-        isSocialLogin: false,
-      });
-      window.location.href = "/";
+      isAdminLogout();
     }
   };
 

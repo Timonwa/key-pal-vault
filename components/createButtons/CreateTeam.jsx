@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from "react";
-import styles from "@/styles/createButtons/CreateTeamHead.module.scss";
+import styles from "@/styles/createButtons/CreateTeam.module.scss";
 import Modal from "@/common/Modal";
 import { FaPlus } from "react-icons/fa";
 import { TeamHeadDetails } from "../members/TeamHeadDetails";
 
-export default function CreateTeamHead() {
+export default function CreateTeam() {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClose = () => {
@@ -21,7 +21,7 @@ export default function CreateTeamHead() {
       </Modal>
 
       <button className={styles.createBtn} onClick={() => openModal()}>
-        <FaPlus /> New Team Head
+        <FaPlus /> New Team
       </button>
     </Fragment>
   );

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import styles from "@/styles/createButtons/CreateTeamHead.module.scss";
+import styles from "@/styles/createButtons/CreateTeam.module.scss";
 import Modal from "@/common/Modal";
 import { FaPlus } from "react-icons/fa";
 import { MemberDetailsPopup } from "../members/MemberDetailsPopup";
