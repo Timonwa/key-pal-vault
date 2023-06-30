@@ -10,14 +10,27 @@ export default function Profile({ userInfo, authToken }) {
   const setUserToken = useStore((state) => state.setUserToken);
 
   useEffect(() => {
-    setActivePage("Profile");
-    setUserData(userInfo);
-    setUserToken(authToken);
-  }, [setUserData, userInfo, setActivePage, setUserToken, authToken]);
-
-  useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
   }, []);
+
+  const getToken = () => {
+    const psg_auth_token = authToken;
+    const kpv_auth_token = localStorage.getItem("kpv_auth_token");
+    if (psg_auth_token) {
+      setUserToken(psg_auth_token);
+    } else if (kpv_auth_token) {
+      setUserToken(kpv_auth_token);
+    }
+    return token;
+  };
+  useEffect(() => {
+    getToken();
+  });
+
+  useEffect(() => {
+    setActivePage("Profile");
+    setUserData(userInfo);
+  }, [setUserData, userInfo, setActivePage]);
 
   if (!userData) {
     return null; // Or render a loading state if necessary

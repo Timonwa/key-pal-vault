@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import Passage from "@passageidentity/passage-node";
 import useStore from "../../store";
 import AdminMembersTable from "@/components/members/AdminMembersTable";
@@ -13,14 +13,27 @@ export default function Members({ userInfo, authToken }) {
   const setUserToken = useStore((state) => state.setUserToken);
 
   useEffect(() => {
-    setActivePage("Members");
-    setUserData(userInfo);
-    setUserToken(authToken);
-  }, [setUserData, userInfo, setActivePage, setUserToken, authToken]);
-
-  useEffect(() => {
     require("@passageidentity/passage-elements/passage-profile");
   }, []);
+
+  const getToken = () => {
+    const psg_auth_token = authToken;
+    const kpv_auth_token = localStorage.getItem("kpv_auth_token");
+    if (psg_auth_token) {
+      setUserToken(psg_auth_token);
+    } else if (kpv_auth_token) {
+      setUserToken(kpv_auth_token);
+    }
+    return token;
+  };
+  useEffect(() => {
+    getToken();
+  });
+
+  useEffect(() => {
+    setActivePage("Members");
+    setUserData(userInfo);
+  }, [setUserData, userInfo, setActivePage]);
 
   if (!userData) {
     return null; // Or render a loading state if necessary
