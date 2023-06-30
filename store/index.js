@@ -17,7 +17,7 @@ const useStore = create(
       setActivePage: (page) => set({ activePage: page }),
 
       // to save user account type for conditional rendering
-      accountType: "",
+      accountType: "Member",
       setAccountType: (type) => set({ accountType: type }),
 
       // to save user data

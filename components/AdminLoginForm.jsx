@@ -32,9 +32,6 @@ export default function AdminLoginForm() {
     if (role === 1) {
       await setAccountType("Super Admin");
     }
-    if (role === 2) {
-      await setAccountType("Member");
-    }
   };
 
   const handleSubmit = async (e) => {
