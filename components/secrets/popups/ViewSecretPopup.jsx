@@ -1,7 +1,5 @@
-import { Fragment } from "react";
 import styles from "../../../styles/secrets/ViewSecretPopup.module.scss";
 import useStore from "../../../store";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 
 export function ViewSecretPopup({ onClose, item }) {
@@ -35,7 +33,7 @@ export function ViewSecretPopup({ onClose, item }) {
           </div>
           <div>
             <h4>Additional notes:</h4>
-            <p>{item.notes}</p>
+            <p>{item.note}</p>
           </div>
           <div>
             <h4>Team:</h4>
@@ -55,7 +53,7 @@ export function ViewSecretPopup({ onClose, item }) {
         <div className={styles.wrapper}>
           <div>
             <h4>Note:</h4>
-            <p>{item.notes}</p>
+            <p>{item.note}</p>
           </div>
           <div>
             <h4>Team:</h4>
