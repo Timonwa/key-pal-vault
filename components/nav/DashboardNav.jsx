@@ -24,7 +24,6 @@ const DashboardNav = ({ accountType }) => {
           <Fragment>
             <h1 className={styles.pageTitle}>{accountType}</h1>/
             <p className={styles.userName}>Timonwa Akintokun</p>
-            
           </Fragment>
         )}
       </nav>

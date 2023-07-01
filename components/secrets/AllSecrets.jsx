@@ -15,7 +15,7 @@ import { EditPasswordPopup } from "./popups/EditPasswordPopup";
 import { EditFilePopup } from "./popups/EditFilePopup";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
 
-export function SecretCard({ item }) {
+export function SecretCard({ item, handleFilter, selectedItem }) {
   const accountType = useStore((state) => state.accountType);
   const userTeams = useStore((state) => state.userTeams);
   const [selectedSecretType, setSelectedSecretType] = useState("");
@@ -64,6 +64,7 @@ export function SecretCard({ item }) {
       if (response.status === 200) {
         setSuccessMessage(result.message);
         setIsLoading(false);
+        handleFilter(selectedItem);
       } else {
         setErrorMessage(result.message);
         setIsLoading(false);
@@ -201,6 +202,8 @@ export default function AllSecrets({
   errorMessage,
   isLoading,
   teamSecrets,
+  handleFilter,
+  selectedItem,
 }) {
   return isLoading ? (
     <p>fetching secrets...</p>
@@ -209,7 +212,12 @@ export default function AllSecrets({
   ) : teamSecrets && teamSecrets.length > 0 ? (
     <div className={styles.secretsGrid}>
       {teamSecrets.map((item) => (
-        <SecretCard key={item.id} item={item} />
+        <SecretCard
+          selectedItem={selectedItem}
+          handleFilter={handleFilter}
+          key={item.id}
+          item={item}
+        />
       ))}
     </div>
   ) : (

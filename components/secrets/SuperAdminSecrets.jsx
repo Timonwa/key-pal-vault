@@ -52,6 +52,8 @@ export default function SuperAdminSecrets() {
           setSelectedItem={setSelectedItem}
         />
         <AllSecrets
+          handleFilter={handleFilter}
+          selectedItem={selectedItem}
           errorMessage={errorMessage}
           isLoading={isLoading}
           teamSecrets={teamSecrets}
