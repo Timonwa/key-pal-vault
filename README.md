@@ -4,6 +4,7 @@ A web application that helps developer teams securely manage sensitive data amon
 Built with NextJs, CSS, Laravel, and passage by 1Password
 
 ## Setup
+For the backend setup, visit https://github.com/oluwaeinstein007/KeyPalVault
 
 ### Install:
 ```bash
