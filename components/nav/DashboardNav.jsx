@@ -24,10 +24,7 @@ const DashboardNav = ({ accountType }) => {
           <Fragment>
             <h1 className={styles.pageTitle}>{accountType}</h1>/
             <p className={styles.userName}>Timonwa Akintokun</p>
-            <select value={accountType} onChange={handleAccountToggle}>
-              <option value="Admin">Admin</option>
-              <option value="Member">Member</option>
-            </select>
+            
           </Fragment>
         )}
       </nav>
