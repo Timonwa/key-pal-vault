@@ -7,9 +7,8 @@ import useStore from "../../store";
 
 export function TeamHeadDetails({ onClose }) {
   const allMembers = useStore((state) => state.allMembers);
-  
+
   const [teamName, setTeamName] = useState("");
-  const [teamHead, setTeamHead] = useState(allMembers[0].id);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
@@ -22,29 +21,6 @@ export function TeamHeadDetails({ onClose }) {
       setTeamName("");
     }
   }, [clearForm]);
-
-  // after creating a team, add the team head to the team
-  const addTeamLead = async (teamId) => {
-    const data = {
-      team_id: teamId,
-      user_id: teamHead,
-    };
-    try {
-      const response = await fetch(`${baseURL}/makeTeamLeader`, {
-        method: "POST",
-        headers: authHeaders,
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      if (response.status === 201) {
-        setSuccessMessage(result.message);
-      } else {
-        setErrorMessage(result.message);
-      }
-    } catch (err) {
-      setErrorMessage(err.message);
-    }
-  };
 
   // create a new team
   const createTeam = async () => {
@@ -60,7 +36,6 @@ export function TeamHeadDetails({ onClose }) {
       const result = await response.json();
       if (response.status === 201) {
         setSuccessMessage(result.message);
-        addTeamLead(result.data.id);
         setIsLoading(false);
       } else {
         setErrorMessage(result.message);
@@ -96,22 +71,8 @@ export function TeamHeadDetails({ onClose }) {
               required
             />
           </label>
-          <label htmlFor="teamName">
-            Select Team Member:
-            <select
-              id="teamName-head"
-              name="teamName-head"
-              value={teamHead}
-              onChange={(e) => setTeamHead(e.target.value)}>
-              {allMembers.map((member) => (
-                <option key={member.id} value={member.id}>
-                  {member.first_name} {member.last_name}
-                </option>
-              ))}
-            </select>
-            <SuccessMessage message={successMessage} />
-            <ErrorMessage message={errorMessage} />
-          </label>
+          <SuccessMessage message={successMessage} />
+          <ErrorMessage message={errorMessage} />
         </fieldset>
 
         <div className={styles.buttons}>
