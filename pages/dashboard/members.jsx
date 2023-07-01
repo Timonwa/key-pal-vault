@@ -3,7 +3,6 @@ import Passage from "@passageidentity/passage-node";
 import useStore from "../../store";
 import AdminMembersTable from "@/components/members/AdminMembersTable";
 import TeamMembersTable from "@/components/members/TeamMembersTable";
-import UnauthorizedMessage from "@/components/UnauthorizedMessage";
 
 export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
   const userData = useStore((state) => state.userData);

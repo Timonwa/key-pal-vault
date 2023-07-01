@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Top from "./Top";
 import useStore from "../../store";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
+import MembersButtons from "./MembersButtons";
 
 export default function AdminMembersTable() {
   const userTeams = useStore((state) => state.userTeams);
@@ -15,11 +16,12 @@ export default function AdminMembersTable() {
   }, [userTeams]);
 
   const handleFilter = async (selectedItem) => {
+    console.log(selectedItem);
     setIsLoading(true);
     setErrorMessage(false);
     try {
       const response = await fetch(
-        `${baseURL}/getUserTeams?team_id=${selectedItem.id}`,
+        `${baseURL}/getTeamMembersWithRoles?team_id=${selectedItem.id}`,
         {
           method: "GET",
           headers: authHeaders,
@@ -42,6 +44,7 @@ export default function AdminMembersTable() {
   return (
     <main>
       <Top teams={userTeams} onClick={handleFilter} />
+      <MembersButtons />
       <MembersTable
         errorMessage={errorMessage}
         isLoading={isLoading}

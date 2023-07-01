@@ -1,4 +1,4 @@
-import { MembersTable } from "@/components/members/MembersTable";
+import { MembersTable } from "@/components/members/TeamMembersTable";
 import React, { useEffect, useState } from "react";
 import Top from "./Top";
 import useStore from "../../store";
