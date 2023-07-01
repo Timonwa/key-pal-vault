@@ -22,7 +22,7 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
-console.log(userTeams)
+
   // for each userTeams filter the team_id and return the team name that matches item.name
   const teamName = userTeams
     .filter((team) => team.id === item.pivot.team_id)
@@ -46,7 +46,6 @@ console.log(userTeams)
 
   const handleView = (e) => {
     e.preventDefault();
-    console.log("item");
   };
 
   const handleEdit = async (e, data) => {

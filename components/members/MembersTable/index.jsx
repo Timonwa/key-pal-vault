@@ -19,7 +19,6 @@ export function MembersTable({ errorMessage, isLoading, teamMembers }) {
 
   const handleEdit = (e, data) => {
     e.preventDefault();
-    console.log(data);
   };
 
   const handleDelete = (e) => {

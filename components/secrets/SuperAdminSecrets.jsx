@@ -64,6 +64,17 @@ export default function SuperAdminSecrets() {
           isLoading={isLoading}
           teamSecrets={teamSecrets}
         />
+        {selectedItem ? (
+          <AllSecrets
+            handleFilter={handleFilter}
+            selectedItem={selectedItem}
+            errorMessage={errorMessage}
+            isLoading={isLoading}
+            teamSecrets={teamSecrets}
+          />
+        ) : (
+          <p>No secrets shared</p>
+        )}
       </section>
     </main>
   );

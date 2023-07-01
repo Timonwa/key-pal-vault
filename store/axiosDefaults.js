@@ -6,15 +6,11 @@ export const defaultHeaders = {
 };
 
 // fetch token from local storage
-const psg_auth_token =
-  typeof localStorage !== "undefined"
-    ? localStorage.getItem("psg_auth_token")
-    : null;
 const kpv_auth_token =
   typeof localStorage !== "undefined"
     ? localStorage.getItem("kpv_auth_token")
     : null;
-const token = psg_auth_token ? psg_auth_token : kpv_auth_token;
+const token = kpv_auth_token;
 
 export const authHeaders = {
   "Content-Type": "application/json",

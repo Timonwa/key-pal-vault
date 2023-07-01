@@ -16,6 +16,8 @@ export default function MemberSecrets() {
     userTeams && handleFilter(userTeams[0]);
   }, [userTeams]);
 
+  console.log(userTeams, selectedItem);
+
   const handleFilter = async (selectedItem) => {
     setIsLoading(true);
     setErrorMessage(false);
@@ -57,11 +59,16 @@ export default function MemberSecrets() {
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
         />
-        <AllSecrets
-          errorMessage={errorMessage}
-          isLoading={isLoading}
-          teamSecrets={teamSecrets}
-        />
+
+        {selectedItem ? (
+          <AllSecrets
+            errorMessage={errorMessage}
+            isLoading={isLoading}
+            teamSecrets={teamSecrets}
+          />
+        ) : (
+          <p>No secrets shared</p>
+        )}
       </section>
     </main>
   );

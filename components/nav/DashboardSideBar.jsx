@@ -16,7 +16,6 @@ const DashboardSideBar = ({ activePage }) => {
   const isSocialLogin = useStore((state) => state.isSocialLogin);
 
   const isAdminLogout = async () => {
-    console.log("hi");
     try {
       const response = await fetch(`${baseURL}/logout`, {
         method: "POST",
@@ -39,10 +38,10 @@ const DashboardSideBar = ({ activePage }) => {
         });
         window.location.href = "/";
       } else {
-        console.log(result);
+        throw new Error(result.error);
       }
     } catch (err) {
-      console.log(err);
+      throw new Error(err.message);
     }
   };
 

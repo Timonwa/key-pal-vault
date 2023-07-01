@@ -62,8 +62,6 @@ export default function AdminLoginForm() {
     }
   };
 
-  console.log(userData, accountType, userToken);
-
   return (
     <section className={styles.adminLoginForm}>
       <h1 className={styles.title}>Portal</h1>

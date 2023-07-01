@@ -25,7 +25,6 @@ export default function CreateSecret() {
   // handle secret type change
   const handleSecretTypeChange = (e) => {
     setSelectedSecretType(e.target.id);
-    console.log(e.target.id);
   };
 
   // after creating secret, map through teams and add secret to each team

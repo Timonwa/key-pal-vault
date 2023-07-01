@@ -16,7 +16,6 @@ export default function AdminMembersTable() {
   }, [userTeams]);
 
   const handleFilter = async (selectedItem) => {
-    console.log(selectedItem);
     setIsLoading(true);
     setErrorMessage(false);
     try {

@@ -14,7 +14,6 @@ export function EditPasswordPopup({
   clearForm,
   secretPasswordData,
 }) {
-  console.log(secretPasswordData);
   const [name, setName] = useState("");
   const [website, setWebsite] = useState("");
   const [username, setUsername] = useState("");

@@ -109,11 +109,11 @@ export function ProfileForm() {
           </label>
         </fieldset>
 
-        <div className={styles.buttons}>
+        {/* <div className={styles.buttons}>
           <button disabled={disabled} className={styles.save} type="submit">
             Save
           </button>
-        </div>
+        </div> */}
       </form>
     </section>
   );
