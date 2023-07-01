@@ -5,7 +5,7 @@ import React from "react";
 export default function Top({ teams, onClick, selectedItem, setSelectedItem }) {
   return (
     <nav>
-      <SectionTitle title={`${selectedItem?.name} team members`} />
+      <SectionTitle title={`${selectedItem?.name} team`} />
       <Filter
         teams={teams}
         onClick={onClick}

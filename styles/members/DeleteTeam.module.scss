@@ -1,0 +1,22 @@
+.options {
+  fieldset {
+    border: none;
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-right: 8px;
+    }
+  }
+}
+.deleteBtn {
+  border: 2px solid var(--error);
+  color: var(--error);
+  background-color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

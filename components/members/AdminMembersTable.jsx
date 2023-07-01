@@ -49,7 +49,7 @@ export default function AdminMembersTable() {
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}
       />
-      <MembersButtons />
+      <MembersButtons selectedItem={selectedItem} />
       <MembersTable
         errorMessage={errorMessage}
         isLoading={isLoading}

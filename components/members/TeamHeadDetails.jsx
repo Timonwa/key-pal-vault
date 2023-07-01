@@ -27,7 +27,8 @@ export function TeamHeadDetails({ onClose }) {
       const result = await response.json();
       if (response.status === 201) {
         setSuccessMessage(result.message);
-        setIsLoading(false);
+        setTeamName("");
+        window.location.href = "/";
       } else {
         setErrorMessage(result.message);
         setIsLoading(false);

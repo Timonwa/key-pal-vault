@@ -1,8 +1,9 @@
 import React from "react";
 import CreateTeam from "../createButtons/CreateTeam";
 import CreateMember from "../createButtons/CreateMember";
+import DeleteButton from "./DeleteButton";
 
-export default function MembersButtons() {
+export default function MembersButtons({ selectedItem }) {
   return (
     <section
       style={{
@@ -14,6 +15,7 @@ export default function MembersButtons() {
       }}>
       <CreateTeam />
       <CreateMember />
+      <DeleteButton selectedItem={selectedItem} />
     </section>
   );
 }

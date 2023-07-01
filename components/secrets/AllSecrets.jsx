@@ -187,37 +187,39 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
           )}
         </div>
 
-        {accountType !== "Member" && (
-          <div className={styles.bottom}>
-            <div className={styles.metrics}>
-              <p>
-                <span>Team:</span>
-                <span>{teamName}</span>
-              </p>
-              <p>
-                <span>Created:</span>
-                <span>{formattedDate}</span>
-              </p>
-            </div>
-            <div className={styles.secretButtons}>
-              <button
-                className={styles.viewBtn}
-                onClick={() => openModal("view")}>
-                View
-              </button>
-              <button
-                className={styles.editBtn}
-                onClick={(e) => openModal("edit", item.type)}>
-                Edit
-              </button>
-              <button
-                className={styles.deleteBtn}
-                onClick={() => openModal("delete")}>
-                Delete
-              </button>
-            </div>
+        <div className={styles.bottom}>
+          <div className={styles.metrics}>
+            <p>
+              <span>Team:</span>
+              <span>{teamName}</span>
+            </p>
+            <p>
+              <span>Created:</span>
+              <span>{formattedDate}</span>
+            </p>
           </div>
-        )}
+          <div className={styles.secretButtons}>
+            <button
+              className={styles.viewBtn}
+              onClick={() => openModal("view")}>
+              View
+            </button>
+            {accountType === "Admin" && (
+              <Fragment>
+                <button
+                  className={styles.editBtn}
+                  onClick={(e) => openModal("edit", item.type)}>
+                  Edit
+                </button>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={() => openModal("delete")}>
+                  Delete
+                </button>
+              </Fragment>
+            )}
+          </div>
+        </div>
       </article>
     </Fragment>
   );
