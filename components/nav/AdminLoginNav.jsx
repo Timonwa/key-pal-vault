@@ -13,7 +13,7 @@ const AdminLoginNav = () => {
           KeyPalVault
         </Link>
 
-        {/* super admin login */}
+        {/* admin login */}
         <Link href="/" className={styles.adminBtn}>
           Login
           <MdOutlineLogin />

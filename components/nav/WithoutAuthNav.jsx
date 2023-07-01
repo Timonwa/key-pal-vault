@@ -13,7 +13,7 @@ const WithoutAuthNav = () => {
           KeyPalVault
         </Link>
 
-        {/* super admin login */}
+        {/* admin login */}
         <Link href="/admin-login" className={styles.adminBtn}>
           Admin Login
           <MdOutlineLogin />

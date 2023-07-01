@@ -30,7 +30,7 @@ export default function AdminLoginForm() {
 
   const handleAccountType = async (role) => {
     if (role === 1) {
-      await setAccountType("Super Admin");
+      await setAccountType("Admin");
     }
   };
 
@@ -66,7 +66,7 @@ export default function AdminLoginForm() {
 
   return (
     <section className={styles.adminLoginForm}>
-      <h1 className={styles.title}>Super Admin Portal</h1>
+      <h1 className={styles.title}>Portal</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>

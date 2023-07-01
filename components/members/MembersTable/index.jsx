@@ -99,7 +99,7 @@ export function MembersTable({ errorMessage, isLoading, teamMembers }) {
                     <p>Development</p>
                   </td>
                   <td>
-                    <p>Team Lead</p>
+                    <p>Member</p>
                   </td>
                   <td>
                     <p>

@@ -53,9 +53,8 @@ export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
 
   return (
     <Fragment>
-      {accountType === "Super Admin" && <AdminMembersTable />}
-      {accountType === "Team Lead" && <TeamMembersTable />}
-      {accountType === "Member" && <UnauthorizedMessage />}
+      {accountType === "Admin" && <AdminMembersTable />}
+      {accountType === "Member" && <TeamMembersTable />}
     </Fragment>
   );
 }

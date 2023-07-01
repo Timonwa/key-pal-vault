@@ -80,7 +80,7 @@ export function MemberDetailsPopup({ onClose, handleEdit, title }) {
               name="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              disabled={accountType === "Super Admin" ? false : true}
+              disabled={accountType === "Admin" ? false : true}
               required>
               <option value="approved">approved</option>
               <option value="unapproved">unapproved</option>
@@ -109,7 +109,6 @@ export function MemberDetailsPopup({ onClose, handleEdit, title }) {
               value={role}
               onChange={(e) => setRole(e.target.value)}
               required>
-              <option value="Team Lead">Team Lead</option>
               <option value="Member">Member</option>
             </select>
           </label>

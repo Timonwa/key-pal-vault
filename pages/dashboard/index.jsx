@@ -2,7 +2,6 @@ import React, { useEffect, Fragment } from "react";
 import useStore from "../../store";
 import Passage from "@passageidentity/passage-node";
 import SuperAdminSecrets from "@/components/secrets/SuperAdminSecrets";
-import TeamHeadSecrets from "@/components/secrets/TeamHeadSecrets";
 import MemberSecrets from "@/components/secrets/MemberSecrets";
 import DashboardButtons from "@/components/DashboardButtons";
 
@@ -57,16 +56,10 @@ const Dashboard = ({ isAuthorized, psg_userData, psg_authToken }) => {
 
   return (
     <Fragment>
-      {accountType === "Super Admin" && (
+      {accountType === "Admin" && (
         <Fragment>
           <DashboardButtons />
           <SuperAdminSecrets />
-        </Fragment>
-      )}
-      {accountType === "Team Lead" && (
-        <Fragment>
-          <DashboardButtons />
-          <TeamHeadSecrets />
         </Fragment>
       )}
       {accountType === "Member" && <MemberSecrets />}

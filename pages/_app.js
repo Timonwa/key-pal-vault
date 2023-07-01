@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
   const accountType = useStore((state) => state.accountType);
   // const setAccountType = useStore((state) => state.setAccountType);
   // useEffect(() => {
-  //   setAccountType("Super Admin");
+  //   setAccountType("Admin");
   // }, [setAccountType]);
 
   if (Component.getLayout) {

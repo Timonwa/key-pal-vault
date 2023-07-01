@@ -19,7 +19,7 @@ export default function AdminMembersTable() {
     setErrorMessage(false);
     try {
       const response = await fetch(
-        `${baseURL}/getTeamMembersWithRoles?team_id=${selectedItem.id}`,
+        `${baseURL}/getUserTeams?team_id=${selectedItem.id}`,
         {
           method: "GET",
           headers: authHeaders,

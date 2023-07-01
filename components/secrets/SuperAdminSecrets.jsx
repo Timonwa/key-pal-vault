@@ -13,7 +13,7 @@ export default function SuperAdminSecrets() {
   const [teamSecrets, setTeamSecrets] = useState([]);
 
   useEffect(() => {
-    handleFilter(userTeams[0]);
+    userTeams && handleFilter(userTeams[0]);
   }, [userTeams]);
 
   const handleFilter = async (selectedItem) => {
