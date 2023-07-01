@@ -198,7 +198,6 @@ export function SecretCard({ item }) {
 }
 
 export default function AllSecrets({
-  data,
   errorMessage,
   isLoading,
   teamSecrets,

@@ -6,7 +6,7 @@ export default function Top({ teams, onClick }) {
   const [selectedItem, setSelectedItem] = useState(null);
   return (
     <nav>
-      <SectionTitle title={`${selectedItem} team members`} />
+      <SectionTitle title={`${selectedItem?.name} team members`} />
       <Filter
         teams={teams}
         onClick={onClick}
