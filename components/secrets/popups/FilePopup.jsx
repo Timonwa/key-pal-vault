@@ -126,7 +126,6 @@ export function FilePopup({
                 setFile(file);
               }}
               required
-              disabled
             />
           </label>
 
@@ -182,7 +181,7 @@ export function FilePopup({
           <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.save} type="submit" disabled={isLoading}>
+          <button className={styles.save} type="submit" disabled>
             {isLoading ? <ButtonLoader /> : "Save"}
           </button>
         </div>

@@ -14,6 +14,7 @@ import { ErrorMessage } from "@/common/ResponseMessage";
 import { EditPasswordPopup } from "./popups/EditPasswordPopup";
 import { EditFilePopup } from "./popups/EditFilePopup";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export function SecretCard({ item, handleFilter, selectedItem }) {
   const accountType = useStore((state) => state.accountType);
@@ -128,7 +129,7 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
               errorMessage={errorMessage}
             />
           )}
-          {/* {selectedSecretType === "note" && (
+          {selectedSecretType === "note" && (
             <NotePopup
               secretPasswordData={item}
               title="Update Secret (Note)"
@@ -139,7 +140,7 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
               successMessage={successMessage}
               errorMessage={errorMessage}
             />
-          )} */}
+          )}
           {selectedSecretType === "file" && (
             <EditFilePopup
               secretPasswordData={item}
@@ -170,18 +171,22 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
           <h3 className={styles.secretTitle}>{item.name}</h3>
+
           {item.type === "password" && (
             <p className={styles.type}>
+              {item.visibility ? <FaRegEye /> : <FaRegEyeSlash />}
               <MdPassword />
             </p>
           )}
           {item.type === "note" && (
             <p className={styles.type}>
+              {item.visibility ? <FaRegEye /> : <FaRegEyeSlash />}
               <MdOutlineEditNote />
             </p>
           )}
           {item.type === "file" && (
             <p className={styles.type}>
+              {item.visibility ? <FaRegEye /> : <FaRegEyeSlash />}
               <MdOutlineFilePresent />
             </p>
           )}

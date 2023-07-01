@@ -34,7 +34,7 @@ export default function DeleteButton({ selectedItem }) {
       if (response.status === 201) {
         setSuccessMessage(result.message);
         setIsLoading(false);
-        window.location.href = "/dashboard/members";
+        // window.location.href = "/dashboard/members";
       } else {
         setErrorMessage(result.message);
         setIsLoading(false);

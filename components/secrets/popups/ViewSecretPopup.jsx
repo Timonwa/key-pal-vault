@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import styles from "../../../styles/secrets/ViewSecretPopup.module.scss";
 import useStore from "../../../store";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 export function ViewSecretPopup({ onClose, item }) {
   const userTeams = useStore((state) => state.userTeams);
@@ -42,6 +43,54 @@ export function ViewSecretPopup({ onClose, item }) {
           <div>
             <h4>Date:</h4>
             <p>{formattedDate}</p>
+          </div>
+          <div>
+            <h4>Visibility:</h4>
+            <p>{item.visibility ? "Public" : "Private"}</p>
+          </div>
+        </div>
+      )}
+      {item.type === "note" && (
+        <div className={styles.wrapper}>
+          <div>
+            <h4>Note:</h4>
+            <p>{item.notes}</p>
+          </div>
+          <div>
+            <h4>Team:</h4>
+            <p>{teamName}</p>
+          </div>
+          <div>
+            <h4>Date:</h4>
+            <p>{formattedDate}</p>
+          </div>
+          <div>
+            <h4>Visibility:</h4>
+            <p>{item.visibility ? "Public" : "Private"}</p>
+          </div>
+        </div>
+      )}
+      {item.type === "file" && (
+        <div className={styles.wrapper}>
+          <div>
+            <h4>File:</h4>
+            <p>{item?.content?.docLink}</p>
+          </div>
+          <div>
+            <h4>Additional notes:</h4>
+            <p>{item?.note}</p>
+          </div>
+          <div>
+            <h4>Team:</h4>
+            <p>{teamName}</p>
+          </div>
+          <div>
+            <h4>Date:</h4>
+            <p>{formattedDate}</p>
+          </div>
+          <div>
+            <h4>Visibility:</h4>
+            <p>{item.visibility ? "Public" : "Private"}</p>
           </div>
         </div>
       )}

@@ -110,7 +110,7 @@ export default function CreateSecret() {
               />
               Note
             </label> */}
-            {/* <label htmlFor="file">
+            <label htmlFor="file">
               <input
                 type="radio"
                 id="file"
@@ -119,7 +119,7 @@ export default function CreateSecret() {
                 onChange={handleSecretTypeChange}
               />
               File
-            </label> */}
+            </label>
           </fieldset>
         </div>
 
@@ -135,7 +135,7 @@ export default function CreateSecret() {
             clearForm={clearForm}
           />
         )}
-        {/* {selectedSecretType === "note" && (
+        {selectedSecretType === "note" && (
           <NotePopup
             isLoading={isLoading}
             errorMessage={errorMessage}
@@ -146,7 +146,7 @@ export default function CreateSecret() {
             handleEdit={handleCreate}
             clearForm={clearForm}
           />
-        )} */}
+        )}
         {selectedSecretType === "file" && (
           <FilePopup
             isLoading={isLoading}
