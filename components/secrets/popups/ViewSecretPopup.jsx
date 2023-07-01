@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import styles from "../../../styles/secrets/ViewSecretPopup.module.scss";
 import useStore from "../../../store";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Link from "next/link";
 
 export function ViewSecretPopup({ onClose, item }) {
   const userTeams = useStore((state) => state.userTeams);
@@ -73,8 +74,12 @@ export function ViewSecretPopup({ onClose, item }) {
       {item.type === "file" && (
         <div className={styles.wrapper}>
           <div>
-            <h4>File:</h4>
-            <p>{item?.content?.docLink}</p>
+            <h4>File link:</h4>
+            <p>
+              <Link href={item?.content?.docLink} target="_blank">
+                {item?.content?.docLink}
+              </Link>
+            </p>
           </div>
           <div>
             <h4>Additional notes:</h4>

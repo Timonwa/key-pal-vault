@@ -211,11 +211,13 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
             </button>
             {accountType === "Admin" && (
               <Fragment>
-                <button
-                  className={styles.editBtn}
-                  onClick={(e) => openModal("edit", item.type)}>
-                  Edit
-                </button>
+                {item.type === "password" && (
+                  <button
+                    className={styles.editBtn}
+                    onClick={(e) => openModal("edit", item.type)}>
+                    Edit
+                  </button>
+                )}
                 <button
                   className={styles.deleteBtn}
                   onClick={() => openModal("delete")}>
