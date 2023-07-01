@@ -3,12 +3,10 @@ import styles from "../../styles/members/TeamHeadDetails.module.scss";
 import { useEffect, useState } from "react";
 import { ButtonLoader } from "@/common/ButtonLoader";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
+import useStore from "../../store";
 
 export function TeamHeadDetails({ onClose }) {
-  const members = [
-    { id: 3, name: "Timonwa Akintokun" },
-    { id: 2, name: "Sanni Lanre" },
-  ];
+  const allMembers = useStore((state) => state.allMembers);
 
   const [teamName, setTeamName] = useState("");
   const [teamHead, setTeamHead] = useState(members[0].id);
@@ -99,15 +97,15 @@ export function TeamHeadDetails({ onClose }) {
             />
           </label>
           <label htmlFor="teamName">
-            Select Team Member:{teamHead}
+            Select Team Member:
             <select
               id="teamName-head"
               name="teamName-head"
               value={teamHead}
               onChange={(e) => setTeamHead(e.target.value)}>
-              {members.map((member) => (
+              {allMembers.map((member) => (
                 <option key={member.id} value={member.id}>
-                  {member.name}
+                  {member.first_name} {member.last_name}
                 </option>
               ))}
             </select>

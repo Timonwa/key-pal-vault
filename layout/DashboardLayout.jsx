@@ -9,11 +9,8 @@ const DashboardLayout = ({ children }) => {
   const accountType = useStore((state) => state.accountType);
   const activePage = useStore((state) => state.activePage);
   const userData = useStore((state) => state.userData);
-  const userToken = useStore((state) => state.userToken);
-  const userTeams = useStore((state) => state.userTeams);
   const setUserTeams = useStore((state) => state.setUserTeams);
-
-  console.log(accountType, userData, userToken, authHeaders, userTeams);
+  const setAllMembers = useStore((state) => state.setAllMembers);
 
   const getUserTeams = async () => {
     try {
@@ -35,9 +32,30 @@ const DashboardLayout = ({ children }) => {
     }
   };
 
+  const getAllMembers = async () => {
+    try {
+      const response = await fetch(
+        `${baseURL}/getUsersList?user_id=${userData.id}`,
+        {
+          method: "GET",
+          headers: authHeaders,
+        }
+      );
+      const result = await response.json();
+      if (response.status === 200) {
+        setAllMembers(result.users);
+      } else {
+        return null;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
   useEffect(() => {
     if (userData?.id) {
       getUserTeams();
+      getAllMembers();
     }
   }, [userData?.id]);
 

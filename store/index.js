@@ -31,6 +31,10 @@ const useStore = create(
       // to save user's teams
       userTeams: null,
       setUserTeams: (teams) => set({ userTeams: teams }),
+
+      // to get all members for admin
+      allMembers: null,
+      setAllMembers: (members) => set({ allMembers: members }),
     }),
     {
       name: "app-store", // required name of the item in the storage
