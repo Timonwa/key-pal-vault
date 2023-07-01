@@ -7,9 +7,9 @@ import useStore from "../../store";
 
 export function TeamHeadDetails({ onClose }) {
   const allMembers = useStore((state) => state.allMembers);
-
+  
   const [teamName, setTeamName] = useState("");
-  const [teamHead, setTeamHead] = useState(members[0].id);
+  const [teamHead, setTeamHead] = useState(allMembers[0].id);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
