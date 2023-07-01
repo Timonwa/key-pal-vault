@@ -75,10 +75,33 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
     }
   };
 
-  // const handleDelete = (e) => {
-  //   e.preventDefault();
-  //   alert(item.id);
-  // };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setSuccessMessage(false);
+    setErrorMessage(false);
+    try {
+      const response = await fetch(
+        `${baseURL}/deleteVault?vault_id=${item.id}`,
+        {
+          method: "DELETE",
+          headers: authHeaders,
+        }
+      );
+      const result = await response.json();
+      if (response.status === 200) {
+        setSuccessMessage(result.message);
+        setIsLoading(false);
+        handleFilter(selectedItem);
+      } else {
+        setErrorMessage(result.message);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Fragment>
@@ -132,16 +155,19 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
           )}
         </Modal>
       )}
-      {/* {modalType === "delete" && (
+      {modalType === "delete" && (
         <Modal isOpen={isOpen} onClose={onClose}>
           <DeletePopup
-            type="Secret"
-            name="Secret card title"
+            type={item.type}
+            name={item.name}
             onClose={onClose}
             handleDelete={handleDelete}
+            isLoading={isLoading}
+            successMessage={successMessage}
+            errorMessage={errorMessage}
           />
         </Modal>
-      )} */}
+      )}
       <article className={styles.secretCard}>
         <div className={styles.secretTitleWrapper}>
           <h3 className={styles.secretTitle}>{item.name}</h3>
@@ -185,11 +211,11 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
                 onClick={(e) => openModal("edit", item.type)}>
                 Edit
               </button>
-              {/* <button
+              <button
                 className={styles.deleteBtn}
                 onClick={() => openModal("delete")}>
                 Delete
-              </button> */}
+              </button>
             </div>
           </div>
         )}
