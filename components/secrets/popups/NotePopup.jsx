@@ -1,7 +1,7 @@
 import { ErrorMessage, SuccessMessage } from "@/common/ResponseMessage";
-import styles from "../../../styles/secrets/NotePopup.module.scss";
-import useStore from "../../../store";
+import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
+import useStore from "../../../store";
 import { ButtonLoader } from "@/common/ButtonLoader";
 
 export function NotePopup({
@@ -19,6 +19,9 @@ export function NotePopup({
   const [error, setError] = useState(false);
 
   const [name, setName] = useState("");
+  const [website, setWebsite] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [note, setNote] = useState("");
   const [visibility, setVisibility] = useState("private");
   const [teams, setTeams] = useState([]);
@@ -27,15 +30,22 @@ export function NotePopup({
   useEffect(() => {
     if (clearForm) {
       setName("");
+      setWebsite("");
+      setUsername("");
+      setPassword("");
       setNote("");
       setVisibility("private");
       setTeams([]);
     }
   }, [clearForm]);
+
   // if you want to edit secret, set state to secret data
   useEffect(() => {
     if (secretPasswordData) {
       setName(secretPasswordData?.name);
+      setWebsite(secretPasswordData?.website);
+      setUsername(secretPasswordData?.username);
+      setPassword(secretPasswordData?.password);
       setNote(secretPasswordData?.note);
       setVisibility(secretPasswordData?.visibility);
       setTeams(secretPasswordData?.teams);
@@ -97,10 +107,10 @@ export function NotePopup({
   };
 
   return (
-    <section className={styles.notePopup}>
+    <section className={styles.passwordPopup}>
       <h1 className={styles.title}>{title}</h1>
 
-      <form onSubmit={(e) => handleSubmit(e, data)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <label htmlFor="name">
             Name of secret
@@ -110,13 +120,13 @@ export function NotePopup({
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Environmental variables"
+              placeholder="Facebook login details"
               required
             />
           </label>
 
           <label htmlFor="note">
-            Note
+            Notes
             <textarea
               id="note"
               name="note"

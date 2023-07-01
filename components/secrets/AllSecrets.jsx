@@ -15,6 +15,7 @@ import { EditPasswordPopup } from "./popups/EditPasswordPopup";
 import { EditFilePopup } from "./popups/EditFilePopup";
 import { baseURL, authHeaders } from "../../store/axiosDefaults";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { EditNotePopup } from "./popups/EditNotePopup";
 
 export function SecretCard({ item, handleFilter, selectedItem }) {
   const accountType = useStore((state) => state.accountType);
@@ -130,7 +131,7 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
             />
           )}
           {selectedSecretType === "note" && (
-            <NotePopup
+            <EditNotePopup
               secretPasswordData={item}
               title="Update Secret (Note)"
               onClose={onClose}
@@ -211,7 +212,7 @@ export function SecretCard({ item, handleFilter, selectedItem }) {
             </button>
             {accountType === "Admin" && (
               <Fragment>
-                {item.type === "password" && (
+                {item.type !== "file" && (
                   <button
                     className={styles.editBtn}
                     onClick={(e) => openModal("edit", item.type)}>

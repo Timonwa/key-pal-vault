@@ -3,7 +3,7 @@ import styles from "../../../styles/secrets/PasswordPopup.module.scss";
 import { useEffect, useState } from "react";
 import { ButtonLoader } from "@/common/ButtonLoader";
 
-export function EditPasswordPopup({
+export function EditNotePopup({
   onClose,
   handleEdit,
   title,
@@ -53,10 +53,10 @@ export function EditPasswordPopup({
     name: name,
     type: secretPasswordData.type,
     content: {
-      website,
-      username,
+      website: "",
+      username: "",
       email: "",
-      password,
+      password: "",
     },
     note,
   };
@@ -85,56 +85,17 @@ export function EditPasswordPopup({
             />
           </label>
 
-          <label htmlFor="website">
-            Website
-            <input
-              id="website"
-              name="website"
-              type="url"
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-              placeholder="https://facebook.com"
-              required
-            />
-          </label>
-
-          <label htmlFor="username">
-            Username or email
-            <input
-              id="username"
-              name="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="companyname@example.com"
-              required
-            />
-          </label>
-
-          <label htmlFor="password">
-            Password
-            <input
-              id="password"
-              name="password"
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
-              required
-            />
-          </label>
-
           <label htmlFor="note">
-            Notes (optional)
+            Notes
             <textarea
               id="note"
               name="note"
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder="Additional notes"
-              maxLength={200}
+              placeholder="Enter notes"
               rows={3}
+              required
             />
           </label>
 
@@ -145,7 +106,8 @@ export function EditPasswordPopup({
               name="visibility"
               value={visibility}
               onChange={(e) => setVisibility(e.target.value)}
-              required disabled>
+              required
+              disabled>
               <option value="private">Private</option>
               <option value="public">Public</option>
             </select>

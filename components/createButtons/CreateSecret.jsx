@@ -40,7 +40,7 @@ export default function CreateSecret() {
             body: JSON.stringify(data),
           });
           const result = await response.json();
-          if (response.status === 201) {
+          if (response.status === 200) {
             setSuccessMessage(result.message);
           } else {
             setErrorMessage(result.message);
@@ -100,7 +100,7 @@ export default function CreateSecret() {
               />
               Password
             </label>
-            {/* <label htmlFor="note">
+            <label htmlFor="note">
               <input
                 type="radio"
                 id="note"
@@ -109,7 +109,7 @@ export default function CreateSecret() {
                 onChange={handleSecretTypeChange}
               />
               Note
-            </label> */}
+            </label>
             <label htmlFor="file">
               <input
                 type="radio"
