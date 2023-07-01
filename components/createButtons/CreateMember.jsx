@@ -25,12 +25,12 @@ export default function CreateMember() {
         <MemberDetailsPopup
           onClose={onClose}
           handleEdit={handleCreate}
-          title="Create New Member"
+          title="Add Team Member"
         />
       </Modal>
 
       <button className={styles.createBtn} onClick={() => openModal()}>
-        <FaPlus /> New Member
+        <FaPlus /> Add Team Member
       </button>
     </Fragment>
   );

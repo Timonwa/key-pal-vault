@@ -13,6 +13,7 @@ export default function MembersButtons() {
         marginBottom: "16px",
       }}>
       <CreateTeam />
+      <CreateMember />
     </section>
   );
 }

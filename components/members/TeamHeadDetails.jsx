@@ -12,15 +12,6 @@ export function TeamHeadDetails({ onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [successMessage, setSuccessMessage] = useState(false);
-  const [clearForm, setClearForm] = useState(false);
-
-  // if clear form is true, clear form
-  useEffect(() => {
-    if (clearForm) {
-      setTeamHead("");
-      setTeamName("");
-    }
-  }, [clearForm]);
 
   // create a new team
   const createTeam = async () => {

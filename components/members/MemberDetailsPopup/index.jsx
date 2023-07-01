@@ -1,125 +1,99 @@
 import styles from "./styles.module.scss";
 import useStore from "../../../store";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { baseURL, authHeaders } from "../../../store/axiosDefaults";
+import { ButtonLoader } from "@/common/ButtonLoader";
+import { ErrorMessage, SuccessMessage } from "@/common/ResponseMessage";
 
-export function MemberDetailsPopup({ onClose, handleEdit, title }) {
-  const userData = useStore((state) => state.userData);
-  const accountType = useStore((state) => state.accountType);
+export function MemberDetailsPopup({ onClose, title }) {
+  const userTeams = useStore((state) => state.userTeams);
+  const allMembers = useStore((state) => state.allMembers);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("unapproved");
-  const [team, setTeam] = useState("None");
-  const [role, setRole] = useState("Member");
-  const [isDisabled, setIsDisabled] = useState(false);
-
-  useEffect(() => {
-    if (userData?.name) {
-      setName(userData?.name);
-      setIsDisabled(true);
-    }
-    if (userData?.email) {
-      setEmail(userData?.email);
-      setIsDisabled(true);
-    }
-    if (userData?.status) {
-      setStatus(userData?.status);
-    }
-    if (userData?.team) {
-      setTeam(userData?.team);
-    }
-    if (userData?.role) {
-      setRole(userData?.role);
-    }
-  }, [userData]);
+  const [member, setMember] = useState(allMembers[0].id);
+  const [team, setTeam] = useState(userTeams[0].id);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const data = {
-    name,
-    email,
-    status,
-    team,
-    role,
+    user_id: member,
+    team_id: team,
   };
 
+  // create a new team
+  const createTeam = async () => {
+    setIsLoading(true);
+    setSuccessMessage(false);
+    setErrorMessage(false);
+    try {
+      const response = await fetch(`${baseURL}/addTeamMember`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.status === 201) {
+        setSuccessMessage(result.message);
+        setIsLoading(false);
+      } else {
+        setErrorMessage(result.message);
+        setIsLoading(false);
+      }
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
+  };
+
+  // handle creating a team and adding a team head
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createTeam();
+  };
   return (
     <section className={styles.editMemberPopup}>
       <h1 className={styles.title}>{title}</h1>
 
-      <form onSubmit={(e) => handleEdit(e, data)}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
-          <label htmlFor="name">
-            Name
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled={isDisabled}
-              required
-            />
-          </label>
-
-          <label htmlFor="email">
-            Email
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={isDisabled}
-              required
-            />
-          </label>
-
-          <label htmlFor="status">
-            Status
-            <select
-              id="status"
-              name="status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              disabled={accountType === "Admin" ? false : true}
-              required>
-              <option value="approved">approved</option>
-              <option value="unapproved">unapproved</option>
-            </select>
-          </label>
-
           <label htmlFor="team">
-            Team
+            Select Team:
             <select
               id="team"
               name="team"
               value={team}
-              onChange={(e) => setTeam(e.target.value)}
-              required>
-              <option value="Marketing">Marketing</option>
-              <option value="Development">Development</option>
-              <option value="None">None</option>
+              onChange={(e) => setTeam(e.target.value)}>
+              {userTeams.map((team) => (
+                <option key={team.id} value={team.id}>
+                  {team.name}
+                </option>
+              ))}
             </select>
           </label>
-
-          <label htmlFor="role">
-            Role
+          <label htmlFor="member">
+            Select Team Member:
             <select
-              id="role"
-              name="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              required>
-              <option value="Member">Member</option>
+              id="member"
+              name="member"
+              value={member}
+              onChange={(e) => setMember(e.target.value)}>
+              {allMembers.map((member) => (
+                <option key={member.id} value={member.id}>
+                  {member.first_name} {member.last_name}
+                </option>
+              ))}
             </select>
           </label>
+          <SuccessMessage message={successMessage} />
+          <ErrorMessage message={errorMessage} />
         </fieldset>
 
         <div className={styles.buttons}>
           <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.save} type="submit">
-            Save
+          <button className={styles.save} type="submit" disabled={isLoading}>
+            {!isLoading ? "Add Member" : <ButtonLoader />}
           </button>
         </div>
       </form>
