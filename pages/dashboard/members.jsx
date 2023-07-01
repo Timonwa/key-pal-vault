@@ -39,7 +39,7 @@ export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
       await setAccountType("Admin");
     }
   };
-  
+
   const updateUserData = async () => {
     // if registered with passage,
     // check if user exists in db by login them in
@@ -92,12 +92,7 @@ export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
   }, [setActivePage]);
 
   if (!userData) {
-    return (
-      <div>
-        {isLoading && <p>loading...</p>}
-        {errorMessage && <p>{errorMessage}</p>}
-      </div>
-    );
+    return <div>{isLoading && <p>loading...</p>}</div>;
   }
 
   return (

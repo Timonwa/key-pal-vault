@@ -91,12 +91,7 @@ export default function Profile({ isAuthorized, psg_userData, psg_authToken }) {
   }, [setActivePage]);
 
   if (!userData) {
-    return (
-      <div>
-        {isLoading && <p>loading...</p>}
-        {errorMessage && <p>{errorMessage}</p>}
-      </div>
-    );
+    return <div>{isLoading && <p>loading...</p>}</div>;
   }
 
   return (
