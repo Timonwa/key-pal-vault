@@ -247,6 +247,6 @@ export default function AllSecrets({
       ))}
     </div>
   ) : (
-    <p>No secrets created yet.</p>
+    <p>No secrets yet.</p>
   );
 }

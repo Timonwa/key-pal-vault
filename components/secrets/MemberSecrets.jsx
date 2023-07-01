@@ -13,7 +13,7 @@ export default function MemberSecrets() {
   const [teamSecrets, setTeamSecrets] = useState([]);
 
   useEffect(() => {
-    handleFilter(userTeams[0]);
+    userTeams && handleFilter(userTeams[0]);
   }, [userTeams]);
 
   const handleFilter = async (selectedItem) => {
@@ -44,7 +44,13 @@ export default function MemberSecrets() {
   return (
     <main>
       <section>
-        <SectionTitle title={`${selectedItem?.name} team secrets`} />
+        <SectionTitle
+          title={`${
+            selectedItem?.name
+              ? `${selectedItem?.name} team secrets`
+              : "Join a team"
+          } `}
+        />
         <Filter
           teams={userTeams}
           onClick={handleFilter}

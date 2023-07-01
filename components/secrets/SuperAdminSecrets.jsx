@@ -44,7 +44,13 @@ export default function SuperAdminSecrets() {
   return (
     <main>
       <section>
-        <SectionTitle title={`${selectedItem?.name} team secrets`} />
+        <SectionTitle
+          title={`${
+            selectedItem?.name
+              ? `${selectedItem?.name} team secrets`
+              : "Join a team"
+          } `}
+        />
         <Filter
           teams={userTeams}
           onClick={handleFilter}

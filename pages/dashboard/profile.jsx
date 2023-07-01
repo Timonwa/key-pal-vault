@@ -44,9 +44,9 @@ export default function Profile({ isAuthorized, psg_userData, psg_authToken }) {
     setActivePage("Profile");
   }, [setActivePage]);
 
-  if (!userData) {
-    return null; // Or render a loading state if necessary
-  }
+  // if (!userData) {
+  //   return null; // Or render a loading state if necessary
+  // } //TODO: uncomment this
 
   return (
     <main>

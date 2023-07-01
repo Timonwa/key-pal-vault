@@ -46,9 +46,9 @@ export default function Members({ isAuthorized, psg_userData, psg_authToken }) {
     setActivePage("Members");
   }, [setActivePage]);
 
-  if (!userData) {
-    return null; // Or render a loading state if necessary
-  }
+  // if (!userData) {
+  //   return null; // Or render a loading state if necessary
+  // } //TODO: uncomment this
 
   return (
     <Fragment>
