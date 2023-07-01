@@ -1,0 +1,68 @@
+.authWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  div {
+    width: 50%;
+    height: inherit;
+  }
+  .intro {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    border-radius: 5px;
+    margin-top: 40px;
+    .introTitle {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .adminText {
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+    // css to animate icon moving up and down
+    .icon {
+      margin: 15px auto;
+      font-size: 1.2em;
+      animation: bounce 0.5s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-5px);
+      }
+    }
+    .adminLink {
+      width: max-content;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid var(--primary-color);
+      background-color: var(--primary-color);
+      color: var(--text);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    div {
+      width: 100%;
+    }
+    .intro {
+      display: none;
+    }
+  }
+}

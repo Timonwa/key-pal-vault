@@ -1,4 +1,5 @@
 import { Fragment, useEffect } from "react";
+import styles from "@/styles/authPage.module.scss";
 
 function SignInForm() {
   const appID = process.env.PASSAGE_APP_ID;

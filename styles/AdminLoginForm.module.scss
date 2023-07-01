@@ -1,14 +1,26 @@
 .adminLoginForm {
   width: 100%;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  h1 {
-    text-align: center;
+  .wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
   form {
+    h1 {
+      text-align: center;
+    }
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
-    width: 100%;
     fieldset {
       border: none;
       label {
@@ -32,12 +44,39 @@
         padding: 5px 10px;
         border-radius: 5px;
         border: 1px solid var(--primary-color);
-      }
-      button.save {
-        border: 1px solid var(--primary-color);
         background-color: var(--primary-color);
         color: var(--text);
       }
+    }
+  }
+  .loginDetails {
+    padding: 20px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    );
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    border-radius: 5px;
+    margin-top: 40px;
+    h2 {
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    code {
+      display: inline-block;
+      padding: 0.2em 0.4em;
+      margin: 0;
+      font-size: 85%;
+      background-color: var(--background);
+      border-radius: 3px;
     }
   }
 }

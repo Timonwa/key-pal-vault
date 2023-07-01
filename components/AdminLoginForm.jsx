@@ -64,41 +64,52 @@ export default function AdminLoginForm() {
 
   return (
     <section className={styles.adminLoginForm}>
-      <h1 className={styles.title}>Portal</h1>
+      <div className={styles.wrapper}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <h1 className={styles.title}>Admin Portal</h1>
+          <fieldset>
+            <label htmlFor="email">
+              Email
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+            <label htmlFor="password">
+              Password
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <ErrorMessage message={errorMessage} />
+            </label>
+          </fieldset>
 
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <fieldset>
-          <label htmlFor="email">
-            Email
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
-          <label htmlFor="password">
-            Password
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <ErrorMessage message={errorMessage} />
-          </label>
-        </fieldset>
+          <div className={styles.buttons}>
+            <button className={styles.save} type="submit" disabled={isLoading}>
+              {!isLoading ? "Login" : <ButtonLoader />}
+            </button>
+          </div>
+        </form>
 
-        <div className={styles.buttons}>
-          <button className={styles.save} type="submit" disabled={isLoading}>
-            {!isLoading ? "Login" : <ButtonLoader />}
-          </button>
+        <div className={styles.loginDetails}>
+          <h2>Admin login details</h2>
+          <p>
+            email: <code>test@timonwa.com</code>
+          </p>
+          <p>
+            password: <code>test123</code>
+          </p>
         </div>
-      </form>
+      </div>
     </section>
   );
 }

@@ -1,8 +1,14 @@
+import Intro from "@/components/Intro";
 import SignInForm from "@/components/SignInForm";
 import WithoutAuthLayout from "@/layout/WithoutAuthLayout";
-
+import styles from "@/styles/authPage.module.scss";
 function Home() {
-  return <SignInForm />;
+  return (
+    <main className={styles.authWrapper}>
+      <Intro />
+      <SignInForm />
+    </main>
+  );
 }
 
 export default Home;
