@@ -7,6 +7,10 @@ const DashboardNav = ({ accountType }) => {
   const setAccountType = useStore((state) => state.setAccountType);
   const userData = useStore((state) => state.userData);
 
+  // concat user first name and last name from userData and set it to name
+  const fullName = `${userData?.first_name} ${userData?.last_name}`;
+  const disabled = fullName && userData?.email ? true : false;
+
   const handleAccountToggle = (event) => {
     const selectedAccountType = event.target.value;
     setAccountType(selectedAccountType);
@@ -23,7 +27,7 @@ const DashboardNav = ({ accountType }) => {
         {userData && (
           <Fragment>
             <h1 className={styles.pageTitle}>{accountType}</h1>/
-            <p className={styles.userName}>Timonwa Akintokun</p>
+            <p className={styles.userName}>{fullName}</p>
           </Fragment>
         )}
       </nav>
