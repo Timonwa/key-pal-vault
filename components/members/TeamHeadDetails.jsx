@@ -28,7 +28,8 @@ export function TeamHeadDetails({ onClose }) {
       if (response.status === 201) {
         setSuccessMessage(result.message);
         setTeamName("");
-        // window.location.href = "/dashboard/members";
+        window.location.href = "/dashboard/members";
+        setIsLoading(false);
       } else {
         setErrorMessage(result.message);
         setIsLoading(false);
