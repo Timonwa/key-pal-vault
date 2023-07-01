@@ -1,6 +1,5 @@
 import React from "react";
 import CreateSecret from "./createButtons/CreateSecret";
-import CreateMember from "./createButtons/CreateMember";
 import CreateTeam from "./createButtons/CreateTeam";
 import useStore from "../store";
 
@@ -15,6 +14,7 @@ export default function DashboardButtons() {
         gap: "16px",
         marginBottom: "16px",
       }}>
+      {accountType === "Admin" && <CreateTeam />}
       {accountType === "Admin" && <CreateSecret />}
     </section>
   );

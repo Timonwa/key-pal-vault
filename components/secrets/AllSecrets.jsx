@@ -238,7 +238,7 @@ export default function AllSecrets({
     <ErrorMessage message={errorMessage} />
   ) : teamSecrets && teamSecrets.length > 0 ? (
     <div className={styles.secretsGrid}>
-      {teamSecrets.map((item) => (
+      {teamSecrets?.map((item) => (
         <SecretCard
           selectedItem={selectedItem}
           handleFilter={handleFilter}
