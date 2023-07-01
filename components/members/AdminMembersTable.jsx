@@ -10,6 +10,7 @@ export default function AdminMembersTable() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [teamMembers, setTeamMembers] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     handleFilter(userTeams[0]);
@@ -28,7 +29,7 @@ export default function AdminMembersTable() {
       );
       const result = await response.json();
       if (response.status === 200) {
-        setTeamMembers(result.data);
+        setTeamMembers(result.members);
         setIsLoading(false);
       } else {
         setErrorMessage(result?.message);
@@ -42,7 +43,12 @@ export default function AdminMembersTable() {
 
   return (
     <main>
-      <Top teams={userTeams} onClick={handleFilter} />
+      <Top
+        teams={userTeams}
+        onClick={handleFilter}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
       <MembersButtons />
       <MembersTable
         errorMessage={errorMessage}

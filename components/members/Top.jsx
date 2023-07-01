@@ -1,9 +1,8 @@
 import { Filter } from "@/common/Filter";
 import { SectionTitle } from "@/common/SectionTitle";
-import React, { useState } from "react";
+import React from "react";
 
-export default function Top({ teams, onClick }) {
-  const [selectedItem, setSelectedItem] = useState(null);
+export default function Top({ teams, onClick, selectedItem, setSelectedItem }) {
   return (
     <nav>
       <SectionTitle title={`${selectedItem?.name} team members`} />

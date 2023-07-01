@@ -64,17 +64,8 @@ export function MembersTable({ errorMessage, isLoading, teamMembers }) {
                 <th>
                   <p>Email</p>
                 </th>
-                {/* <th>
-                <p>Status</p>
-              </th> */}
-                <th>
-                  <p>Team</p>
-                </th>
                 <th>
                   <p>Role</p>
-                </th>
-                <th>
-                  <p>Action</p>
                 </th>
               </tr>
             </thead>
@@ -82,42 +73,18 @@ export function MembersTable({ errorMessage, isLoading, teamMembers }) {
               {teamMembers.map((user) => (
                 <tr key={user.email}>
                   <td>
-                    <p>Timonwa Akintokun</p>
-                  </td>
-                  <td>
-                    <p>timonwaakintokun@gmail.com</p>
-                  </td>
-                  {/* <td>
-                  {user.approved ? (
-                    <p className={styles.approved}>approved</p>
-                  ) : (
-                    <p className={styles.unapproved}>unapproved</p>
-                  )}
-                </td> */}
-                  <td>
-                    <p>Development</p>
-                  </td>
-                  <td>
-                    <p>Member</p>
-                  </td>
-                  <td>
                     <p>
-                      <button
-                        className={styles.edit}
-                        type="button"
-                        onClick={() => openModal("edit")}>
-                        Edit
-                      </button>
-                      <button
-                        className={styles.delete}
-                        type="button"
-                        onClick={() => openModal("delete")}>
-                        Delete
-                      </button>
+                      {user.first_name} {user.last_name}
                     </p>
                   </td>
+                  <td>
+                    <p>{user.email}</p>
+                  </td>
+                  <td>
+                    <p>{user.pivot.is_leader === 1 ? "Admin" : "Member"}</p>
+                  </td>
                 </tr>
-              ))}{" "}
+              ))}
             </tbody>
           </table>
         ) : (

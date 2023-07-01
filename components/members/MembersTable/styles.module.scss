@@ -23,7 +23,7 @@
     background: var(--text);
     box-shadow: 0px 1px 1px var(--box-shadow);
     border-radius: 8px 8px;
-    width: calc(900px - 120px);
+    width: 450px;
     border-collapse: collapse;
     thead {
       border-radius: 8px 8px 0px 0px;
@@ -79,50 +79,7 @@
     }
     th:nth-child(3),
     td:nth-child(3) {
-      width: 120px;
+      width: 80px;
     }
-    // th:nth-child(4),
-    // td:nth-child(4) {
-    //   width: 120px;
-    // }
-    th:nth-child(4),
-    td:nth-child(4) {
-      width: 100px;
-    }
-    th:nth-child(5),
-    td:nth-child(5) {
-      width: 150px;
-      p {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        button {
-          padding: 2px 10px;
-          border-radius: 5px;
-          border: 1px solid var(--error);
-          &:hover {
-            color: var(--primary-color);
-          }
-        }
-        button.delete {
-          background-color: var(--error);
-          color: var(--text);
-        }
-      }
-    }
-  }
-  .unapproved {
-    padding: 2px 10px;
-    border-radius: 5px;
-    width: max-content;
-    background-color: var(--warning);
-    color: var(--text);
-  }
-  .approved {
-    padding: 2px 10px;
-    border-radius: 5px;
-    width: max-content;
-    background-color: var(--success);
-    color: var(--text);
   }
 }
